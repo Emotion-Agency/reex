@@ -1,17 +1,19 @@
 :root {
   --background: #ffffff;
-  --bg-muted-10: rgba(#ffffff, 0.1);
-  --bg-muted-50: rgba(#ffffff, 0.5);
+  --bg-muted-10: rgba(255, 255, 255, 0.1);
+  --bg-muted-50: rgba(255, 255, 255, 0.5);
+  --bg-muted-75: rgba(255, 255, 255, 0.75);
   --background-secondary: #edeff0;
   --foreground: #011428;
-  --foreground-muted-7: rgba(#011428, 0.07);
-  --foreground-muted-10: rgba(#011428, 0.1);
-  --foreground-muted-50: rgba(#011428, 0.5);
+  --foreground-muted-7: rgba(1, 20, 40, 0.07);
+  --foreground-muted-10: rgba(1, 20, 40, 0.1);
+  --foreground-muted-50: rgba(1, 20, 40, 0.5);
+  --foreground-muted-85: rgba(1, 20, 40, 0.85);
   --border: #e2e4f0;
   --card: #fff;
   --muted: #f1f2f9;
   --dark: #2c2c2c;
-  --secondary: #f1f2f9;
+  --secondary: #ffffff;
   --primary: #cff6a2;
   --secondary-button: #f1f2f9;
 
@@ -39,16 +41,18 @@
   --background: #121212;
   --bg-muted-10: rgba(#121212, 0.1);
   --bg-muted-50: rgba(#121212, 0.5);
+  --bg-muted-75: rgba(#121212, 0.75);
   --background-secondary: #edeff0;
   --foreground: #fff;
-  --foreground-muted-7: rgba(#011428, 0.07);
-  --foreground-muted-10: rgba(#011428, 0.1);
-  --foreground-muted-50: rgba(#011428, 0.5);
+  --foreground-muted-7: rgba(1, 20, 40, 0.07);
+  --foreground-muted-10: rgba(1, 20, 40, 0.1);
+  --foreground-muted-50: rgba(1, 20, 40, 0.5);
+  --foreground-muted-85: rgba(1, 20, 40, 0.85);
   --border: #30343f;
   --card: #181818;
   --muted: #25282e;
   --dark: #e5e5e5;
-  --secondary: #25282e;
+  --secondary: #011428;
   --card-shadow-color: rgba(255, 255, 255, 0.05);
 }
 

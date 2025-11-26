@@ -32,12 +32,28 @@ useHead({
       <Link rel="icon" type="image/x-icon" href="/favicon.ico"></Link>
     </Head>
     <AppGrid />
-    <Landscape />
+    <!-- <Landscape /> -->
     <SmoothScroll>
       <NuxtLayout>
-        <NuxtPage />
+        <AppHeader />
+        <main class="main-content">
+          <NuxtPage />
+        </main>
+        <AppFooter />
       </NuxtLayout>
     </SmoothScroll>
     <ToastGroup />
   </div>
 </template>
+
+<style scoped lang="scss">
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+</style>

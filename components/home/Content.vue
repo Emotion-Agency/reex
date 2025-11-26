@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>Home Components</div>
+  <div>
+    <HomeHero />
+  </div>
 </template>

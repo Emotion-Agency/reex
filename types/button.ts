@@ -1,26 +1,17 @@
 import type { TooltipProps } from './tooltip'
 
 export interface IButton {
-  tag?: string
+  tag?: 'button' | 'a' | 'nuxt-link' | string
   type?: 'button' | 'submit' | 'reset' | null
   href?: string
 }
 
 export interface IButtonProps extends IButton {
-  size?: 'sm' | 'md' | 'lg'
-  variant?:
-    | 'primary'
-    | 'secondary'
-    | 'ghost'
-    | 'ghost-primary'
-    | 'ghost-danger'
-    | 'outline'
-    | 'danger'
+  variant?: 'primary' | 'secondary'
 }
 
-export interface IIconButtonProps extends Omit<IButtonProps, 'size'> {
+export interface IIconButtonProps extends IButtonProps {
   label: string
   tooltipProps?: TooltipProps
-  size?: 'xs' | 'sm' | 'md' | 'lg'
   disableTooltip?: boolean
 }
