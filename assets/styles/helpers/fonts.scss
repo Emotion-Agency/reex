@@ -2,8 +2,148 @@
 @use './helpers' as *;
 @use './mixins' as *;
 
-// @mixin reg {
-//   font-family: 'NeueHaas', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-//     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-//   font-weight: 400;
-// }
+// Headings
+@mixin heading-h1 {
+  font-family:
+    'Fixel Text',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-weight: 500;
+  font-size: vw(104);
+  line-height: 1em;
+  letter-spacing: -0.03em;
+}
+@mixin heading-h2 {
+  font-family:
+    'Fixel Text',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-weight: 500;
+  font-size: vw(56);
+  line-height: 1em;
+  letter-spacing: -0.014em;
+}
+@mixin heading-h3 {
+  font-family:
+    'Fixel Text',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-weight: 500;
+  font-size: vw(40);
+  line-height: 1.12em;
+  letter-spacing: -0.014em;
+}
+@mixin heading-h4 {
+  font-family:
+    'Fixel Text',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-weight: 500;
+  font-size: vw(24);
+  line-height: 1.12em;
+  letter-spacing: -0.008em;
+}
+
+// Paragraphs (P1 and P2)
+
+@mixin text-reg-p1 {
+  font-family:
+    'Fixel Text',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-weight: 400;
+  font-size: vw(16);
+  line-height: 1em;
+}
+@mixin text-med-p1 {
+  font-family:
+    'Fixel Text',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-weight: 500;
+  font-size: vw(16);
+  line-height: 1.4em;
+}
+
+@mixin text-reg-p2 {
+  font-family:
+    'Fixel Text',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-weight: 400;
+  font-size: vw(14);
+  line-height: 1.43em;
+}
+@mixin text-med-p2 {
+  font-family:
+    'Fixel Text',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-weight: 500;
+  font-size: vw(14);
+  line-height: 1.43em;
+}

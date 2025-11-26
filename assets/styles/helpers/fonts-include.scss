@@ -1,1 +1,3 @@
-
+@use './mixins' as *;
+@include font('Fixel Text', 'FixelText-Regular', '400', 'normal');
+@include font('Fixel Text', 'FixelText-Medium', '500', 'normal');
