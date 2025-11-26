@@ -31,11 +31,6 @@ body {
   }
 }
 
-h1 {
-  font-size: rem(52);
-  margin-top: rem(100);
-}
-
 .e-landscape {
   @include coverdiv(fixed);
   z-index: 100000;
