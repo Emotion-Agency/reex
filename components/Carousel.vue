@@ -2,28 +2,6 @@
 import emblaCarouselVue from 'embla-carousel-vue'
 import type { EmblaOptionsType } from 'embla-carousel'
 
-const { width } = useWindowSize()
-
-const slidesToScroll = computed(() => {
-  if (width.value < 660) return 1
-  if (width.value < 960) return 2
-  return 4
-})
-
-const options = computed<EmblaOptionsType>(() => ({
-  loop: false,
-  slidesToScroll: slidesToScroll.value,
-  align: 'start',
-  container: '.embla__container',
-}))
-
-const [emblaRef, emblaApi] = emblaCarouselVue(options)
-const prevBtnDisabled = ref(true)
-const nextBtnDisabled = ref(true)
-
-const scrollPrev = () => emblaApi.value?.scrollPrev()
-const scrollNext = () => emblaApi.value?.scrollNext()
-
 const services = [
   {
     id: 1,
@@ -69,19 +47,50 @@ const services = [
   },
 ]
 
-const updateButtonState = () => {
-  if (!emblaApi.value) return
+const { width } = useWindowSize()
 
-  prevBtnDisabled.value = !emblaApi.value.canScrollPrev()
-  nextBtnDisabled.value = !emblaApi.value.canScrollNext()
+const slidesToScroll = computed(() => {
+  if (width.value < 660) return 1
+  if (width.value < 960) return 2
+  return 4
+})
+
+const options = computed<EmblaOptionsType>(() => ({
+  loop: false,
+  slidesToScroll: slidesToScroll.value,
+  align: 'start',
+  container: '.embla__container',
+  watchDrag: width.value < 960,
+}))
+
+const [emblaRef, emblaApi] = emblaCarouselVue(options)
+
+const prevBtnDisabled = ref(true)
+const nextBtnDisabled = ref(true)
+const progress = ref(0)
+
+const scrollPrev = () => emblaApi.value?.scrollPrev()
+const scrollNext = () => emblaApi.value?.scrollNext()
+
+const updateUI = () => {
+  const api = emblaApi.value
+  if (!api) return
+
+  prevBtnDisabled.value = !api.canScrollPrev()
+  nextBtnDisabled.value = !api.canScrollNext()
+  progress.value = api.scrollProgress() * 100
 }
 
 onMounted(() => {
-  if (emblaApi.value) {
-    emblaApi.value.on('select', updateButtonState)
-    emblaApi.value.on('init', updateButtonState)
-    updateButtonState()
-  }
+  const api = emblaApi.value
+  if (!api) return
+
+  api.on('init', updateUI)
+  api.on('select', updateUI)
+  api.on('scroll', updateUI)
+  api.on('reInit', updateUI)
+
+  updateUI()
 })
 </script>
 
@@ -119,6 +128,9 @@ onMounted(() => {
         </div>
       </li>
     </ul>
+    <div class="embla__progress">
+      <div class="embla__progress-bar" :style="{ width: progress + '%' }"></div>
+    </div>
   </section>
 </template>
 
@@ -250,6 +262,27 @@ onMounted(() => {
 
   @media (max-width: $br1) {
     margin-top: 8px;
+  }
+}
+
+.embla__progress {
+  width: 100%;
+  height: vw(4);
+  background-color: #dee0e9;
+  border-radius: 100px;
+  overflow: hidden;
+  margin-top: vw(28);
+
+  @media (max-width: $br1) {
+    height: 3px;
+    margin-top: 18px;
+  }
+
+  .embla__progress-bar {
+    height: 100%;
+    background: var(--foreground-muted-10);
+    width: 0%;
+    transition: width 0.2s ease;
   }
 }
 </style>

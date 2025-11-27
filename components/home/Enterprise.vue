@@ -22,7 +22,6 @@
       </div>
       <div>
         <Carousel />
-        <div class="enterprise__divider" />
       </div>
     </div>
   </section>
@@ -72,19 +71,6 @@
 
   @media (max-width: $br1) {
     margin-top: 32px;
-  }
-}
-
-.enterprise__divider {
-  display: block;
-  width: 100%;
-  height: vw(4);
-  background-color: #dee0e9;
-  margin-top: vw(28);
-
-  @media (max-width: $br1) {
-    height: 3px;
-    margin-top: 24px;
   }
 }
 </style>
