@@ -6,7 +6,7 @@
       <img src="/images/home-1.png" alt="Backround image" class="hero__bg" />
     </div>
     <div class="hero__container container">
-      <h1 class="hero__title">Кадрові рішення для бізнесу</h1>
+      <h1 class="hero__t">Кадрові рішення для бізнесу</h1>
     </div>
   </section>
 </template>
@@ -49,7 +49,7 @@
   height: 100%;
 }
 
-.hero__title {
+.hero__t {
   @include heading-h1;
   max-width: vw(790);
   color: var(--secondary);

@@ -4,5 +4,6 @@
   <div>
     <HomeHero />
     <HomeEnterprise />
+    <HomeWhyChooseUs />
   </div>
 </template>

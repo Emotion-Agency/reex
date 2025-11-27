@@ -6,7 +6,7 @@
       <div class="grid enterprise__top">
         <Pill class="enterprise__pill"> Рішення для бізнесу </Pill>
         <div class="enterprise__top-content">
-          <h2 class="enterprise__title">
+          <h2 class="enterprise__t">
             Ми беремо на себе персонал — ви отримуєте результати
             <span> без зайвих клопотів. </span>
           </h2>
@@ -58,7 +58,7 @@
   }
 }
 
-.enterprise__title {
+.enterprise__t {
   @include heading-h2;
 
   span {
