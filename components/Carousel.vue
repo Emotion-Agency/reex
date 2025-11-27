@@ -268,7 +268,7 @@ onMounted(() => {
 .embla__progress {
   width: 100%;
   height: vw(4);
-  background-color: #dee0e9;
+  background-color: #edeff0;
   border-radius: 100px;
   overflow: hidden;
   margin-top: vw(28);
@@ -280,7 +280,7 @@ onMounted(() => {
 
   .embla__progress-bar {
     height: 100%;
-    background: var(--foreground-muted-10);
+    background-color: #dee0e9;
     width: 0%;
     transition: width 0.2s ease;
   }
