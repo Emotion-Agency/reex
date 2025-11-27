@@ -20,6 +20,10 @@
   font-size: vw(104);
   line-height: 1em;
   letter-spacing: -0.03em;
+
+  @media (max-width: $br1) {
+    font-size: 60px;
+  }
 }
 @mixin heading-h2 {
   font-family:
@@ -38,6 +42,10 @@
   font-size: vw(56);
   line-height: 1em;
   letter-spacing: -0.014em;
+
+  @media (max-width: $br1) {
+    font-size: 36px;
+  }
 }
 @mixin heading-h3 {
   font-family:
@@ -56,6 +64,10 @@
   font-size: vw(40);
   line-height: 1.12em;
   letter-spacing: -0.014em;
+
+  @media (max-width: $br1) {
+    font-size: 24px;
+  }
 }
 @mixin heading-h4 {
   font-family:
@@ -74,6 +86,10 @@
   font-size: vw(24);
   line-height: 1.12em;
   letter-spacing: -0.008em;
+
+  @media (max-width: $br1) {
+    font-size: 20px;
+  }
 }
 
 // Paragraphs (P1 and P2)
@@ -94,6 +110,10 @@
   font-weight: 400;
   font-size: vw(16);
   line-height: 1em;
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+  }
 }
 @mixin text-med-p1 {
   font-family:
@@ -111,6 +131,10 @@
   font-weight: 500;
   font-size: vw(16);
   line-height: 1.4em;
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+  }
 }
 
 @mixin text-reg-p2 {
@@ -129,6 +153,10 @@
   font-weight: 400;
   font-size: vw(14);
   line-height: 1.43em;
+
+  @media (max-width: $br1) {
+    font-size: 14px;
+  }
 }
 @mixin text-med-p2 {
   font-family:
@@ -146,4 +174,8 @@
   font-weight: 500;
   font-size: vw(14);
   line-height: 1.43em;
+
+  @media (max-width: $br1) {
+    font-size: 14px;
+  }
 }

@@ -41,12 +41,21 @@ const navItems = [
   align-items: center;
   padding: vw(16) vw(32);
   z-index: 100;
+
+  @media (max-width: $br1) {
+    padding: 12px 24px;
+    gap: 10px;
+  }
 }
 
 .header__logo {
   display: block;
   width: vw(90);
   height: auto;
+
+  @media (max-width: $br1) {
+    width: 70px;
+  }
 }
 
 .header__nav {
@@ -57,6 +66,13 @@ const navItems = [
   padding-left: vw(24);
   background-color: var(--bg-muted-75);
   border-radius: vw(12);
+
+  @media (max-width: $br1) {
+    padding: 8px;
+    padding-left: 16px;
+    gap: 16px;
+    border-radius: 8px;
+  }
 }
 
 .header__nav-list {
@@ -64,6 +80,10 @@ const navItems = [
   align-items: center;
   gap: vw(24);
   flex: 1 0 auto;
+
+  @media (max-width: $br1) {
+    gap: 16px;
+  }
 }
 
 .header__nav-item {

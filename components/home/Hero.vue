@@ -5,7 +5,7 @@
     <div class="hero__bg-wrapper">
       <img src="/images/home-1.png" alt="Backround image" class="hero__bg" />
     </div>
-    <div class="hero__container">
+    <div class="hero__container container">
       <h1 class="hero__title">Кадрові рішення для бізнесу</h1>
     </div>
   </section>
@@ -53,5 +53,13 @@
   @include heading-h1;
   max-width: vw(790);
   color: var(--secondary);
+
+  @media (max-width: $br1) {
+    max-width: 500px;
+  }
+
+  @media (max-width: $br4) {
+    max-width: 100%;
+  }
 }
 </style>

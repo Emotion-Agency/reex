@@ -52,6 +52,10 @@ const href = props.tag === 'a' ? props.href : undefined
   &--primary {
     height: vw(44);
 
+    @media (max-width: $br1) {
+      height: 36px;
+    }
+
     &:hover {
       .button__text--primary {
         background-color: var(--foreground-muted-85);
@@ -61,6 +65,10 @@ const href = props.tag === 'a' ? props.href : undefined
 
   &--secondary {
     height: vw(48);
+
+    @media (max-width: $br1) {
+      height: 40px;
+    }
   }
 }
 
@@ -81,11 +89,20 @@ const href = props.tag === 'a' ? props.href : undefined
     background-color: var(--foreground);
     border-radius: vw(12);
     transition: background-color 0.3s ease;
+
+    @media (max-width: $br1) {
+      padding: 0 12px;
+      border-radius: 8px;
+    }
   }
 
   &--secondary {
     padding: vw(0) vw(20);
     height: 100%;
+
+    @media (max-width: $br1) {
+      padding: 0 16px;
+    }
 
     .button__bg {
       position: absolute;
@@ -95,6 +112,10 @@ const href = props.tag === 'a' ? props.href : undefined
       height: 100%;
       background-color: var(--foreground);
       border-radius: vw(12);
+
+      @media (max-width: $br1) {
+        border-radius: 8px;
+      }
     }
   }
 }

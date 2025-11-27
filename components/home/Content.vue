@@ -3,5 +3,6 @@
 <template>
   <div>
     <HomeHero />
+    <HomeEnterprise />
   </div>
 </template>
