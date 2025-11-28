@@ -128,9 +128,12 @@ onMounted(() => {
         </div>
       </li>
     </ul>
-    <div class="embla__progress">
-      <div class="embla__progress-bar" :style="{ width: progress + '%' }"></div>
+    <div class="embla__l-progress">
+      <span v-for="n in width < 960 ? 50 : 100" :key="n" />
     </div>
+    <!-- <div class="embla__progress">
+      <div class="embla__progress-bar" :style="{ width: progress + '%' }"></div>
+    </div> -->
   </section>
 </template>
 
@@ -262,6 +265,25 @@ onMounted(() => {
 
   @media (max-width: $br1) {
     margin-top: 8px;
+  }
+}
+
+.embla__l-progress {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: vw(20);
+  margin-top: vw(32);
+
+  span {
+    width: 1px;
+    height: 100%;
+    background-color: var(--foreground);
+  }
+
+  @media (max-width: $br1) {
+    margin-top: 18px;
+    height: 14px;
   }
 }
 
