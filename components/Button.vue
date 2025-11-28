@@ -13,8 +13,6 @@ const tag = computed(() => {
   } else return props.tag ?? 'button'
 })
 
-const isSecondary = computed(() => props.variant === 'secondary')
-
 const to = props.tag === 'nuxt-link' ? props.href : undefined
 const href = props.tag === 'a' ? props.href : undefined
 </script>
@@ -31,13 +29,7 @@ const href = props.tag === 'a' ? props.href : undefined
     :class="[`button--${props.variant}`]"
   >
     <span class="button__text" :class="[`button__text--${props.variant}`]">
-      <!-- <IconsButtonBackground v-if="isSecondary" /> -->
-      <div v-if="isSecondary" class="button__bg" />
       <slot />
-    </span>
-
-    <span v-if="isSecondary" class="button__icon">
-      <IconsButtonChevron />
     </span>
   </component>
 </template>
@@ -46,91 +38,51 @@ const href = props.tag === 'a' ? props.href : undefined
 .button {
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   width: 100%;
+  height: vw(44);
+  border-radius: vw(12);
+  color: var(--foreground);
+  padding: vw(0) vw(16);
+
+  @media (max-width: $br1) {
+    height: 44px;
+    border-radius: 12px;
+    padding: 0 12px;
+  }
 
   &--primary {
-    height: vw(44);
-
-    @media (max-width: $br1) {
-      height: 36px;
-    }
+    background-color: var(--foreground);
+    transition: background-color 0.3s ease;
 
     &:hover {
-      .button__text--primary {
-        background-color: var(--foreground-muted-85);
-      }
+      background-color: var(--foreground-muted-85);
     }
   }
 
   &--secondary {
-    height: vw(48);
+    width: vw(44);
+    padding: 0;
+    background-color: var(--foreground-muted-10);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: var(--foreground-muted-14);
+    }
 
     @media (max-width: $br1) {
-      height: 40px;
+      width: 44px;
     }
   }
 }
 
 .button__text {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: var(--secondary);
   z-index: 1;
-  @include text-reg-p2;
-
-  &--primary {
-    width: 100%;
-    height: 100%;
-    padding: vw(0) vw(16);
-    background-color: var(--foreground);
-    border-radius: vw(12);
-    transition: background-color 0.3s ease;
-
-    @media (max-width: $br1) {
-      padding: 0 12px;
-      border-radius: 8px;
-    }
-  }
-
-  &--secondary {
-    padding: vw(0) vw(20);
-    height: 100%;
-
-    @media (max-width: $br1) {
-      padding: 0 16px;
-    }
-
-    .button__bg {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      width: 100%;
-      height: 100%;
-      background-color: var(--foreground);
-      border-radius: vw(12);
-
-      @media (max-width: $br1) {
-        border-radius: 8px;
-      }
-    }
-  }
-}
-
-.button__icon {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 100%;
-  width: auto;
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+  @include text-reg-p2;
 }
 </style>

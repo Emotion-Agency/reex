@@ -8,14 +8,14 @@
         Reex — ваш партнер у підборі тимчасового, та
         <span>постійного персоналу.</span>
       </h2>
-      <Button
+      <DualButton
         class="about__btn"
         tag="nuxt-link"
         to="/about"
         variant="secondary"
       >
         Детальніше про нас
-      </Button>
+      </DualButton>
     </div>
     <div class="about__imgs">
       <img src="/images/home-2.png" alt="About image" class="about__img" />

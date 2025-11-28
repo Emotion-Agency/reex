@@ -27,6 +27,7 @@ const navItems = [
       <Button class="header__nav-button" tag="nuxt-link" to="/contact">
         Замовити персонал
       </Button>
+      <SwitchLanguage />
     </nav>
   </header>
 </template>
@@ -61,7 +62,6 @@ const navItems = [
 .header__nav {
   display: flex;
   align-items: center;
-  gap: vw(24);
   padding: vw(4);
   padding-left: vw(24);
   background-color: var(--bg-muted-75);
@@ -70,7 +70,6 @@ const navItems = [
   @media (max-width: $br1) {
     padding: 8px;
     padding-left: 16px;
-    gap: 16px;
     border-radius: 8px;
   }
 }
@@ -80,6 +79,7 @@ const navItems = [
   align-items: center;
   gap: vw(24);
   flex: 1 0 auto;
+  margin-right: vw(24);
 
   @media (max-width: $br1) {
     gap: 16px;
@@ -94,6 +94,7 @@ const navItems = [
 
 .header__nav-button {
   color: var(--secondary);
+  margin-right: vw(4);
   @include text-reg-p2;
 }
 </style>

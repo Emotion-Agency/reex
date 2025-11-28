@@ -10,14 +10,9 @@
             Ми беремо на себе персонал — ви отримуєте результати
             <span> без зайвих клопотів. </span>
           </h2>
-          <Button
-            tag="nuxt-link"
-            to="/services"
-            variant="secondary"
-            class="enterprise__btn"
-          >
+          <DualButton tag="nuxt-link" to="/services" class="enterprise__btn">
             Усі послуги
-          </Button>
+          </DualButton>
         </div>
       </div>
       <div>
@@ -67,6 +62,7 @@
 }
 
 .enterprise__btn {
+  width: fit-content;
   margin-top: vw(40);
 
   @media (max-width: $br1) {
