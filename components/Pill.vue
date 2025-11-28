@@ -3,13 +3,13 @@ interface PillProps {
   variant?: 'light' | 'dark'
 }
 
-withDefaults(defineProps<PillProps>(), {
+const props = withDefaults(defineProps<PillProps>(), {
   variant: 'dark',
 })
 </script>
 
 <template>
-  <div class="pill">
+  <div class="pill" :class="[`pill--${props.variant}`]">
     <span />
     <slot />
   </div>
@@ -26,11 +26,11 @@ withDefaults(defineProps<PillProps>(), {
     gap: 6px;
   }
 
-  &.light {
+  &--light {
     color: var(--secondary);
   }
 
-  &.dark {
+  &--dark {
     color: var(--foreground);
   }
 }

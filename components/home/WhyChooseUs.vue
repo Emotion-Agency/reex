@@ -100,6 +100,11 @@ const chooseItems = [
 
   @media (max-width: $br1) {
     margin-top: 16px;
+    max-width: 75%;
+  }
+
+  @media (max-width: $br3) {
+    max-width: 100%;
   }
 }
 

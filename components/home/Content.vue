@@ -5,5 +5,6 @@
     <HomeHero />
     <HomeEnterprise />
     <HomeWhyChooseUs />
+    <HomeAbout />
   </div>
 </template>
