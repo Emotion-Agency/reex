@@ -9,8 +9,6 @@
 </template>
 
 <style lang="scss" scoped>
-.switch-lang {
-}
 .switch-lang__btn {
   text-transform: uppercase;
 }

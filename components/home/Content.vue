@@ -6,5 +6,6 @@
     <HomeEnterprise />
     <HomeWhyChooseUs />
     <HomeAbout />
+    <HomeStages />
   </div>
 </template>

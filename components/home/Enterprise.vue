@@ -15,9 +15,8 @@
           </DualButton>
         </div>
       </div>
-      <div>
-        <Carousel />
-      </div>
+
+      <Carousel />
     </div>
   </section>
 </template>
