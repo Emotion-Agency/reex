@@ -144,7 +144,7 @@ const toggleStage = (id: number) => {
   position: absolute;
   border-radius: vw(12);
   width: vw(564);
-  height: vw(376);
+  height: 100%;
   object-fit: cover;
   opacity: 0;
   transition: opacity 0.3s ease;

@@ -7,5 +7,6 @@
     <HomeWhyChooseUs />
     <HomeAbout />
     <HomeStages />
+    <HomeLocations />
   </div>
 </template>

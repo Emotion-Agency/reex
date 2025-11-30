@@ -5,7 +5,7 @@
     <div class="hero__bg-wrapper">
       <img src="/images/home-1.png" alt="Backround image" class="hero__bg" />
     </div>
-    <div class="hero__container container">
+    <div class="hero__wrapper container">
       <h1 class="hero__t">Кадрові рішення для бізнесу</h1>
     </div>
   </section>
@@ -39,7 +39,7 @@
   z-index: -1;
 }
 
-.hero__container {
+.hero__wrapper {
   position: relative;
   z-index: 1;
   display: flex;

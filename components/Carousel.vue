@@ -34,13 +34,13 @@ const services = [
       'Аналізуємо HR-процеси, розробляємо стратегії та впроваджуємо рішення для підвищення ефективності управління персоналом.',
   },
   {
-    id: 5,
+    id: 6,
     title: 'HR-консалтинг',
     description:
       'Аналізуємо HR-процеси, розробляємо стратегії та впроваджуємо рішення для підвищення ефективності управління персоналом.',
   },
   {
-    id: 6,
+    id: 7,
     title: 'Аутстафінг',
     description:
       'Надаємо тимчасових працівників для виконання специфічних завдань чи проектів без необхідності їх офіційного працевлаштування.',
@@ -128,9 +128,11 @@ onMounted(() => {
         </div>
       </li>
     </ul>
-    <div class="embla__l-progress">
-      <span v-for="n in width < 960 ? 50 : 100" :key="n" />
-    </div>
+    <ClientOnly>
+      <div class="embla__l-progress">
+        <span v-for="n in width < 960 ? 50 : 100" :key="n" />
+      </div>
+    </ClientOnly>
     <!-- <div class="embla__progress">
       <div class="embla__progress-bar" :style="{ width: progress + '%' }"></div>
     </div> -->
