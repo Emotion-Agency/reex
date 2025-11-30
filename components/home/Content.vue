@@ -9,5 +9,6 @@
     <HomeStages />
     <HomeLocations />
     <HomePartners />
+    <Articles title="Корисні статті" is-button />
   </div>
 </template>
