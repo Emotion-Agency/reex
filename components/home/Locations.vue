@@ -46,7 +46,7 @@
 .locations__text-wrapper {
   padding: vw(48) vw(32);
   padding-bottom: vw(10);
-  max-width: vw(448);
+  max-width: vw(480);
   flex-shrink: 0;
 
   @media (max-width: $br1) {

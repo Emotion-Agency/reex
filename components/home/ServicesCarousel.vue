@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import emblaCarouselVue from 'embla-carousel-vue'
-import type { EmblaOptionsType } from 'embla-carousel'
+import useEmbla from '~/composables/useEmblaSlider'
 
 const services = [
   {
@@ -55,92 +54,57 @@ const slidesToScroll = computed(() => {
   return 4
 })
 
-const options = computed<EmblaOptionsType>(() => ({
-  loop: false,
-  slidesToScroll: slidesToScroll.value,
-  align: 'start',
-  container: '.embla__container',
-  watchDrag: width.value < 960,
-}))
-
-const [emblaRef, emblaApi] = emblaCarouselVue(options)
-
-const prevBtnDisabled = ref(true)
-const nextBtnDisabled = ref(true)
-const progress = ref(0)
-
-const scrollPrev = () => emblaApi.value?.scrollPrev()
-const scrollNext = () => emblaApi.value?.scrollNext()
-
-const updateUI = () => {
-  const api = emblaApi.value
-  if (!api) return
-
-  prevBtnDisabled.value = !api.canScrollPrev()
-  nextBtnDisabled.value = !api.canScrollNext()
-  progress.value = api.scrollProgress() * 100
-}
-
-onMounted(() => {
-  const api = emblaApi.value
-  if (!api) return
-
-  api.on('init', updateUI)
-  api.on('select', updateUI)
-  api.on('scroll', updateUI)
-  api.on('reInit', updateUI)
-
-  updateUI()
-})
+const { emblaRef, scrollPrev, scrollNext, prevBtnDisabled, nextBtnDisabled } =
+  useEmbla({ slidesToScroll, container: '.services-carousel__container' })
 </script>
 
 <template>
-  <section class="embla" ref="emblaRef">
-    <div class="embla__controls">
+  <section class="services-carousel" ref="emblaRef">
+    <div class="services-carousel__controls">
       <button
         @click="scrollPrev"
         :disabled="prevBtnDisabled"
-        class="embla__btn"
+        class="services-carousel__btn"
       >
         <Icon name="lucide:arrow-left" />
       </button>
       <button
         @click="scrollNext"
         :disabled="nextBtnDisabled"
-        class="embla__btn"
+        class="services-carousel__btn"
       >
         <Icon name="lucide:arrow-right" />
       </button>
     </div>
 
-    <ul class="embla__container">
-      <li v-for="service in services" :key="service.id" class="embla__slide">
-        <div class="embla__link-arrow">
+    <ul class="services-carousel__container">
+      <li
+        v-for="service in services"
+        :key="service.id"
+        class="services-carousel__slide"
+      >
+        <div class="services-carousel__link-arrow">
           <Icon name="lucide:arrow-up-right" />
         </div>
         <div>
-          <h3 class="embla__title">
+          <h3 class="services-carousel__title">
             {{ service.title }}
           </h3>
-          <p class="embla__description">
+          <p class="services-carousel__description">
             {{ service.description }}
           </p>
         </div>
       </li>
     </ul>
-    <ClientOnly>
-      <div class="embla__l-progress">
-        <span v-for="n in width < 960 ? 50 : 100" :key="n" />
-      </div>
-    </ClientOnly>
-    <!-- <div class="embla__progress">
-      <div class="embla__progress-bar" :style="{ width: progress + '%' }"></div>
+    <ProgressBar />
+    <!-- <div class="services-carousel__progress">
+      <div class="services-carousel__progress-bar" :style="{ width: progress + '%' }"></div>
     </div> -->
   </section>
 </template>
 
 <style scoped lang="scss">
-.embla {
+.services-carousel {
   overflow: hidden;
   margin-top: vw(96);
 
@@ -149,7 +113,7 @@ onMounted(() => {
   }
 }
 
-.embla__controls {
+.services-carousel__controls {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -160,7 +124,7 @@ onMounted(() => {
   }
 }
 
-.embla__btn {
+.services-carousel__btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -191,7 +155,7 @@ onMounted(() => {
   }
 }
 
-.embla__container {
+.services-carousel__container {
   display: flex;
   gap: vw(16);
   margin-top: vw(28);
@@ -202,7 +166,7 @@ onMounted(() => {
   }
 }
 
-.embla__slide {
+.services-carousel__slide {
   flex: 0 0 calc((100% - 3 * vw(16)) / 4);
   min-width: 0;
   display: flex;
@@ -226,7 +190,7 @@ onMounted(() => {
   }
 }
 
-.embla__link-arrow {
+.services-carousel__link-arrow {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -252,11 +216,11 @@ onMounted(() => {
   }
 }
 
-.embla__title {
+.services-carousel__title {
   @include heading-h4;
 }
 
-.embla__description {
+.services-carousel__description {
   @include text-reg-p1;
   margin-top: vw(12);
   display: -webkit-box;
@@ -270,26 +234,7 @@ onMounted(() => {
   }
 }
 
-.embla__l-progress {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: vw(20);
-  margin-top: vw(32);
-
-  span {
-    width: 1px;
-    height: 100%;
-    background-color: var(--foreground);
-  }
-
-  @media (max-width: $br1) {
-    margin-top: 18px;
-    height: 14px;
-  }
-}
-
-.embla__progress {
+.services-carousel__progress {
   width: 100%;
   height: vw(4);
   background-color: #edeff0;
@@ -302,7 +247,7 @@ onMounted(() => {
     margin-top: 18px;
   }
 
-  .embla__progress-bar {
+  .services-carousel__progress-bar {
     height: 100%;
     background-color: #dee0e9;
     width: 0%;

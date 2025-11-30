@@ -8,5 +8,6 @@
     <HomeAbout />
     <HomeStages />
     <HomeLocations />
+    <HomePartners />
   </div>
 </template>

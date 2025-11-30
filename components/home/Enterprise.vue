@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <Carousel />
+      <HomeServicesCarousel />
     </div>
   </section>
 </template>
