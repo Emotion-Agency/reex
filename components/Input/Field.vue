@@ -76,19 +76,27 @@ const onInput = () => {
   appearance: none;
   border: none;
   outline: none;
-  padding: rem(8) rem(12);
+  padding: vw(8) vw(20);
   width: 100%;
   height: 100%;
   background-color: transparent;
-  color: var(--foreground);
+  text-align: start;
+  color: var(--secondary);
+
   &--start-icon {
-    padding-left: rem(36);
+    padding-left: vw(36);
   }
+
   &--end-icon {
-    padding-right: rem(36);
+    padding-right: vw(36);
   }
+
   &::placeholder {
-    color: var(--foreground-muted);
+    color: var(--secondary);
+  }
+
+  @media (max-width: $br1) {
+    padding: 6px 16px;
   }
 }
 
@@ -100,9 +108,18 @@ const onInput = () => {
 }
 
 .field__start-icon {
-  left: rem(12);
+  left: vw(12);
+
+  @media (max-width: $br1) {
+    left: 12px;
+  }
 }
+
 .field__end-icon {
-  right: rem(12);
+  right: vw(12);
+
+  @media (max-width: $br1) {
+    right: 12px;
+  }
 }
 </style>

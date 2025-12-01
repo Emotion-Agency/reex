@@ -1,10 +1,5 @@
 <script lang="ts" setup>
-const navItems = [
-  { label: 'Головна', href: '/' },
-  { label: 'Послуги', href: '/services' },
-  { label: 'Про компанію', href: '/about' },
-  { label: 'Блог', href: '/blog' },
-]
+import navigationList from '~/constants/navigation'
 </script>
 
 <template>
@@ -15,11 +10,11 @@ const navItems = [
     <nav class="header__nav" role="navigation">
       <ul class="header__nav-list">
         <li
-          v-for="item in navItems"
+          v-for="item in navigationList"
           :key="item.label"
           class="header__nav-item underline"
         >
-          <NuxtLink :to="item.href">
+          <NuxtLink :to="item.link.url">
             {{ item.label }}
           </NuxtLink>
         </li>

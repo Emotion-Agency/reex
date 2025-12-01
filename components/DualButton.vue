@@ -43,6 +43,8 @@ const href = props.tag === 'a' ? props.href : undefined
   align-items: center;
   width: 100%;
   height: vw(48);
+  background-color: transparent;
+  z-index: 1;
 
   @media (max-width: $br1) {
     height: 48px;

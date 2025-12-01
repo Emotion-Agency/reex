@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 const { width } = useWindowSize()
+
+const count = computed(() => (width.value < 960 ? 50 : 100))
 </script>
 
 <template>
   <div class="progress-bar">
-    <span v-for="n in width < 960 ? 50 : 100" :key="n" />
+    <div v-for="(_, idx) in count" :key="idx" />
   </div>
 </template>
 

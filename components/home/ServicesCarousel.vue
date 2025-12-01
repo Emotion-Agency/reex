@@ -96,7 +96,9 @@ const { emblaRef, scrollPrev, scrollNext, prevBtnDisabled, nextBtnDisabled } =
         </div>
       </li>
     </ul>
-    <ProgressBar />
+    <ClientOnly>
+      <ProgressBar />
+    </ClientOnly>
     <!-- <div class="services-carousel__progress">
       <div class="services-carousel__progress-bar" :style="{ width: progress + '%' }"></div>
     </div> -->

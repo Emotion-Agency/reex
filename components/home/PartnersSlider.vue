@@ -94,8 +94,9 @@ const { current, handlePrev, handleNext } = useSlider(() => partners.length)
         </li>
       </ul>
     </div>
-
-    <ProgressBar class="partners-slider__progress" />
+    <ClientOnly>
+      <ProgressBar class="partners-slider__progress" />
+    </ClientOnly>
   </section>
 </template>
 

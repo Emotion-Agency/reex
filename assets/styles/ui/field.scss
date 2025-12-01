@@ -3,18 +3,22 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: rem(8);
+  gap: vw(8);
+
+  @media (max-width: $br1) {
+    gap: 8px;
+  }
 }
 
 .field__control {
   display: flex;
   align-items: center;
   position: relative;
-  height: rem(36);
+  height: vw(56);
   overflow: hidden;
-  border: rem(1) solid var(--border);
-  border-radius: var(--rounded-full);
-
+  background-color: var(--bg-muted-10);
+  border-radius: vw(16);
+  border: 1px solid transparent;
   transition: border-color 0.3s $easing;
 
   &:has(.input:focus) {
@@ -29,7 +33,12 @@
   }
 
   &--textarea {
-    height: rem(80);
+    height: vw(80);
     border-radius: var(--rounded-lg);
+  }
+
+  @media (max-width: $br1) {
+    height: 48px;
+    border-radius: 16px;
   }
 }
