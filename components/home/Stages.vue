@@ -42,13 +42,7 @@ const stages = [
   },
 ]
 
-const openedId = ref<number>(stages[0].id)
-
-const toggleStage = (id: number) => {
-  if (openedId.value === id) return
-
-  openedId.value = id
-}
+const openedId = ref('1')
 </script>
 
 <template>
@@ -67,32 +61,19 @@ const toggleStage = (id: number) => {
         <div class="stages__img-wrapper">
           <img
             v-for="stage in stages"
+            :key="stage.id"
             :src="stage.image.src"
             :alt="stage.image.alt"
             class="stages__img"
-            :class="{ 'stages__img--opened': openedId === stage.id }"
+            :class="{ 'stages__img--opened': openedId === String(stage.id) }"
           />
         </div>
-        <ul class="stages__list">
-          <li
-            v-for="stage in stages"
-            :key="stage.id"
-            class="stages__item"
-            :class="{ 'stages__item--opened': openedId === stage.id }"
-            @click="toggleStage(stage.id)"
-          >
-            <div class="stages__main">
-              <h4 class="stages__t">{{ stage.title }}</h4>
-              <div class="stages__plus">
-                <span />
-                <span />
-              </div>
-            </div>
-            <div class="stages__item-content">
-              <p class="stages__d">{{ stage.description }}</p>
-            </div>
-          </li>
-        </ul>
+
+        <HomeStagesAccordion
+          v-model="openedId"
+          :stages="stages"
+          class="stages__a"
+        />
       </div>
     </div>
   </section>
@@ -174,126 +155,6 @@ const toggleStage = (id: number) => {
 
   &--opened {
     opacity: 1;
-  }
-}
-
-.stages__list {
-  @media (min-width: $br1) {
-    @include col(7, 12);
-  }
-
-  @media (max-width: $br1) {
-    margin-top: 36px;
-  }
-}
-
-.stages__item {
-  cursor: pointer;
-  border-top: 1px solid var(--foreground-muted-10);
-  padding: vw(24) 0;
-  overflow: hidden;
-
-  @media (max-width: $br1) {
-    padding: 18px 0;
-  }
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-
-  &:hover {
-    .stages__t {
-      color: var(--foreground);
-    }
-  }
-
-  &--opened {
-    .stages__t {
-      color: var(--foreground);
-    }
-
-    .stages__item-content {
-      max-height: vw(300);
-
-      @media (max-width: $br1) {
-        max-height: 700px;
-      }
-    }
-
-    .stages__plus {
-      span {
-        &:last-child {
-          transform: translate(-50%, -50%) rotate(0);
-          background-color: var(--foreground);
-        }
-      }
-    }
-  }
-}
-
-.stages__divider {
-  width: 100%;
-  height: 1px;
-  background-color: var(--foreground-muted-10);
-}
-
-.stages__main {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  gap: vw(8);
-
-  @media (max-width: $br1) {
-    gap: 8px;
-  }
-}
-
-.stages__plus {
-  position: relative;
-  width: vw(20);
-  height: vw(20);
-
-  span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 2px;
-    background-color: var(--foreground-muted-50);
-    transition:
-      transform 0.3s ease,
-      background-color 0.3s ease;
-
-    &:last-child {
-      transform: translate(-50%, -50%) rotate(90deg);
-    }
-  }
-
-  @media (max-width: $br1) {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-.stages__t {
-  @include heading-h4;
-  color: var(--foreground-muted-50);
-  transition: color 0.3s ease;
-}
-
-.stages__item-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 1s ease;
-}
-
-.stages__d {
-  @include text-reg-p1;
-  margin-top: vw(24);
-
-  @media (max-width: $br1) {
-    margin-top: 18px;
   }
 }
 </style>
