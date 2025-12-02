@@ -5,6 +5,9 @@
     <div class="hero__bg-wrapper">
       <img src="/images/home-1.png" alt="Backround image" class="hero__bg" />
     </div>
+    <Button class="hero__btn" variant="secondary">
+      <Icon name="lucide:arrow-down" />
+    </Button>
     <div class="hero__wrapper container">
       <h1 class="hero__t">Кадрові рішення для бізнесу</h1>
     </div>
@@ -39,6 +42,39 @@
   z-index: -1;
 }
 
+.hero__btn {
+  position: absolute;
+  left: $g-offset;
+  bottom: vw(16);
+  width: vw(48);
+  height: vw(48);
+  background-color: var(--bg-muted-75);
+  backdrop-filter: blur(vw(50));
+  animation: bounce 3s ease-in-out infinite;
+
+  span {
+    width: vw(18);
+    height: vw(18);
+
+    @media (max-width: $br1) {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  @media (max-width: $br1) {
+    left: $g-sm;
+    bottom: 16px;
+    backdrop-filter: blur(50px);
+    width: 48px;
+    height: 48px;
+  }
+
+  @media (max-width: $br3) {
+    left: $g-s;
+  }
+}
+
 .hero__wrapper {
   position: relative;
   z-index: 1;
@@ -60,6 +96,18 @@
 
   @media (max-width: $br4) {
     max-width: 100%;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 </style>
