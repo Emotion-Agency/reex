@@ -6,7 +6,7 @@ const count = computed(() => (width.value < 960 ? 50 : 100))
 
 <template>
   <div class="progress-bar">
-    <div v-for="(_, idx) in count" :key="idx" />
+    <span v-for="(_, idx) in count" :key="idx" />
   </div>
 </template>
 

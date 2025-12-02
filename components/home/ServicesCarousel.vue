@@ -54,12 +54,18 @@ const slidesToScroll = computed(() => {
   return 4
 })
 
-const { emblaRef, scrollPrev, scrollNext, prevBtnDisabled, nextBtnDisabled } =
-  useEmbla({
-    slidesToScroll,
-    container: '.services-carousel__container',
-    loop: true,
-  })
+const {
+  emblaRef,
+  scrollPrev,
+  scrollNext,
+  prevBtnDisabled,
+  nextBtnDisabled,
+  progress,
+} = useEmbla({
+  slidesToScroll,
+  container: '.services-carousel__container',
+  loop: true,
+})
 </script>
 
 <template>
