@@ -51,7 +51,7 @@
 
   @media (max-width: $br1) {
     padding: 0;
-    max-width: 70%;
+    max-width: 358px;
   }
 
   @media (max-width: $br3) {

@@ -98,28 +98,25 @@ watch(form, () => {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  max-width: vw(588);
+  max-width: vw(572);
   gap: vw(48);
   width: 100%;
 
   @media (max-width: $br1) {
     text-align: start;
     align-items: start;
-    max-width: 100%;
+    justify-content: start;
+    max-width: 520px;
     gap: 32px;
-  }
-}
-
-.form__t {
-  @include heading-h2;
-
-  @media (max-width: $br1) {
-    max-width: 60%;
   }
 
   @media (max-width: $br3) {
     max-width: 100%;
   }
+}
+
+.form__t {
+  @include heading-h2;
 
   span {
     color: var(--bg-muted-50);
@@ -135,10 +132,6 @@ watch(form, () => {
 
   @media (max-width: $br1) {
     gap: 12px;
-    max-width: 60%;
-  }
-
-  @media (max-width: $br3) {
     max-width: 100%;
   }
 }

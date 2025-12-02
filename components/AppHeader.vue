@@ -1,9 +1,7 @@
 <template>
   <header class="header">
-    <ClientOnly>
-      <HeaderDesktop class="header__desk" />
-      <HeaderMobile class="header__mob" />
-    </ClientOnly>
+    <HeaderDesktop class="header__desk" />
+    <HeaderMobile class="header__mob" />
   </header>
 </template>
 
@@ -12,12 +10,16 @@
   position: fixed;
   top: 0;
   width: 100%;
-  padding: vw(16) vw(32);
+  padding: vw(16) $g-offset;
   z-index: 100;
 
   @media (max-width: $br1) {
-    padding: 12px 24px;
+    padding: 12px $g-sm;
     gap: 10px;
+  }
+
+  @media (max-width: $br3) {
+    padding: 12px $g-s;
   }
 }
 

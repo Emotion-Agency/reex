@@ -34,6 +34,7 @@
 
   @media (min-width: $br1) {
     height: 100dvh;
+    min-height: 500px;
   }
 
   @media (max-width: $br1) {
@@ -58,7 +59,7 @@
   @include heading-h2;
 
   @media (max-width: $br1) {
-    max-width: 70%;
+    max-width: 448px;
     margin-top: 18px;
   }
 

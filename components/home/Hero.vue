@@ -50,11 +50,11 @@
   height: vw(48);
   background-color: var(--bg-muted-75);
   backdrop-filter: blur(vw(50));
-  animation: bounce 3s ease-in-out infinite;
 
   span {
     width: vw(18);
     height: vw(18);
+    animation: bounce 2s ease-in-out infinite alternate;
 
     @media (max-width: $br1) {
       width: 18px;
@@ -101,13 +101,10 @@
 
 @keyframes bounce {
   0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
+    transform: translateY(-5px);
   }
   100% {
-    transform: translateY(0);
+    transform: translateY(5px);
   }
 }
 </style>

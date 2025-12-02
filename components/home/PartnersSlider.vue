@@ -216,7 +216,7 @@ const { current, handlePrev, handleNext } = useSlider(() => partners.length)
   @include heading-h2;
 
   @media (max-width: $br1) {
-    max-width: 80%;
+    max-width: 550px;
   }
 
   @media (max-width: $br3) {

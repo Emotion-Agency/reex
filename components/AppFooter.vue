@@ -98,6 +98,10 @@ import socialsList from '~/constants/socials'
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @media (max-width: $br1) {
+    align-items: flex-start;
+  }
 }
 
 .footer__line {
@@ -145,7 +149,7 @@ import socialsList from '~/constants/socials'
 
   @media (max-width: $br1) {
     margin-top: 18px;
-    max-width: 60%;
+    max-width: 370px;
   }
 
   @media (max-width: $br3) {
@@ -204,7 +208,7 @@ import socialsList from '~/constants/socials'
   justify-content: space-between;
   width: 100%;
   margin-top: vw(144);
-  @include text-reg-p1;
+  @include text-reg-p2;
 
   @media (max-width: $br1) {
     margin-top: 80px;
