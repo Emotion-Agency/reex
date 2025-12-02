@@ -76,14 +76,14 @@ const {
         :disabled="prevBtnDisabled"
         class="services-carousel__btn"
       >
-        <Icon name="lucide:arrow-left" />
+        <Icon name="lucide:chevron-left" />
       </button>
       <button
         @click="scrollNext"
         :disabled="nextBtnDisabled"
         class="services-carousel__btn"
       >
-        <Icon name="lucide:arrow-right" />
+        <Icon name="lucide:chevron-right" />
       </button>
     </div>
 
