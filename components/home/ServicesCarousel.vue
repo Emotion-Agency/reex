@@ -163,11 +163,9 @@ const { emblaRef, scrollPrev, scrollNext, prevBtnDisabled, nextBtnDisabled } =
 
 .services-carousel__container {
   display: flex;
-  gap: vw(16);
   margin-top: vw(28);
 
   @media (max-width: $br1) {
-    gap: 8px;
     margin-top: 20px;
   }
 }
@@ -183,8 +181,10 @@ const { emblaRef, scrollPrev, scrollNext, prevBtnDisabled, nextBtnDisabled } =
   height: vw(332);
   background-color: var(--foreground-muted-7);
   border-radius: vw(16);
+  margin-right: vw(16);
 
   @media (max-width: $br1) {
+    margin-right: 8px;
     padding: 18px;
     height: 280px;
     border-radius: 12px;

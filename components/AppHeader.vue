@@ -1,7 +1,9 @@
 <template>
   <header class="header">
-    <HeaderDesktop class="header__desk" />
-    <HeaderMobile class="header__mob" />
+    <ClientOnly>
+      <HeaderDesktop class="header__desk" />
+      <HeaderMobile class="header__mob" />
+    </ClientOnly>
   </header>
 </template>
 
