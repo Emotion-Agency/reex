@@ -45,7 +45,7 @@
   display: none;
 
   @media (max-width: $br1) {
-    display: flex;
+    display: block;
   }
 }
 </style>

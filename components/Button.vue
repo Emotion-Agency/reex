@@ -28,9 +28,7 @@ const href = props.tag === 'a' ? props.href : undefined
     class="button"
     :class="[`button--${props.variant}`]"
   >
-    <span class="button__text" :class="[`button__text--${props.variant}`]">
-      <slot />
-    </span>
+    <slot />
   </component>
 </template>
 
@@ -44,6 +42,10 @@ const href = props.tag === 'a' ? props.href : undefined
   border-radius: vw(12);
   color: var(--foreground);
   padding: vw(0) vw(16);
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  @include text-reg-p2;
 
   @media (max-width: $br1) {
     height: 44px;
@@ -74,15 +76,5 @@ const href = props.tag === 'a' ? props.href : undefined
       width: 44px;
     }
   }
-}
-
-.button__text {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  @include text-reg-p2;
 }
 </style>
