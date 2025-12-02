@@ -1,6 +1,7 @@
 :root {
-  --background: #ffffff;
+  --background: rgba(255, 255, 255, 1);
   --bg-muted-10: rgba(255, 255, 255, 0.1);
+  --bg-muted-20: rgba(255, 255, 255, 0.2);
   --bg-muted-50: rgba(255, 255, 255, 0.5);
   --bg-muted-75: rgba(255, 255, 255, 0.75);
   --background-secondary: #edeff0;
@@ -40,10 +41,11 @@
 }
 
 .dark {
-  --background: #121212;
-  --bg-muted-10: rgba(#121212, 0.1);
-  --bg-muted-50: rgba(#121212, 0.5);
-  --bg-muted-75: rgba(#121212, 0.75);
+  --background: rgba(18, 18, 18, 1);
+  --bg-muted-10: rgba(18, 18, 18, 0.1);
+  --bg-muted-20: rgba(18, 18, 18, 0.2);
+  --bg-muted-50: rgba(18, 18, 18, 0.5);
+  --bg-muted-75: rgba(18, 18, 18, 0.75);
   --background-secondary: #edeff0;
   --foreground: #fff;
   --foreground-muted-7: rgba(1, 20, 40, 0.07);

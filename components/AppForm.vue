@@ -5,6 +5,7 @@ import { required, helpers, minLength, maxLength } from '@vuelidate/validators'
 const form = reactive({
   name: '',
   phone: '',
+  service: '',
 })
 
 const rules = {
@@ -42,6 +43,19 @@ const inputs = computed(() => [
     model: form.phone,
     errors: v$.value.phone.$errors,
   },
+  {
+    id: 'contact-select',
+    name: 'service',
+    placeholder: 'Тип послуги',
+    required: false,
+    options: [
+      'Аутстафінг торгового персоналу',
+      'Аутсорсинг',
+      'Аутстафінг',
+      'Підбір',
+      'Іноземний персонал',
+    ],
+  },
 ])
 
 const onSubmit = async () => {
@@ -53,6 +67,7 @@ const onSubmit = async () => {
 
   form.name = ''
   form.phone = ''
+  form.service = ''
   v$.value.$reset()
 }
 
@@ -67,18 +82,25 @@ watch(form, () => {
       Залиште заявку — ми знайдемо персонал <span>за 24 години.</span>
     </legend>
     <div class="form__input-list">
-      <InputField
-        v-for="input in inputs"
-        :key="input.id"
-        v-model="form[input.name]"
-        :id="input.id"
-        :type="input.type"
-        :name="input.name"
-        :placeholder="input.placeholder"
-        :required="input.required"
-        :errors="input.errors"
-        class="form__input"
-      />
+      <template v-for="input in inputs" :key="input.id">
+        <BaseSelect
+          v-if="input.options"
+          v-model="form[input.name]"
+          :options="input.options"
+          placeholder="Оберіть послугу"
+        />
+        <InputField
+          v-else
+          v-model="form[input.name]"
+          :id="input.id"
+          :type="input.type"
+          :name="input.name"
+          :placeholder="input.placeholder"
+          :required="input.required"
+          :errors="input.errors"
+          class="form__input"
+        />
+      </template>
     </div>
     <DualButton
       class="form__btn"
@@ -93,6 +115,7 @@ watch(form, () => {
 
 <style lang="scss" scoped>
 .form {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,6 +147,7 @@ watch(form, () => {
 }
 
 .form__input-list {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: vw(12);
@@ -142,5 +166,43 @@ watch(form, () => {
 
 .form__btn {
   width: fit-content;
+}
+
+.form__select-trigger {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border: 1px solid var(--secondary);
+  border-radius: 8px;
+  background: transparent;
+  font-size: 16px;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &[data-placeholder] {
+    color: var(--muted-foreground, #9ca3af); // сірий для плейсхолдера
+  }
+}
+
+.form__select-content {
+  background: white !important;
+  border-radius: 8px;
+  padding: 4px 0;
+  border: 1px solid #e5e7eb;
+}
+
+.form__select-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--secondary);
+  outline: none;
+
+  &[data-highlighted='true'] {
+    background: var(--bg-muted-50);
+    color: white;
+  }
 }
 </style>

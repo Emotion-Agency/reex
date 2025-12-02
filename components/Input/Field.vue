@@ -82,6 +82,7 @@ const onInput = () => {
   background-color: transparent;
   text-align: start;
   color: var(--secondary);
+  @include text-reg-p1;
 
   &--start-icon {
     padding-left: vw(36);
