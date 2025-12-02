@@ -1,12 +1,6 @@
 <script lang="ts" setup>
 import useVuelidate from '@vuelidate/core'
-import {
-  required,
-  helpers,
-  minLength,
-  maxLength,
-  numeric,
-} from '@vuelidate/validators'
+import { required, helpers, minLength, maxLength } from '@vuelidate/validators'
 
 const form = reactive({
   name: '',
@@ -21,9 +15,8 @@ const rules = {
 
   phone: {
     required: helpers.withMessage('Введіть номер телефону', required),
-    numeric: helpers.withMessage('Тільки цифри', numeric),
     minLength: helpers.withMessage('Мінімум 9 цифр', minLength(9)),
-    maxLength: helpers.withMessage('Максимум 15 цифр', maxLength(15)),
+    maxLength: helpers.withMessage('Максимум 30 цифр', maxLength(30)),
   },
 }
 

@@ -131,12 +131,11 @@ const articles = [
 
 .articles__img {
   border-radius: vw(16);
-  height: vw(264);
+  aspect-ratio: 448/264;
   object-fit: cover;
   width: 100%;
 
   @media (max-width: $br1) {
-    height: 264px;
     border-radius: 16px;
   }
 }

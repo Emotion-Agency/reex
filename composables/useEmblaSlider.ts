@@ -5,6 +5,7 @@ interface UseEmblaProps {
   slidesToScroll: number | Ref<number>
   container: string
   watchDrag?: boolean
+  loop?: boolean
 }
 
 const useEmbla = (props: UseEmblaProps) => {
@@ -17,7 +18,7 @@ const useEmbla = (props: UseEmblaProps) => {
   )
 
   const options = computed<EmblaOptionsType>(() => ({
-    loop: false,
+    loop: props.loop ?? false,
     slidesToScroll: slidesToScroll.value,
     align: 'start',
     container: props.container,

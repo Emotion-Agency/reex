@@ -55,7 +55,11 @@ const slidesToScroll = computed(() => {
 })
 
 const { emblaRef, scrollPrev, scrollNext, prevBtnDisabled, nextBtnDisabled } =
-  useEmbla({ slidesToScroll, container: '.services-carousel__container' })
+  useEmbla({
+    slidesToScroll,
+    container: '.services-carousel__container',
+    loop: true,
+  })
 </script>
 
 <template>
@@ -175,14 +179,14 @@ const { emblaRef, scrollPrev, scrollNext, prevBtnDisabled, nextBtnDisabled } =
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
-  padding: vw(16);
-  height: vw(287);
+  padding: vw(24);
+  height: vw(332);
   background-color: var(--foreground-muted-7);
   border-radius: vw(16);
 
   @media (max-width: $br1) {
-    padding: 12px;
-    height: 240px;
+    padding: 18px;
+    height: 280px;
     border-radius: 12px;
     flex: 0 0 calc((100% - 1 * 12px) / 2);
   }

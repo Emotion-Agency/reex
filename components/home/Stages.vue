@@ -64,13 +64,15 @@ const toggleStage = (id: number) => {
         </div>
       </div>
       <div class="grid stages__content">
-        <img
-          v-for="stage in stages"
-          :src="stage.image.src"
-          :alt="stage.image.alt"
-          class="stages__img"
-          :class="{ 'stages__img--opened': openedId === stage.id }"
-        />
+        <div class="stages__img-wrapper">
+          <img
+            v-for="stage in stages"
+            :src="stage.image.src"
+            :alt="stage.image.alt"
+            class="stages__img"
+            :class="{ 'stages__img--opened': openedId === stage.id }"
+          />
+        </div>
         <ul class="stages__list">
           <li
             v-for="stage in stages"
@@ -79,7 +81,13 @@ const toggleStage = (id: number) => {
             :class="{ 'stages__item--opened': openedId === stage.id }"
             @click="toggleStage(stage.id)"
           >
-            <h4 class="stages__t">{{ stage.title }}</h4>
+            <div class="stages__main">
+              <h4 class="stages__t">{{ stage.title }}</h4>
+              <div class="stages__plus">
+                <span />
+                <span />
+              </div>
+            </div>
             <div class="stages__item-content">
               <p class="stages__d">{{ stage.description }}</p>
             </div>
@@ -140,22 +148,27 @@ const toggleStage = (id: number) => {
   }
 }
 
+.stages__img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 564/376;
+
+  @media (min-width: $br1) {
+    @include col(1, 5);
+  }
+}
+
 .stages__img {
   position: absolute;
   border-radius: vw(12);
-  width: vw(564);
+  width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0;
   transition: opacity 0.3s ease;
 
-  @media (min-width: $br1) {
-    @include col(1, 5);
-  }
-
   @media (max-width: $br1) {
     width: 100%;
-    height: 400px;
     border-radius: 12px;
   }
 
@@ -170,7 +183,6 @@ const toggleStage = (id: number) => {
   }
 
   @media (max-width: $br1) {
-    padding-top: 400px;
     margin-top: 36px;
   }
 }
@@ -207,6 +219,15 @@ const toggleStage = (id: number) => {
         max-height: 700px;
       }
     }
+
+    .stages__plus {
+      span {
+        &:last-child {
+          transform: translate(-50%, -50%) rotate(0);
+          background-color: var(--foreground);
+        }
+      }
+    }
   }
 }
 
@@ -214,6 +235,45 @@ const toggleStage = (id: number) => {
   width: 100%;
   height: 1px;
   background-color: var(--foreground-muted-10);
+}
+
+.stages__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: vw(8);
+
+  @media (max-width: $br1) {
+    gap: 8px;
+  }
+}
+
+.stages__plus {
+  position: relative;
+  width: vw(20);
+  height: vw(20);
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 2px;
+    background-color: var(--foreground-muted-50);
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
+
+    &:last-child {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  @media (max-width: $br1) {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .stages__t {
