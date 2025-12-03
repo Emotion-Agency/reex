@@ -13,7 +13,7 @@ interface NavigationGroup extends BaseNavigationItem {
   link?: never
 }
 
-type NavigationItem = NavigationSingle | NavigationGroup
+export type NavigationItem = NavigationSingle | NavigationGroup
 
 const navigationList: NavigationItem[] = [
   {

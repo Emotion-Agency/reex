@@ -14,16 +14,11 @@ import navigationList from '~/constants/navigation'
           :key="item.label"
           class="header-desk__nav-item"
         >
-          <button
-            type="button"
+          <ServiceDropdown
             v-if="item.links?.length"
-            class="header-desk__nav-link header-desk__nav-link--button"
-          >
-            {{ item.label }}
-            <span>
-              <Icon name="lucide:chevron-down" />
-            </span>
-          </button>
+            :nav-item="item"
+            is-header
+          />
           <NuxtLink
             v-else
             :to="item.link.url"
@@ -33,11 +28,9 @@ import navigationList from '~/constants/navigation'
           </NuxtLink>
         </li>
       </ul>
-
       <Button class="header-desk__nav-button" tag="nuxt-link" to="/contact">
         Замовити персонал
       </Button>
-
       <SwitchLanguage />
     </nav>
   </div>
