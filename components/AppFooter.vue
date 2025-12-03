@@ -2,6 +2,12 @@
 import contacts from '~/constants/contacts'
 import navigationList from '~/constants/navigation'
 import socialsList from '~/constants/socials'
+
+const isAccordionOpened = ref(false)
+
+const toggleAccordion = () => {
+  isAccordionOpened.value = !isAccordionOpened.value
+}
 </script>
 
 <template>
@@ -23,9 +29,38 @@ import socialsList from '~/constants/socials'
             <li
               v-for="item in navigationList"
               :key="item.id"
-              class="underline footer__item"
+              class="footer__item"
             >
-              <NuxtLink :to="item.link.url" class="footer__link">
+              <div
+                v-if="item.links?.length"
+                class="footer__dropdown"
+                :class="{ 'footer__dropdown--opened': isAccordionOpened }"
+              >
+                <button
+                  type="button"
+                  class="footer__dropdown-btn"
+                  @click="toggleAccordion"
+                >
+                  {{ item.label }}
+                  <Icon name="lucide:chevron-down" />
+                </button>
+                <div class="footer__dropdown-body">
+                  <div class="footer__dropdown-list">
+                    <NuxtLink
+                      v-for="link in item.links"
+                      :to="link.url"
+                      class="footer__dropdown-link"
+                    >
+                      {{ link.label }}
+                    </NuxtLink>
+                  </div>
+                </div>
+              </div>
+              <NuxtLink
+                v-else
+                :to="item.link.url"
+                class="underline footer__link"
+              >
                 {{ item.label }}
               </NuxtLink>
             </li>
@@ -37,9 +72,9 @@ import socialsList from '~/constants/socials'
             <li
               v-for="contact in contacts"
               :key="contact.id"
-              class="underline footer__item"
+              class="footer__item"
             >
-              <NuxtLink :to="contact.link.url" class="footer__link">
+              <NuxtLink :to="contact.link.url" class="underline footer__link">
                 {{ contact.label }}
               </NuxtLink>
             </li>
@@ -53,7 +88,7 @@ import socialsList from '~/constants/socials'
               :key="social.id"
               class="footer__item"
             >
-              <NuxtLink :to="social.link.url" class="footer__link">
+              <NuxtLink :to="social.link.url" class="underline footer__link">
                 {{ social.label }}
               </NuxtLink>
             </li>
@@ -182,8 +217,95 @@ import socialsList from '~/constants/socials'
 }
 
 .footer__item {
-  position: relative;
   width: fit-content;
+}
+
+.footer__dropdown {
+  position: relative;
+
+  &--opened {
+    .footer__dropdown-body {
+      max-height: 999px;
+    }
+
+    .footer__dropdown-btn {
+      span {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.footer__dropdown-btn {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  gap: vw(4);
+  color: var(--secondary);
+
+  @media (max-width: $br1) {
+    gap: 4px;
+  }
+
+  span {
+    transition: transform 0.3s ease;
+    width: vw(14);
+    height: vw(14);
+
+    @media (max-width: $br1) {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+.footer__dropdown-body {
+  background-color: var(--background-secondary);
+  border-radius: vw(12);
+  width: vw(202);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+  position: absolute;
+  top: vw(24);
+  z-index: 10;
+
+  @media (max-width: $br1) {
+    width: 200px;
+    border-radius: 12px;
+    top: 20px;
+  }
+}
+
+.footer__dropdown-list {
+  padding: 4px;
+}
+
+.footer__dropdown-link {
+  display: block;
+  width: fit-content;
+  color: var(--foreground);
+  padding: vw(11) vw(12);
+  transition: background-color 0.3s ease;
+  border-radius: vw(8);
+  width: 100%;
+
+  @media (max-width: $br1) {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  &:hover {
+    background-color: var(--foreground-muted-10);
+  }
+
+  &::before {
+    background-color: var(--secondary);
+  }
+}
+
+.footer__link {
+  position: relative;
 
   &::before {
     background-color: var(--secondary);

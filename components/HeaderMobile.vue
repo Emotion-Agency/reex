@@ -2,9 +2,14 @@
 import navigationList from '~/constants/navigation'
 
 const { isMenuOpened } = useAppState()
+const isServicesOpened = ref(false)
 
 const toggleMenu = () => {
   isMenuOpened.value = !isMenuOpened.value
+}
+
+const toggleServices = () => {
+  isServicesOpened.value = !isServicesOpened.value
 }
 </script>
 
@@ -22,36 +27,57 @@ const toggleMenu = () => {
         <SwitchLanguage />
       </div>
     </div>
-    <div class="header-mob__content-wrapper">
-      <div class="header-mob__content">
-        <nav class="header-mob__nav">
-          <ul class="header-mob__nav-list">
-            <li
-              v-for="item in navigationList"
-              :key="item.label"
-              class="header-mob__nav-item"
-            >
-              <NuxtLink :to="item.link.url">
-                {{ item.label }}
-              </NuxtLink>
-              <div
-                v-if="item.link.url.includes('services')"
-                class="header-mob__divider"
-              />
-            </li>
-          </ul>
 
-          <Button
-            class="header-mob__nav-button"
-            tag="nuxt-link"
-            to="/contact"
-            variant="primary"
+    <nav class="header-mob__nav">
+      <ul class="header-mob__nav-list">
+        <li
+          v-for="item in navigationList"
+          :key="item.label"
+          class="header-mob__nav-item"
+        >
+          <div
+            v-if="item.links?.length"
+            class="header-mob__submenu"
+            :class="{
+              'header-mob__submenu--opened': isServicesOpened,
+            }"
           >
-            Замовити персонал
-          </Button>
-        </nav>
-      </div>
-    </div>
+            <button
+              type="button"
+              class="header-mob__submenu-btn"
+              @click="toggleServices"
+            >
+              {{ item.label }}
+
+              <Icon name="lucide:chevron-down" />
+            </button>
+            <div class="header-mob__submenu-body">
+              <div class="header-mob__submenu-list">
+                <div
+                  v-for="link in item.links"
+                  class="header-mob__submenu-link"
+                >
+                  {{ link.label }}
+                </div>
+              </div>
+            </div>
+            <div class="header-mob__divider" />
+          </div>
+          <NuxtLink v-else :to="item.link?.url" class="header-mob__nav-link">
+            {{ item.label }}
+          </NuxtLink>
+        </li>
+      </ul>
+
+      <Button
+        class="header-mob__cta"
+        tag="nuxt-link"
+        to="/contact"
+        variant="primary"
+      >
+        Замовити персонал
+      </Button>
+    </nav>
   </div>
 </template>
 
@@ -133,7 +159,7 @@ const toggleMenu = () => {
   }
 }
 
-.header-mob__content-wrapper {
+.header-mob__nav {
   padding: 16px;
   padding-top: 32px;
 }
@@ -142,9 +168,63 @@ const toggleMenu = () => {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+}
+
+.header-mob__submenu-btn {
+  background-color: transparent;
+  color: var(--secondary);
+  line-height: 1.17em;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  @include heading-h4;
+
+  span {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.5s ease-in-out;
+  }
+}
+
+.header-mob__nav-link {
+  background-color: transparent;
+  color: var(--secondary);
   line-height: 1.17em;
   letter-spacing: -0.01em;
   @include heading-h4;
+}
+
+.header-mob__submenu {
+  &--opened {
+    .header-mob__submenu-body {
+      max-height: 999px;
+    }
+
+    .header-mob__submenu-btn {
+      span {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.header-mob__submenu-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.header-mob__submenu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.header-mob__submenu-link {
+  @include text-reg-p2;
 }
 
 .header-mob__divider {
@@ -154,7 +234,7 @@ const toggleMenu = () => {
   margin-top: 16px;
 }
 
-.header-mob__nav-button {
+.header-mob__cta {
   margin-top: 64px;
 }
 </style>

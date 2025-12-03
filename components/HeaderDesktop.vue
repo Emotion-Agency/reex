@@ -12,9 +12,23 @@ import navigationList from '~/constants/navigation'
         <li
           v-for="item in navigationList"
           :key="item.label"
-          class="header-desk__nav-item underline"
+          class="header-desk__nav-item"
         >
-          <NuxtLink :to="item.link.url">
+          <button
+            type="button"
+            v-if="item.links?.length"
+            class="header-desk__nav-link header-desk__nav-link--button"
+          >
+            {{ item.label }}
+            <span>
+              <Icon name="lucide:chevron-down" />
+            </span>
+          </button>
+          <NuxtLink
+            v-else
+            :to="item.link.url"
+            class="header-desk__nav-link underline"
+          >
             {{ item.label }}
           </NuxtLink>
         </li>
@@ -63,8 +77,28 @@ import navigationList from '~/constants/navigation'
 
 .header-desk__nav-item {
   position: relative;
+}
+
+.header-desk__nav-link {
   color: var(--foreground);
+  background-color: transparent;
+  transition: color 0.3s ease;
   @include text-med-p2;
+
+  &--button {
+    display: flex;
+    align-items: center;
+    gap: vw(4);
+
+    &:hover {
+      color: var(--foreground-muted-50);
+    }
+
+    span {
+      width: vw(12);
+      height: vw(12);
+    }
+  }
 }
 
 .header-desk__nav-button {

@@ -1,4 +1,21 @@
-const navigationList = [
+interface BaseNavigationItem {
+  id: number
+  label: string
+}
+
+interface NavigationSingle extends BaseNavigationItem {
+  link: { url: string }
+  links?: never
+}
+
+interface NavigationGroup extends BaseNavigationItem {
+  links: { label: string; url: string }[]
+  link?: never
+}
+
+type NavigationItem = NavigationSingle | NavigationGroup
+
+const navigationList: NavigationItem[] = [
   {
     id: 1,
     label: 'Головна',
@@ -9,9 +26,28 @@ const navigationList = [
   {
     id: 2,
     label: 'Послуги',
-    link: {
-      url: '/services',
-    },
+    links: [
+      {
+        label: 'Аутстафінг',
+        url: '/outstaffing',
+      },
+      {
+        label: 'Іноземний персонал',
+        url: '/foreign-personnel',
+      },
+      {
+        label: 'Аутсорсинг',
+        url: '/outsourcing',
+      },
+      {
+        label: 'Аутстафінг торгового персоналу',
+        url: '/retail-staff-outstaffing',
+      },
+      {
+        label: 'Підбір',
+        url: '/recruitment',
+      },
+    ],
   },
   {
     id: 3,
