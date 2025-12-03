@@ -4,7 +4,7 @@ import type { IButtonProps } from '~/types/button'
 const props = withDefaults(defineProps<IButtonProps>(), {
   tag: 'button',
   type: 'button',
-  variant: 'primary',
+  variant: 'dark',
 })
 
 const tag = computed(() => {
@@ -40,7 +40,6 @@ const href = props.tag === 'a' ? props.href : undefined
   width: 100%;
   height: vw(44);
   border-radius: vw(12);
-  color: var(--foreground);
   padding: vw(0) vw(16);
   position: relative;
   z-index: 1;
@@ -53,27 +52,40 @@ const href = props.tag === 'a' ? props.href : undefined
     padding: 0 12px;
   }
 
-  &--primary {
+  &--dark {
     background-color: var(--foreground);
-    transition: background-color 0.3s ease;
+    color: var(--secondary);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
 
     &:hover {
       background-color: var(--foreground-muted-85);
     }
   }
 
-  &--secondary {
-    width: vw(44);
-    padding: 0;
+  &--light {
+    color: var(--foreground);
     background-color: var(--foreground-muted-10);
-    transition: background-color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
 
     &:hover {
       background-color: var(--foreground-muted-14);
     }
+  }
 
-    @media (max-width: $br1) {
-      width: 44px;
+  &--primary {
+    background-color: var(--primary);
+    color: var(--foreground);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    @include text-med-p2;
+
+    &:hover {
+      background-color: var(--primary-85);
     }
   }
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { IButtonProps } from '~/types/button'
+import type { IDualButtonProps } from '~/types/button'
 
-const props = withDefaults(defineProps<IButtonProps>(), {
+const props = withDefaults(defineProps<IDualButtonProps>(), {
   tag: 'button',
   type: 'button',
   variant: 'primary',

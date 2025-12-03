@@ -5,7 +5,7 @@
     <div class="hero__bg-wrapper">
       <img src="/images/home-1.png" alt="Backround image" class="hero__bg" />
     </div>
-    <Button class="hero__btn" variant="secondary">
+    <Button class="hero__btn" variant="light">
       <Icon name="lucide:arrow-down" />
     </Button>
     <div class="hero__wrapper container">
