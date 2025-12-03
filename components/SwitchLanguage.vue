@@ -19,6 +19,11 @@ const { isMenuOpened } = useAppState()
 }
 
 .switch-lang__btn {
+  width: vw(44);
   text-transform: uppercase;
+
+  @media (max-width: $br1) {
+    width: 44px;
+  }
 }
 </style>
