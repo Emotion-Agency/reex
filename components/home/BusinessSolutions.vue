@@ -1,16 +1,16 @@
 <script setup lang="ts"></script>
 
 <template>
-  <section class="enterprise">
-    <div class="container enterprise__wrapper">
-      <div class="grid enterprise__top">
-        <Pill class="enterprise__pill"> Рішення для бізнесу </Pill>
-        <div class="enterprise__top-content">
-          <h2 class="enterprise__t">
+  <section class="business">
+    <div class="container business__wrapper">
+      <div class="grid business__top">
+        <Pill class="business__pill"> Рішення для бізнесу </Pill>
+        <div class="business__top-content">
+          <h2 class="business__t">
             Ми беремо на себе персонал — ви отримуєте результати
             <span> без зайвих клопотів. </span>
           </h2>
-          <DualButton tag="nuxt-link" to="/services" class="enterprise__btn">
+          <DualButton tag="nuxt-link" to="/services" class="business__btn">
             Усі послуги
           </DualButton>
         </div>
@@ -22,7 +22,7 @@
 </template>
 
 <style scoped lang="scss">
-.enterprise {
+.business {
   padding-top: vw(144);
 
   @media (max-width: $br1) {
@@ -30,7 +30,7 @@
   }
 }
 
-.enterprise__top {
+.business__top {
   align-items: start;
 
   @media (max-width: $br1) {
@@ -40,19 +40,19 @@
   }
 }
 
-.enterprise__pill {
+.business__pill {
   @media (min-width: $br1) {
     @include col(1, 6);
   }
 }
 
-.enterprise__top-content {
+.business__top-content {
   @media (min-width: $br1) {
     @include col(7, 12);
   }
 }
 
-.enterprise__t {
+.business__t {
   @include heading-h2;
 
   span {
@@ -60,7 +60,7 @@
   }
 }
 
-.enterprise__btn {
+.business__btn {
   width: fit-content;
   margin-top: vw(40);
 

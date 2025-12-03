@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const stages = [
+const coopSteps = [
   {
     id: 1,
     title: 'Аналізуємо ваші потреби',
@@ -7,7 +7,7 @@ const stages = [
       'Дізнаємося кількість працівників, графік, обов’язки та вимоги. Формуємо точний профіль кандидатів.',
     image: {
       src: '/images/home-2.png',
-      alt: 'Stage image',
+      alt: 'Step image',
     },
   },
   {
@@ -17,7 +17,7 @@ const stages = [
       'Проводимо відбір, інтерв’ю та перевіряємо компетенції. Обираємо працівників, які найкраще відповідають задачам.',
     image: {
       src: '/images/home-3.png',
-      alt: 'Stage image',
+      alt: 'Step image',
     },
   },
   {
@@ -27,7 +27,7 @@ const stages = [
       'Беремо на себе оформлення, інструктаж та координацію. Працівники виходять на роботу без затримок.',
     image: {
       src: '/images/home-4.png',
-      alt: 'Stage image',
+      alt: 'Step image',
     },
   },
   {
@@ -37,7 +37,7 @@ const stages = [
       'Моніторимо результат та оперативно реагуємо на зміни. За потреби — швидко замінюємо працівника.',
     image: {
       src: '/images/home-5.png',
-      alt: 'Stage image',
+      alt: 'Step image',
     },
   },
 ]
@@ -46,33 +46,33 @@ const openedId = ref('1')
 </script>
 
 <template>
-  <section class="stages">
-    <div class="stages__container container">
-      <div class="grid stages__top">
-        <Pill class="stages__pill"> Рішення для бізнесу </Pill>
-        <div class="stages__top-content">
-          <h2 class="stages__top-t">
+  <section class="coop-steps">
+    <div class="coop-steps__container container">
+      <div class="grid coop-steps__top">
+        <Pill class="coop-steps__pill"> Рішення для бізнесу </Pill>
+        <div class="coop-steps__top-content">
+          <h2 class="coop-steps__top-t">
             Організовуємо роботу так, щоб усе проходило
             <span> легко та злагоджено. </span>
           </h2>
         </div>
       </div>
-      <div class="grid stages__content">
-        <div class="stages__img-wrapper">
+      <div class="grid coop-steps__content">
+        <div class="coop-steps__img-wrapper">
           <img
-            v-for="stage in stages"
-            :key="stage.id"
-            :src="stage.image.src"
-            :alt="stage.image.alt"
-            class="stages__img"
-            :class="{ 'stages__img--opened': openedId === String(stage.id) }"
+            v-for="step in coopSteps"
+            :key="step.id"
+            :src="step.image.src"
+            :alt="step.image.alt"
+            class="coop-steps__img"
+            :class="{ 'coop-steps__img--opened': openedId === String(step.id) }"
           />
         </div>
 
-        <HomeStagesAccordion
+        <HomeCoopStepsAccordion
           v-model="openedId"
-          :stages="stages"
-          class="stages__a"
+          :steps="coopSteps"
+          class="coop-steps__a"
         />
       </div>
     </div>
@@ -80,7 +80,7 @@ const openedId = ref('1')
 </template>
 
 <style scoped lang="scss">
-.stages {
+.coop-steps {
   padding-top: vw(144);
 
   @media (max-width: $br1) {
@@ -88,7 +88,7 @@ const openedId = ref('1')
   }
 }
 
-.stages__top {
+.coop-steps__top {
   align-items: start;
 
   @media (max-width: $br1) {
@@ -98,19 +98,19 @@ const openedId = ref('1')
   }
 }
 
-.stages__pill {
+.coop-steps__pill {
   @media (min-width: $br1) {
     @include col(1, 6);
   }
 }
 
-.stages__top-content {
+.coop-steps__top-content {
   @media (min-width: $br1) {
     @include col(7, 12);
   }
 }
 
-.stages__top-t {
+.coop-steps__top-t {
   @include heading-h2;
 
   span {
@@ -118,7 +118,7 @@ const openedId = ref('1')
   }
 }
 
-.stages__content {
+.coop-steps__content {
   position: relative;
   margin-top: vw(96);
 
@@ -129,7 +129,7 @@ const openedId = ref('1')
   }
 }
 
-.stages__img-wrapper {
+.coop-steps__img-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 564/376;
@@ -139,7 +139,7 @@ const openedId = ref('1')
   }
 }
 
-.stages__img {
+.coop-steps__img {
   position: absolute;
   border-radius: vw(12);
   width: 100%;

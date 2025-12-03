@@ -3,10 +3,10 @@
 <template>
   <div>
     <HomeHero />
-    <HomeEnterprise />
+    <HomeBusinessSolutions />
     <HomeWhyChooseUs />
     <HomeAbout />
-    <HomeStages />
+    <HomeCooperationSteps />
     <HomeLocations />
     <HomePartners />
     <Articles title="Корисні статті" is-button />
