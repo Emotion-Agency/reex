@@ -1,45 +1,15 @@
 <script setup lang="ts">
+import type { iArticleItem } from '~/types/stories/articlesTypes'
+
 interface ArticlesProps {
   title: string
+  articles: iArticleItem[]
   isButton?: boolean
 }
 
 withDefaults(defineProps<ArticlesProps>(), {
   isButton: false,
 })
-
-const articles = [
-  {
-    id: 1,
-    img: {
-      src: '/images/articles/1.png',
-      alt: 'Article image',
-    },
-    tag: 'Блог',
-    date: '10 Серпня 2023',
-    text: 'Покращення виробництва через аутстафінг',
-  },
-  {
-    id: 2,
-    img: {
-      src: '/images/articles/2.png',
-      alt: 'Article image',
-    },
-    tag: 'Поради',
-    date: '10 Серпня 2023',
-    text: '5 порад з управління технічним персоналом у пікові періоди',
-  },
-  {
-    id: 3,
-    img: {
-      src: '/images/articles/3.png',
-      alt: 'Article image',
-    },
-    tag: 'Блог',
-    date: '10 Серпня 2023',
-    text: 'Як тимчасовий персонал допомагає прискорити логістичні процеси',
-  },
-]
 </script>
 
 <template>
@@ -61,24 +31,24 @@ const articles = [
       <ul class="articles__list">
         <li
           v-for="article in articles"
-          :key="article.id"
+          :key="article._uid"
           class="articles__item"
         >
           <img
-            :src="article.img.src"
-            :alt="article.img.alt"
+            :src="article?.asset?.filename"
+            :alt="article?.asset?.alt"
             class="articles__img"
           />
           <div class="articles__info">
             <Tag>
-              {{ article.tag }}
+              {{ article.category }}
             </Tag>
             <p class="articles__date">
               {{ article.date }}
             </p>
           </div>
           <p class="articles__text">
-            {{ article.text }}
+            {{ article.title }}
           </p>
         </li>
       </ul>

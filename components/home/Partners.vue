@@ -1,79 +1,27 @@
 <script setup lang="ts">
 import { Vue3Marquee } from 'vue3-marquee'
+import type { iPartners } from '~/types/stories/home/homeTypes'
 
-const partners = [
-  {
-    id: 1,
-    img: {
-      src: '/images/partners/roshen.svg',
-      alt: 'Roshen',
-    },
-  },
-  {
-    id: 2,
-    img: {
-      src: '/images/partners/kreisel.svg',
-      alt: 'Kreisel',
-    },
-  },
-  {
-    id: 3,
-    img: {
-      src: '/images/partners/ecosoft.svg',
-      alt: 'Ecosoft',
-    },
-  },
-  {
-    id: 4,
-    img: {
-      src: '/images/partners/epicentr.svg',
-      alt: 'Epicentr',
-    },
-  },
-  {
-    id: 5,
-    img: {
-      src: '/images/partners/univest.svg',
-      alt: 'Univest',
-    },
-  },
-  {
-    id: 6,
-    img: {
-      src: '/images/partners/havi.svg',
-      alt: 'Havi',
-    },
-  },
-  {
-    id: 7,
-    img: {
-      src: '/images/partners/fozzy.svg',
-      alt: 'Fozzy',
-    },
-  },
-  {
-    id: 8,
-    img: {
-      src: '/images/partners/nova-global.svg',
-      alt: 'Nova Global',
-    },
-  },
-]
+interface IProps {
+  content: iPartners
+}
+
+defineProps<IProps>()
 </script>
 
 <template>
   <section class="partners">
     <div class="partners__wrapper container">
       <div class="partners__divider" />
-      <HomePartnersSlider />
+      <HomePartnersSlider :partners="content" />
 
       <div class="partners__marquee">
         <Vue3Marquee clone :duration="8" gradient gradientLength="100px">
           <img
-            v-for="partner in partners"
-            :key="partner.id"
-            :src="partner.img.src"
-            :alt="partner.img.alt"
+            v-for="logo in content?.logos"
+            :key="logo._uid"
+            :src="logo.filename"
+            :alt="logo.alt"
           />
         </Vue3Marquee>
       </div>

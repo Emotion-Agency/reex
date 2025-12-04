@@ -1,4 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { iLocations } from '~/types/stories/home/homeTypes'
+
+interface IProps {
+  content: iLocations
+}
+
+defineProps<IProps>()
+</script>
 
 <template>
   <section class="locations">
@@ -6,11 +14,10 @@
       <div class="locations__content">
         <div class="locations__text-wrapper">
           <h3 class="locations__t">
-            Ми зростаємо та незабаром відкриємо філію у м. Харків.
+            {{ content?.title }}
           </h3>
           <p class="locations__d">
-            Reex представлений у ключових містах України — Львові, Вінниці,
-            Одесі, Дніпрі та Києві, забезпечуючи локальну присутність.
+            {{ content?.text }}
           </p>
         </div>
         <div class="locations__map">

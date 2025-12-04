@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { iHomeHero } from '~/types/stories/homeTypes'
+import type { iHomeHero } from '~/types/stories/home/homeTypes'
 
 interface IProps {
   content: iHomeHero
@@ -11,9 +11,16 @@ defineProps<IProps>()
 <template>
   <section class="hero">
     <div class="hero__bg-wrapper">
-      <img
+      <AssetRenderer
+        data-preload
         :src="content?.background_asset.filename"
         :alt="content?.background_asset.alt"
+        :width="1440"
+        :video-attributes="{
+          autoplay: true,
+          playsinline: true,
+          muted: true,
+        }"
         class="hero__bg"
       />
     </div>

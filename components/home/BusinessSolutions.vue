@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { iBusinessSolutions } from '~/types/stories/homeTypes'
+import type { iBusinessSolutions } from '~/types/stories/home/homeTypes'
 
 interface IProps {
   content: iBusinessSolutions
@@ -7,7 +7,9 @@ interface IProps {
 
 const props = defineProps<IProps>()
 
-const carouselItems = props.content?.service_carousel?.map(item => item.content)
+const carouselItems = computed(
+  () => props.content?.service_carousel?.map(i => i.content) ?? []
+)
 </script>
 
 <template>
@@ -19,13 +21,17 @@ const carouselItems = props.content?.service_carousel?.map(item => item.content)
           <h2 class="business__t">
             {{ content?.title }}
           </h2>
-          <DualButton tag="nuxt-link" to="/contacts" class="business__btn">
-            {{ content?.link[0].label }}
+          <DualButton
+            tag="nuxt-link"
+            :to="content?.link[0]?.url?.cached_url"
+            class="business__btn"
+          >
+            {{ content?.link[0]?.label }}
           </DualButton>
         </div>
       </div>
 
-      <HomeServicesCarousel :carousel-items="carouselItems" />
+      <HomeBusinessCarousel :carousel-items="carouselItems" />
     </div>
   </section>
 </template>

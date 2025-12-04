@@ -37,6 +37,13 @@ export interface iLink {
   url: string
 }
 
+export interface iDeepLink {
+  label: string
+  url: iLink
+  _uid: string
+  component: string
+}
+
 export interface iGlobalMetaContent {
   component: string
   title: string

@@ -28,7 +28,10 @@ export const useGetStory = async (route: string) => {
               : 'published',
           cv: Date.now(),
           language: locale.value,
-          resolve_relations: ['business_solutions.service_carousel'],
+          resolve_relations: [
+            'business_solutions.service_carousel',
+            'articles.article_items',
+          ],
         })
 
         response.value = data.story

@@ -6,9 +6,10 @@ import {
   AccordionRoot,
   AccordionTrigger,
 } from 'reka-ui'
+import type { iCooperationItem } from '~/types/stories/home/homeTypes'
 
 interface CoopStepsAccordionProps {
-  steps: { id: number; title: string; description: string }[]
+  steps: iCooperationItem[]
   modelValue: string
 }
 
@@ -26,8 +27,8 @@ const emit = defineEmits(['update:modelValue'])
   >
     <AccordionItem
       v-for="step in steps"
-      :key="step.id"
-      :value="String(step.id)"
+      :key="step._uid"
+      :value="String(step._uid)"
       class="coop-steps-a__item"
     >
       <AccordionHeader>

@@ -1,77 +1,41 @@
 <script setup lang="ts">
-const coopSteps = [
-  {
-    id: 1,
-    title: 'Аналізуємо ваші потреби',
-    description:
-      'Дізнаємося кількість працівників, графік, обов’язки та вимоги. Формуємо точний профіль кандидатів.',
-    image: {
-      src: '/images/home-2.png',
-      alt: 'Step image',
-    },
-  },
-  {
-    id: 2,
-    title: 'Підбираємо персонал',
-    description:
-      'Проводимо відбір, інтерв’ю та перевіряємо компетенції. Обираємо працівників, які найкраще відповідають задачам.',
-    image: {
-      src: '/images/home-3.png',
-      alt: 'Step image',
-    },
-  },
-  {
-    id: 3,
-    title: 'Організовуємо вихід на зміну',
-    description:
-      'Беремо на себе оформлення, інструктаж та координацію. Працівники виходять на роботу без затримок.',
-    image: {
-      src: '/images/home-4.png',
-      alt: 'Step image',
-    },
-  },
-  {
-    id: 4,
-    title: 'Контролюємо якість і замінюємо за потреби',
-    description:
-      'Моніторимо результат та оперативно реагуємо на зміни. За потреби — швидко замінюємо працівника.',
-    image: {
-      src: '/images/home-5.png',
-      alt: 'Step image',
-    },
-  },
-]
+import type { iCooperationSteps } from '~/types/stories/home/homeTypes'
 
-const openedId = ref('1')
+interface IProps {
+  content: iCooperationSteps
+}
+
+const props = defineProps<IProps>()
+
+const openedId = ref(props.content?.items[0]?._uid ?? '')
 </script>
 
 <template>
   <section class="coop-steps">
     <div class="coop-steps__container container">
       <div class="grid coop-steps__top">
-        <Pill class="coop-steps__pill"> Рішення для бізнесу </Pill>
+        <Pill class="coop-steps__pill"> {{ content?.tag }} </Pill>
         <div class="coop-steps__top-content">
           <h2 class="coop-steps__top-t">
-            Організовуємо роботу так, щоб усе проходило
-            <span> легко та злагоджено. </span>
+            {{ content?.text }}
           </h2>
         </div>
       </div>
       <div class="grid coop-steps__content">
         <div class="coop-steps__img-wrapper">
           <img
-            v-for="step in coopSteps"
-            :key="step.id"
-            :src="step.image.src"
-            :alt="step.image.alt"
+            v-for="step in content?.items"
+            :key="step._uid"
+            :src="step.asset.filename"
+            :alt="step.asset.alt"
             class="coop-steps__img"
-            :class="{ 'coop-steps__img--opened': openedId === String(step.id) }"
+            :class="{ 'coop-steps__img--opened': openedId === step._uid }"
           />
         </div>
 
         <HomeCoopStepsAccordion
           v-model="openedId"
-          :steps="coopSteps"
+          :steps="content?.items"
           class="coop-steps__a"
         />
       </div>

@@ -1,65 +1,22 @@
 <script setup lang="ts">
-const partners = [
-  {
-    id: 1,
-    partner: 'Nova Poshta',
-    text: 'Професійний сервіс і стабільна якість.',
-    member: {
-      name: 'Тарас Зінченко',
-      position: 'Head of Operations, Нова Пошта',
-    },
-    img: { src: '/images/partners/nova-poshta.svg', alt: 'Nova Poshta Logo' },
-  },
-  {
-    id: 2,
-    partner: 'Rozetka',
-    text: 'Високий рівень комунікації та швидке вирішення задач.',
-    member: {
-      name: 'Олена Коваль',
-      position: 'E-commerce Director, Rozetka',
-    },
-    img: { src: '/images/partners/rozetka.svg', alt: 'Rozetka Logo' },
-  },
-  {
-    id: 3,
-    partner: 'Monobank',
-    text: 'Надійність і результат. Отримали більше, ніж очікували.',
-    member: {
-      name: 'Ігор Мельник',
-      position: 'Product Manager, Monobank',
-    },
-    img: { src: '/images/partners/nova-poshta.svg', alt: 'Monobank Logo' },
-  },
-  {
-    id: 4,
-    partner: 'Ukrzaliznytsia',
-    text: 'Професійний підхід до кожного етапу співпраці.',
-    member: {
-      name: 'Марія Левченко',
-      position: 'Head of Digital, Укрзалізниця',
-    },
-    img: { src: '/images/partners/rozetka.svg', alt: 'Ukrzaliznytsia Logo' },
-  },
-  {
-    id: 5,
-    partner: 'Kyivstar',
-    text: 'Швидко, якісно і прозоро. Рекомендуємо до співпраці.',
-    member: {
-      name: 'Дмитро Савчук',
-      position: 'Marketing Lead, Kyivstar',
-    },
-    img: { src: '/images/partners/nova-poshta.svg', alt: 'Kyivstar Logo' },
-  },
-]
+import type { iPartners } from '~/types/stories/home/homeTypes'
 
-const { current, handlePrev, handleNext } = useSlider(() => partners.length)
+interface IProps {
+  partners: iPartners
+}
+
+const props = defineProps<IProps>()
+
+const { current, handlePrev, handleNext } = useSlider(
+  () => props.partners?.items?.length
+)
 </script>
 
 <template>
   <section class="partners-slider" ref="emblaRef">
     <div class="grid partners-slider__content">
       <div class="partners-slider__nav">
-        <Pill>Нам довіряють лідери</Pill>
+        <Pill>{{ partners?.tag }}</Pill>
         <div class="partners-slider__controls">
           <button @click="handlePrev" class="partners-slider__btn">
             <Icon name="lucide:arrow-left" />
@@ -72,22 +29,22 @@ const { current, handlePrev, handleNext } = useSlider(() => partners.length)
 
       <ul class="partners-slider__list">
         <li
-          v-for="(partner, idx) in partners"
-          :key="partner.id"
+          v-for="(partner, idx) in partners?.items"
+          :key="partner._uid"
           class="partners-slider__item"
           :class="{ 'partners-slider__item--active': idx === current }"
         >
           <h2 class="partners-slider__text">{{ partner.text }}</h2>
           <div class="partners-slider__member">
             <img
-              :src="partner.img.src"
-              :alt="partner.img.alt"
+              :src="partner.member[0]?.logo?.filename"
+              :alt="partner.member[0]?.logo?.alt"
               class="partners-slider__img"
             />
             <div class="partners-slider__info">
-              <p class="partners-slider__name">{{ partner.member.name }}</p>
+              <p class="partners-slider__name">{{ partner.member[0]?.name }}</p>
               <p class="partners-slider__pos">
-                {{ partner.member.position }}
+                {{ partner.member[0]?.position }}
               </p>
             </div>
           </div>

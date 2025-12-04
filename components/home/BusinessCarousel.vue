@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import useEmbla from '~/composables/useEmblaSlider'
-import type { iBusinessCarouselItem } from '~/types/stories/homeTypes'
+import type { iBusinessCarouselItem } from '~/types/stories/home/homeTypes'
 
 interface ServicesCarouselProps {
   carouselItems: iBusinessCarouselItem[]

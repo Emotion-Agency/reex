@@ -1,26 +1,37 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { iHomeAbout } from '~/types/stories/home/homeTypes'
+
+interface IProps {
+  content: iHomeAbout
+}
+
+defineProps<IProps>()
+</script>
 
 <template>
   <section class="about">
     <div class="container about__wrapper">
-      <Pill variant="light"> Про компанію </Pill>
+      <Pill variant="light"> {{ content?.tag }}</Pill>
       <h2 class="about__t">
-        Reex — ваш партнер у підборі тимчасового, та
-        <span>постійного персоналу.</span>
+        {{ content?.text }}
       </h2>
       <DualButton
         class="about__btn"
         tag="nuxt-link"
-        to="/about"
+        :to="content?.link[0]?.url?.cached_url"
         variant="secondary"
       >
-        Детальніше про нас
+        {{ content?.link[0].label }}
       </DualButton>
     </div>
     <div class="about__imgs">
-      <img src="/images/home-2.png" alt="About image" class="about__img" />
-      <img src="/images/home-3.png" alt="About image" class="about__img" />
-      <img src="/images/home-4.png" alt="About image" class="about__img" />
+      <CustomImage
+        v-for="img in content?.assets"
+        :width="360"
+        :src="img?.filename"
+        :alt="img?.alt"
+        class="about__img"
+      />
     </div>
   </section>
 </template>
@@ -89,6 +100,7 @@
 
 .about__img {
   position: absolute;
+  object-fit: cover;
   border-radius: vw(12);
 
   &:nth-child(1) {
