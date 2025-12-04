@@ -21,7 +21,7 @@ const handleClick = async () => {
       variant="light"
       @click="handleClick"
     >
-      En
+      {{ nextLocale?.code }}
     </Button>
   </div>
 </template>
