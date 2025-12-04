@@ -1,10 +1,28 @@
 <script setup lang="ts">
 const { isMenuOpened } = useAppState()
+const { setLocale, locales, locale } = useI18n()
+
+const nextLocale = computed(() =>
+  locales.value.find(l => l.code !== locale.value)
+)
+
+const handleClick = async () => {
+  await nextTick()
+  await setLocale(nextLocale.value.code)
+  window.location.reload()
+}
 </script>
 
 <template>
   <div class="switch-lang" :class="{ 'switch-lang--menu': isMenuOpened }">
-    <Button class="switch-lang__btn" tag="button" variant="light"> En </Button>
+    <Button
+      class="switch-lang__btn"
+      tag="button"
+      variant="light"
+      @click="handleClick"
+    >
+      En
+    </Button>
   </div>
 </template>
 
