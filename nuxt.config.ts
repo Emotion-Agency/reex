@@ -32,7 +32,27 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@vueuse/nuxt', '@nuxt/eslint', '@nuxt/icon'],
+  modules: [
+    '@vueuse/nuxt',
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    [
+      '@storyblok/nuxt',
+      {
+        accessToken: process.env.STORYBLOK_TOKEN,
+      },
+    ],
+    '@nuxtjs/i18n',
+  ],
+
+  i18n: {
+    locales: [
+      { code: 'uk', language: 'uk-UA' },
+      { code: 'en', language: 'en-US' },
+    ],
+    detectBrowserLanguage: false,
+    defaultLocale: 'uk',
+  },
 
   icon: {
     serverBundle: {

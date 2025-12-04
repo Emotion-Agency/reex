@@ -1,15 +1,27 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { iHomeHero } from '~/types/stories/homeTypes'
+
+interface IProps {
+  content: iHomeHero
+}
+
+defineProps<IProps>()
+</script>
 
 <template>
   <section class="hero">
     <div class="hero__bg-wrapper">
-      <img src="/images/home-1.png" alt="Backround image" class="hero__bg" />
+      <img
+        :src="content?.background_asset.filename"
+        :alt="content?.background_asset.alt"
+        class="hero__bg"
+      />
     </div>
     <Button class="hero__btn" variant="light">
       <Icon name="lucide:arrow-down" />
     </Button>
     <div class="hero__wrapper container">
-      <h1 class="hero__t">Кадрові рішення для бізнесу</h1>
+      <h1 class="hero__t">{{ content.title }}</h1>
     </div>
   </section>
 </template>
@@ -87,7 +99,7 @@
 
 .hero__t {
   @include heading-h1;
-  max-width: vw(790);
+  max-width: vw(820);
   color: var(--secondary);
 
   @media (max-width: $br1) {

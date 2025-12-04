@@ -1,22 +1,31 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { iBusinessSolutions } from '~/types/stories/homeTypes'
+
+interface IProps {
+  content: iBusinessSolutions
+}
+
+const props = defineProps<IProps>()
+
+const carouselItems = props.content?.service_carousel?.map(item => item.content)
+</script>
 
 <template>
   <section class="business">
     <div class="container business__wrapper">
       <div class="grid business__top">
-        <Pill class="business__pill"> Рішення для бізнесу </Pill>
+        <Pill class="business__pill"> {{ content?.tag }} </Pill>
         <div class="business__top-content">
           <h2 class="business__t">
-            Ми беремо на себе персонал — ви отримуєте результати
-            <span> без зайвих клопотів. </span>
+            {{ content?.title }}
           </h2>
-          <DualButton tag="nuxt-link" to="/services" class="business__btn">
-            Усі послуги
+          <DualButton tag="nuxt-link" to="/contacts" class="business__btn">
+            {{ content?.link[0].label }}
           </DualButton>
         </div>
       </div>
 
-      <HomeServicesCarousel />
+      <HomeServicesCarousel :carousel-items="carouselItems" />
     </div>
   </section>
 </template>

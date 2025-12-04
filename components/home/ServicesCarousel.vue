@@ -1,50 +1,12 @@
 <script setup lang="ts">
 import useEmbla from '~/composables/useEmblaSlider'
+import type { iBusinessCarouselItem } from '~/types/stories/homeTypes'
 
-const services = [
-  {
-    id: 1,
-    title: 'Аутсорсинг',
-    description:
-      'Ми беремо на себе управління персоналом: підбір, оформлення, координацію та контроль роботи співробітників.',
-  },
-  {
-    id: 2,
-    title: 'Масовий підбір',
-    description:
-      'Швидко закриваємо десятки позицій одночасно, забезпечуючи якісний відбір кандидатів та оперативний старт роботи.',
-  },
-  {
-    id: 3,
-    title: 'Підбір під проєкт',
-    description:
-      'Формуємо команду “під ключ” для короткострокових чи нових напрямів бізнесу з урахуванням термінів і бюджету.',
-  },
-  {
-    id: 4,
-    title: 'Імпорт персоналу',
-    description:
-      'Підбираємо та супроводжуємо іноземних працівників: документи, приїзд, адаптація та координація на підприємстві.',
-  },
-  {
-    id: 5,
-    title: 'HR-консалтинг',
-    description:
-      'Аналізуємо HR-процеси, розробляємо стратегії та впроваджуємо рішення для підвищення ефективності управління персоналом.',
-  },
-  {
-    id: 6,
-    title: 'HR-консалтинг',
-    description:
-      'Аналізуємо HR-процеси, розробляємо стратегії та впроваджуємо рішення для підвищення ефективності управління персоналом.',
-  },
-  {
-    id: 7,
-    title: 'Аутстафінг',
-    description:
-      'Надаємо тимчасових працівників для виконання специфічних завдань чи проектів без необхідності їх офіційного працевлаштування.',
-  },
-]
+interface ServicesCarouselProps {
+  carouselItems: iBusinessCarouselItem[]
+}
+
+defineProps<ServicesCarouselProps>()
 
 const { width } = useWindowSize()
 
@@ -89,8 +51,8 @@ const {
 
     <ul class="services-carousel__container">
       <li
-        v-for="service in services"
-        :key="service.id"
+        v-for="item in carouselItems"
+        :key="item._uid"
         class="services-carousel__slide"
       >
         <div class="services-carousel__link-arrow">
@@ -98,10 +60,10 @@ const {
         </div>
         <div>
           <h3 class="services-carousel__title">
-            {{ service.title }}
+            {{ item.title }}
           </h3>
           <p class="services-carousel__description">
-            {{ service.description }}
+            {{ item.description }}
           </p>
         </div>
       </li>
