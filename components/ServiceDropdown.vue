@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { NavigationItem } from '~/constants/navigation'
-import { onClickOutside } from '@vueuse/core'
 
 interface ServiceDropdownProps {
   navItem: NavigationItem

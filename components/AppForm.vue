@@ -22,7 +22,6 @@ const rules = {
 }
 
 const v$ = useVuelidate(rules, form)
-const isInvalid = computed(() => v$.value.$invalid)
 
 const inputs = computed(() => [
   {
@@ -70,10 +69,6 @@ const onSubmit = async () => {
   form.service = ''
   v$.value.$reset()
 }
-
-watch(form, () => {
-  v$.value.$touch()
-})
 </script>
 
 <template>
@@ -102,12 +97,7 @@ watch(form, () => {
         />
       </template>
     </div>
-    <DualButton
-      class="form__btn"
-      type="submit"
-      variant="secondary"
-      :disabled="isInvalid"
-    >
+    <DualButton class="form__btn" type="submit" variant="secondary">
       Залишити заявку
     </DualButton>
   </form>

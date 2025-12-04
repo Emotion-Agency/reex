@@ -108,6 +108,7 @@ const emit = defineEmits(['update:modelValue'])
   position: relative;
   width: vw(20);
   height: vw(20);
+  flex: 0 0 auto;
 
   span {
     position: absolute;
@@ -136,6 +137,7 @@ const emit = defineEmits(['update:modelValue'])
   @include heading-h4;
   color: var(--foreground-muted-50);
   transition: color 0.3s ease;
+  text-align: start;
 }
 
 .coop-steps-a__content {
