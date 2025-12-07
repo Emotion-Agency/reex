@@ -13,7 +13,7 @@ const { current, handlePrev, handleNext } = useSlider(
 </script>
 
 <template>
-  <section class="partners-slider" ref="emblaRef">
+  <section class="partners-slider">
     <div class="grid partners-slider__content">
       <div class="partners-slider__nav">
         <Pill>{{ partners?.tag }}</Pill>

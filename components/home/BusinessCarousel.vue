@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import useEmbla from '~/composables/useEmblaSlider'
 import type { iBusinessCarouselItem } from '~/types/stories/home/homeTypes'
+import type { iStory } from '~/types/stories/story'
 
 interface ServicesCarouselProps {
-  carouselItems: iBusinessCarouselItem[]
+  carouselItems: iStory<iBusinessCarouselItem>[]
 }
 
 defineProps<ServicesCarouselProps>()
@@ -17,9 +18,9 @@ const slidesToScroll = computed(() => {
 })
 
 const {
-  emblaRef,
   scrollPrev,
   scrollNext,
+  emblaRef,
   prevBtnDisabled,
   nextBtnDisabled,
   progress,
@@ -55,17 +56,19 @@ const {
         :key="item._uid"
         class="services-carousel__slide"
       >
-        <div class="services-carousel__link-arrow">
-          <Icon name="lucide:arrow-up-right" />
-        </div>
-        <div>
-          <h3 class="services-carousel__title">
-            {{ item.title }}
-          </h3>
-          <p class="services-carousel__description">
-            {{ item.description }}
-          </p>
-        </div>
+        <NuxtLink :to="item.full_slug" class="services-carousel__link">
+          <div class="services-carousel__link-arrow">
+            <Icon name="lucide:arrow-up-right" />
+          </div>
+          <div>
+            <h3 class="services-carousel__title">
+              {{ item.content?.title }}
+            </h3>
+            <p class="services-carousel__description">
+              {{ item.content?.description }}
+            </p>
+          </div>
+        </NuxtLink>
       </li>
     </ul>
     <ClientOnly>
@@ -141,26 +144,35 @@ const {
 .services-carousel__slide {
   flex: 0 0 calc((100% - 3 * vw(16)) / 4);
   min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: vw(24);
   height: vw(332);
-  background-color: var(--foreground-muted-7);
   border-radius: vw(16);
   margin-right: vw(16);
+  overflow: hidden;
 
   @media (max-width: $br1) {
-    margin-right: 8px;
-    padding: 18px;
     height: 280px;
     border-radius: 12px;
+    margin-right: 8px;
     flex: 0 0 calc((100% - 1 * 12px) / 2);
   }
 
   @media (max-width: $br3) {
     flex: 0 0 100%;
+  }
+}
+
+.services-carousel__link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: vw(24);
+  width: 100%;
+  height: 100%;
+  background-color: var(--foreground-muted-7);
+
+  @media (max-width: $br1) {
+    padding: 18px;
   }
 }
 

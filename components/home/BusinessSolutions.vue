@@ -6,10 +6,6 @@ interface IProps {
 }
 
 const props = defineProps<IProps>()
-
-const carouselItems = computed(
-  () => props.content?.service_carousel?.map(i => i.content) ?? []
-)
 </script>
 
 <template>
@@ -30,8 +26,7 @@ const carouselItems = computed(
           </DualButton>
         </div>
       </div>
-
-      <HomeBusinessCarousel :carousel-items="carouselItems" />
+      <HomeBusinessCarousel :carousel-items="content?.service_carousel" />
     </div>
   </section>
 </template>

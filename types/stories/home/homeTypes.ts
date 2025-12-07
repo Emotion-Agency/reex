@@ -1,5 +1,5 @@
 import type { iArticles } from '../articlesTypes'
-import type { iDeepLink, iImage, iMeta } from '../story'
+import type { iDeepLink, iImage, iMeta, iStory } from '../story'
 
 export interface iPartnerMember {
   name: string
@@ -84,7 +84,7 @@ export interface iBusinessSolutions {
   tag: string
   title: string
   link: iDeepLink[]
-  service_carousel: { content: iBusinessCarouselItem }[]
+  service_carousel: iStory<iBusinessCarouselItem>[]
   component: string
   _uid: string
 }

@@ -1,7 +1,14 @@
 <script lang="ts" setup>
+import { useFooterStory } from '~/composables/stories/footerStory'
+import { useFormStory } from '~/composables/stories/formStory'
+import { useMenuStory } from '~/composables/stories/menuStory'
 import contacts from '~/constants/contacts'
 import navigationList from '~/constants/navigation'
 import socialsList from '~/constants/socials'
+
+const { story: footerStory } = useFooterStory()
+const { story: menuStory } = useMenuStory()
+const { story: formStory } = useFormStory()
 </script>
 
 <template>
@@ -13,12 +20,11 @@ import socialsList from '~/constants/socials'
         <div class="footer__text-wrapper">
           <IconsLogo class="footer__logo" />
           <p class="footer__text">
-            Допомагаємо бізнесу працювати стабільно, надаючи кваліфікований і
-            перевірений персонал.
+            {{ footerStory?.content?.text }}
           </p>
         </div>
         <div class="footer__nav">
-          <p class="footer__t">Навігація</p>
+          <p class="footer__t">{{ footerStory?.content?.navigation_label }}</p>
           <ul class="footer__list">
             <li
               v-for="item in navigationList"

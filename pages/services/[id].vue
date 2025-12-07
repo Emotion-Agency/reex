@@ -7,7 +7,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div>Services Components</div>
+  <div>Service Components</div>
 </template>
 
 <style lang="scss" scoped></style>
