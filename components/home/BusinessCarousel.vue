@@ -57,10 +57,17 @@ const {
         class="services-carousel__slide"
       >
         <NuxtLink :to="item.full_slug" class="services-carousel__link">
+          <CustomImage
+            :src="item.content?.asset?.filename"
+            :alt="item.content?.asset?.alt"
+            :width="664"
+            class="services-carousel__img"
+          />
+
           <div class="services-carousel__link-arrow">
             <Icon name="lucide:arrow-up-right" />
           </div>
-          <div>
+          <div class="services-carousel__info">
             <h3 class="services-carousel__title">
               {{ item.content?.title }}
             </h3>
@@ -148,6 +155,7 @@ const {
   border-radius: vw(16);
   margin-right: vw(16);
   overflow: hidden;
+  position: relative;
 
   @media (max-width: $br1) {
     height: 280px;
@@ -158,6 +166,17 @@ const {
 
   @media (max-width: $br3) {
     flex: 0 0 100%;
+  }
+
+  &:hover {
+    .services-carousel__img {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .services-carousel__title,
+    .services-carousel__description {
+      color: var(--secondary);
+    }
   }
 }
 
@@ -174,6 +193,20 @@ const {
   @media (max-width: $br1) {
     padding: 18px;
   }
+}
+
+.services-carousel__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.15);
+  opacity: 0;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  z-index: -1;
 }
 
 .services-carousel__link-arrow {
@@ -203,17 +236,19 @@ const {
 }
 
 .services-carousel__title {
+  transition: color 0.5s ease;
   @include heading-h4;
 }
 
 .services-carousel__description {
-  @include text-reg-p1;
   margin-top: vw(12);
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.5s ease;
+  @include text-reg-p1;
 
   @media (max-width: $br1) {
     margin-top: 8px;
