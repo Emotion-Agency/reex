@@ -84,12 +84,6 @@ const emit = defineEmits(['update:modelValue'])
   }
 }
 
-.coop-steps-a__divider {
-  width: 100%;
-  height: 1px;
-  background-color: var(--foreground-muted-10);
-}
-
 .coop-steps-a__main {
   display: flex;
   justify-content: space-between;

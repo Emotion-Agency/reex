@@ -3,24 +3,85 @@
 <template>
   <section class="hero">
     <div class="hero__wrapper container">
-      <h1 class="hero__t">Аутстафінг персоналу</h1>
-
-      <Button class="hero__btn" variant="dark">
-        <Icon name="lucide:arrow-down" />
-      </Button>
+      <h1 class="hero__t">Аутстафінг <span>персоналу</span></h1>
+      <Divider class="hero__divider" />
+      <div class="hero__d-wrapper">
+        <Button class="hero__btn" variant="dark">
+          <Icon name="lucide:arrow-down" />
+        </Button>
+        <p class="hero__d">
+          Аутстафінг, що допомагає швидко закривати потреби в персоналі без
+          зайвих процесів і бюрократії.
+        </p>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped lang="scss">
+.hero {
+  padding-top: vw(164);
+
+  @media (max-width: $br1) {
+    padding-top: 100px;
+  }
+}
+
+.hero__t {
+  max-width: vw(864);
+  @include heading-h1;
+
+  @media (max-width: $br1) {
+    max-width: 500px;
+  }
+
+  @media (max-width: $br4) {
+    max-width: 100%;
+  }
+
+  span {
+    color: var(--foreground-muted-50);
+  }
+}
+
+.hero__divider {
+  margin-top: vw(96);
+
+  @media (max-width: $br1) {
+    margin-top: 64px;
+  }
+}
+
+.hero__d-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: vw(32);
+
+  @media (max-width: $br1) {
+    margin-top: 24px;
+    flex-direction: column-reverse;
+    gap: 18px;
+  }
+}
+
+.hero__d {
+  max-width: vw(448);
+  @include heading-h4;
+
+  @media (max-width: $br1) {
+    max-width: 320px;
+  }
+
+  @media (max-width: $br4) {
+    max-width: 100%;
+  }
+}
+
 .hero__btn {
-  position: absolute;
-  left: $g-offset;
-  bottom: vw(16);
+  pointer-events: none;
   width: vw(48);
   height: vw(48);
-  background-color: var(--bg-muted-75);
-  backdrop-filter: blur(vw(50));
 
   span {
     width: vw(18);
@@ -34,28 +95,9 @@
   }
 
   @media (max-width: $br1) {
-    left: $g-sm;
-    bottom: 16px;
     backdrop-filter: blur(50px);
     width: 48px;
     height: 48px;
-  }
-
-  @media (max-width: $br3) {
-    left: $g-s;
-  }
-}
-
-.hero__t {
-  @include heading-h1;
-  max-width: vw(864);
-
-  @media (max-width: $br1) {
-    max-width: 500px;
-  }
-
-  @media (max-width: $br4) {
-    max-width: 100%;
   }
 }
 

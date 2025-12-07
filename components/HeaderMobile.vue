@@ -61,7 +61,7 @@ const toggleServices = () => {
                 </div>
               </div>
             </div>
-            <div class="header-mob__divider" />
+            <div class="header-mob__line" />
           </div>
           <NuxtLink v-else :to="item.link?.url" class="header-mob__nav-link">
             {{ item.label }}
@@ -227,7 +227,7 @@ const toggleServices = () => {
   @include text-reg-p2;
 }
 
-.header-mob__divider {
+.header-mob__line {
   width: 100%;
   height: 1px;
   background-color: var(--bg-muted-10);

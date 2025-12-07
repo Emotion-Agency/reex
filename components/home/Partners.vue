@@ -12,7 +12,7 @@ defineProps<IProps>()
 <template>
   <section class="partners">
     <div class="partners__wrapper container">
-      <div class="partners__divider" />
+      <Divider />
       <HomePartnersSlider :partners="content" />
 
       <div class="partners__marquee">
@@ -35,21 +35,6 @@ defineProps<IProps>()
 
   @media (max-width: $br1) {
     padding-top: 100px;
-  }
-}
-
-.partners__divider {
-  position: relative;
-  width: 100%;
-  height: vw(12);
-  border-left: 1px solid var(--foreground-muted-10);
-  border-right: 1px solid var(--foreground-muted-10);
-  border-top: 1px solid var(--foreground-muted-10);
-  border-radius: vw(8) vw(8) 0 0;
-
-  @media (max-width: $br1) {
-    height: 10px;
-    border-radius: 8px 8px 0 0;
   }
 }
 
