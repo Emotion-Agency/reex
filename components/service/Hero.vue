@@ -1,17 +1,23 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface iServiceHeroProps {
+  title: string
+  description: string
+}
+
+defineProps<iServiceHeroProps>()
+</script>
 
 <template>
   <section class="hero">
     <div class="hero__wrapper container">
-      <h1 class="hero__t">Аутстафінг <span>персоналу</span></h1>
+      <h1 class="hero__t">{{ title }}</h1>
       <Divider class="hero__divider" />
       <div class="hero__d-wrapper">
         <Button class="hero__btn" variant="dark">
           <Icon name="lucide:arrow-down" />
         </Button>
         <p class="hero__d">
-          Аутстафінг, що допомагає швидко закривати потреби в персоналі без
-          зайвих процесів і бюрократії.
+          {{ description }}
         </p>
       </div>
     </div>
@@ -20,9 +26,11 @@
 
 <style scoped lang="scss">
 .hero {
+  padding-bottom: vw(48);
   padding-top: vw(164);
 
   @media (max-width: $br1) {
+    padding-bottom: 32px;
     padding-top: 100px;
   }
 }

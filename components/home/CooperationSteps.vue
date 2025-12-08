@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { iCooperationSteps } from '~/types/stories/home/homeTypes'
+import type { iAccordionSteps } from '~/types/stories/accordionTypes'
 
 interface IProps {
-  content: iCooperationSteps
+  content: iAccordionSteps
 }
 
 const props = defineProps<IProps>()

@@ -17,7 +17,7 @@ defineProps<IProps>()
         <div class="choose__info">
           <Pill> {{ content?.tag }} </Pill>
           <h3 class="choose__t">
-            {{ content?.title }}
+            {{ content?.text }}
           </h3>
         </div>
         <ul class="choose__list">

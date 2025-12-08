@@ -1,3 +1,5 @@
+import type { iAccordionSteps } from '../accordionTypes'
+import type { iAdvantageItem } from '../advantagesTypes'
 import type { iArticles } from '../articlesTypes'
 import type { iDeepLink, iImage, iMeta, iStory } from '../story'
 
@@ -31,22 +33,6 @@ export interface iLocations {
   _uid: string
 }
 
-export interface iCooperationItem {
-  title: string
-  description: string
-  asset: iImage
-  component: string
-  _uid: string
-}
-
-export interface iCooperationSteps {
-  tag: string
-  text: string
-  items: iCooperationItem[]
-  component: string
-  _uid: string
-}
-
 export interface iHomeAbout {
   tag: string
   text: string
@@ -56,17 +42,9 @@ export interface iHomeAbout {
   _uid: string
 }
 
-export interface iAdvantageItem {
-  title: string
-  text: string
-  icon: iImage
-  component: string
-  _uid: string
-}
-
 export interface iWhyChoose {
   tag: string
-  title: string
+  text: string
   advantage_items: iAdvantageItem[]
   component: string
   _uid: string
@@ -102,7 +80,7 @@ export interface iHomeContent {
   business_solutions: iBusinessSolutions[]
   why_choose: iWhyChoose[]
   about: iHomeAbout[]
-  cooperation: iCooperationSteps[]
+  cooperation: iAccordionSteps[]
   locations: iLocations[]
   partners: iPartners[]
   articles: iArticles[]

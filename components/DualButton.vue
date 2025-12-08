@@ -156,7 +156,6 @@ const href = props.tag === 'a' ? props.href : undefined
     transform: skew(-12deg);
     top: 0;
     left: vw(-4);
-    z-index: -1;
 
     @media (max-width: $br1) {
       border-top-left-radius: 14px;

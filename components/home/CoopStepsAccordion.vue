@@ -6,10 +6,10 @@ import {
   AccordionRoot,
   AccordionTrigger,
 } from 'reka-ui'
-import type { iCooperationItem } from '~/types/stories/home/homeTypes'
+import type { iAccordionItem } from '~/types/stories/accordionTypes'
 
 interface CoopStepsAccordionProps {
-  steps: iCooperationItem[]
+  steps: iAccordionItem[]
   modelValue: string
 }
 
