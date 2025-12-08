@@ -71,7 +71,6 @@ defineProps<iServiceAdvice>()
   }
 
   @media (max-width: $br1) {
-    gap: 32px;
     max-width: 550px;
   }
 
@@ -106,6 +105,7 @@ defineProps<iServiceAdvice>()
 
     @media (max-width: $br1) {
       display: flex;
+      margin-top: 32px;
     }
   }
 }
@@ -115,6 +115,10 @@ defineProps<iServiceAdvice>()
 
   @media (min-width: $br1) {
     max-width: vw(448);
+  }
+
+  @media (max-width: $br1) {
+    margin-top: 12px;
   }
 }
 

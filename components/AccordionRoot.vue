@@ -8,12 +8,12 @@ import {
 } from 'reka-ui'
 import type { iAccordionItem } from '~/types/stories/accordionTypes'
 
-interface CoopStepsAccordionProps {
+interface AccordionRootProps {
   steps: iAccordionItem[]
   modelValue: string
 }
 
-defineProps<CoopStepsAccordionProps>()
+defineProps<AccordionRootProps>()
 
 const emit = defineEmits(['update:modelValue'])
 </script>
@@ -23,33 +23,33 @@ const emit = defineEmits(['update:modelValue'])
     type="single"
     :model-value="modelValue"
     @update:model-value="emit('update:modelValue', $event)"
-    class="coop-steps-a"
+    class="accordion-root"
   >
     <AccordionItem
       v-for="step in steps"
       :key="step._uid"
       :value="String(step._uid)"
-      class="coop-steps-a__item"
+      class="accordion-root__item"
     >
       <AccordionHeader>
-        <AccordionTrigger class="coop-steps-a__main">
-          <h4 class="coop-steps-a__t">{{ step.title }}</h4>
-          <div class="coop-steps-a__plus">
+        <AccordionTrigger class="accordion-root__main">
+          <h4 class="accordion-root__t">{{ step.title }}</h4>
+          <div class="accordion-root__plus">
             <span />
             <span />
           </div>
         </AccordionTrigger>
       </AccordionHeader>
 
-      <AccordionContent class="coop-steps-a__content">
-        <p class="coop-steps-a__d">{{ step.description }}</p>
+      <AccordionContent class="accordion-root__content">
+        <p class="accordion-root__d">{{ step.description }}</p>
       </AccordionContent>
     </AccordionItem>
   </AccordionRoot>
 </template>
 
 <style scoped lang="scss">
-.coop-steps-a {
+.accordion-root {
   @media (min-width: $br1) {
     @include col(7, 12);
   }
@@ -59,21 +59,21 @@ const emit = defineEmits(['update:modelValue'])
   }
 }
 
-.coop-steps-a__item {
+.accordion-root__item {
   border-top: 1px solid var(--foreground-muted-10);
 
   &:hover {
-    .coop-steps-a__t {
+    .accordion-root__t {
       color: var(--foreground);
     }
   }
 
   &[data-state='open'] {
-    .coop-steps-a__t {
+    .accordion-root__t {
       color: var(--foreground);
     }
 
-    .coop-steps-a__plus {
+    .accordion-root__plus {
       span {
         &:last-child {
           transform: translate(-50%, -50%) rotate(0);
@@ -84,7 +84,7 @@ const emit = defineEmits(['update:modelValue'])
   }
 }
 
-.coop-steps-a__main {
+.accordion-root__main {
   display: flex;
   justify-content: space-between;
   align-items: start;
@@ -99,7 +99,7 @@ const emit = defineEmits(['update:modelValue'])
   }
 }
 
-.coop-steps-a__plus {
+.accordion-root__plus {
   position: relative;
   width: vw(20);
   height: vw(20);
@@ -128,14 +128,14 @@ const emit = defineEmits(['update:modelValue'])
   }
 }
 
-.coop-steps-a__t {
+.accordion-root__t {
   @include heading-h4;
   color: var(--foreground-muted-50);
   transition: color 0.3s ease;
   text-align: start;
 }
 
-.coop-steps-a__content {
+.accordion-root__content {
   overflow: hidden;
 
   &[data-state='open'] {
@@ -147,7 +147,7 @@ const emit = defineEmits(['update:modelValue'])
   }
 }
 
-.coop-steps-a__d {
+.accordion-root__d {
   @include text-reg-p1;
   margin-bottom: vw(24);
 

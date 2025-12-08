@@ -39,5 +39,6 @@ const meta = computed(() => {
     />
     <ServiceFullscreenAsset :asset="sections?.asset" />
     <ServiceAdvice :content="sections?.advice[0]" />
+    <ServiceCooperationSteps :content="sections?.accordion_steps[0]" />
   </div>
 </template>
