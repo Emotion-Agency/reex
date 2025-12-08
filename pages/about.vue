@@ -31,5 +31,7 @@ const meta = computed(() => {
   <div v-if="story">
     <PageMeta v-if="meta" v-bind="meta" />
     <AboutHero :content="sections?.about_hero[0]" />
+    <AboutMissions :content="sections?.missions[0]" />
+    <AboutHistory :content="sections?.history[0]" />
   </div>
 </template>
