@@ -3,7 +3,7 @@ import type { iImage } from './story'
 export interface iAccordionItem {
   title: string
   description: string
-  asset: iImage
+  asset?: iImage
   component: string
   _uid: string
 }

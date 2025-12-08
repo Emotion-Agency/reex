@@ -4,7 +4,7 @@ import type { iDeepLink, iImage, iMeta } from '../story'
 
 export interface iQuestionItem {
   title: string
-  text: string
+  description: string
   component: string
   _uid: string
 }

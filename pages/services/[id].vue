@@ -13,8 +13,6 @@ if (!story.value) {
 
 const sections = computed(() => story.value.content)
 
-console.log(sections.value)
-
 const meta = computed(() => {
   const data = story?.value?.content?.meta[0]
 
@@ -41,5 +39,6 @@ const meta = computed(() => {
     <ServiceAdvice :content="sections?.advice[0]" />
     <ServiceCooperationSteps :content="sections?.accordion_steps[0]" />
     <ServiceAdvantages :content="sections?.advantages[0]" />
+    <ServiceQuestions :content="sections?.questions[0]" />
   </div>
 </template>
