@@ -27,6 +27,7 @@ defineProps<IProps>()
     <div class="about__imgs">
       <CustomImage
         v-for="img in content?.assets"
+        :key="img._uid"
         :width="360"
         :src="img?.filename"
         :alt="img?.alt"

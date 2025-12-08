@@ -54,7 +54,8 @@ const toggleServices = () => {
             <div class="header-mob__submenu-body">
               <div class="header-mob__submenu-list">
                 <div
-                  v-for="link in item.links"
+                  v-for="(link, idx) in item.links"
+                  :key="idx"
                   class="header-mob__submenu-link"
                 >
                   {{ link.label }}

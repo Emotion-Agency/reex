@@ -28,7 +28,11 @@ defineProps<iAdvantagesProps>()
         </DualButton>
       </div>
       <ul class="advantages__list">
-        <li v-for="item in content?.advantage_items" class="advantages__item">
+        <li
+          v-for="item in content?.advantage_items"
+          :key="item._uid"
+          class="advantages__item"
+        >
           <CustomImage
             :src="item.icon.filename"
             :alt="item.icon.alt"

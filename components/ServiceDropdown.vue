@@ -40,7 +40,8 @@ onClickOutside(dropdownRef, () => {
     <div class="service-dropdown__body">
       <div class="service-dropdown__list">
         <NuxtLink
-          v-for="link in navItem.links"
+          v-for="(link, idx) in navItem.links"
+          :key="idx"
           :to="link.url"
           class="service-dropdown__link"
         >

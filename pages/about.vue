@@ -1,13 +1,35 @@
 <script setup lang="ts">
-import { pageTransition } from '~/transitions/base'
+import { useAboutStory } from '~/composables/stories/aboutStory'
 
-definePageMeta({
-  pageTransition,
+const { story } = await useAboutStory()
+
+if (!story.value) {
+  showError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
+
+const sections = computed(() => story.value.content)
+
+const meta = computed(() => {
+  const data = story?.value?.content?.meta[0]
+
+  if (!data) {
+    return null
+  }
+
+  return {
+    title: data.title,
+    description: data.description,
+    ogImage: data?.image?.filename,
+  }
 })
 </script>
 
 <template>
-  <div>About Components</div>
+  <div v-if="story">
+    <PageMeta v-if="meta" v-bind="meta" />
+    <AboutHero :content="sections?.about_hero[0]" />
+  </div>
 </template>
-
-<style lang="scss" scoped></style>
