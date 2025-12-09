@@ -1,4 +1,5 @@
 import emblaCarouselVue from 'embla-carousel-vue'
+import Autoplay from 'embla-carousel-autoplay'
 import type { EmblaOptionsType } from 'embla-carousel'
 
 interface UseEmblaProps {
@@ -6,6 +7,8 @@ interface UseEmblaProps {
   container: string
   watchDrag?: boolean
   loop?: boolean
+  align?: 'start' | 'center' | 'end'
+  autoplay?: boolean | { delay?: number; stopOnInteraction?: boolean }
 }
 
 const useEmbla = (props: UseEmblaProps) => {
@@ -20,12 +23,25 @@ const useEmbla = (props: UseEmblaProps) => {
   const options = computed<EmblaOptionsType>(() => ({
     loop: props.loop ?? false,
     slidesToScroll: slidesToScroll.value,
-    align: 'start',
+    align: props.align ?? 'start',
     container: props.container,
     watchDrag: props.watchDrag ?? width.value < 960,
   }))
 
-  const [emblaRef, emblaApi] = emblaCarouselVue(options)
+  const autoplayPlugin = computed(() => {
+    if (!props.autoplay) return undefined
+    if (props.autoplay === true) return Autoplay()
+    return Autoplay({
+      delay: props.autoplay.delay,
+      stopOnInteraction: props.autoplay.stopOnInteraction,
+    })
+  })
+
+  const plugins = computed(() =>
+    autoplayPlugin.value ? [autoplayPlugin.value] : []
+  )
+
+  const [emblaRef, emblaApi] = emblaCarouselVue(options, plugins.value)
 
   const prevBtnDisabled = ref(true)
   const nextBtnDisabled = ref(true)
