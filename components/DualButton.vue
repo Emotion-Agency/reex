@@ -5,6 +5,7 @@ const props = withDefaults(defineProps<IDualButtonProps>(), {
   tag: 'button',
   type: 'button',
   variant: 'primary',
+  direction: 'right',
 })
 
 const tag = computed(() => {
@@ -31,7 +32,10 @@ const href = props.tag === 'a' ? props.href : undefined
     <span class="dual-button__left">
       <slot />
     </span>
-    <span class="dual-button__right">
+    <span
+      class="dual-button__right"
+      :class="[`dual-button__right--${props.direction}`]"
+    >
       <Icon name="lucide:chevron-right" />
     </span>
   </component>
@@ -171,6 +175,18 @@ const href = props.tag === 'a' ? props.href : undefined
     @media (max-width: $br1) {
       width: 18px;
       height: 18px;
+    }
+  }
+
+  &--right {
+    span {
+      transform: rotate(0);
+    }
+  }
+
+  &--down {
+    span {
+      transform: rotate(90deg);
     }
   }
 }

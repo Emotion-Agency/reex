@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { iArticleItem } from '~/types/stories/articlesTypes'
+import type { iStory } from '~/types/stories/story'
 
 interface ArticlesProps {
   title: string
-  articles: iArticleItem[]
+  articles: iStory<iArticleItem>[]
   isButton?: boolean
 }
 
@@ -16,41 +17,28 @@ withDefaults(defineProps<ArticlesProps>(), {
   <div class="articles">
     <div class="container articles__wrapper">
       <div class="articles__top">
-        <h2 class="articles__main-t">
+        <h2 class="articles__t">
           {{ title }}
         </h2>
         <DualButton
           v-if="isButton"
           tag="nuxt-link"
-          to="/blog"
+          to="/articles"
           class="articles__btn"
         >
-          Усі послуги
+          Усі статті
         </DualButton>
       </div>
       <ul class="articles__list">
-        <li
+        <ArticleItem
           v-for="article in articles"
-          :key="article._uid"
-          class="articles__item"
-        >
-          <img
-            :src="article?.asset?.filename"
-            :alt="article?.asset?.alt"
-            class="articles__img"
-          />
-          <div class="articles__info">
-            <Tag>
-              {{ article.category }}
-            </Tag>
-            <p class="articles__date">
-              {{ article.date }}
-            </p>
-          </div>
-          <p class="articles__text">
-            {{ article.title }}
-          </p>
-        </li>
+          :key="article?._uid"
+          :asset="article?.content?.asset"
+          :category="article?.content?.category"
+          :date="article?.content?.date"
+          :title="article?.content?.title"
+          :link="article?.full_slug"
+        />
       </ul>
     </div>
   </div>
@@ -78,7 +66,7 @@ withDefaults(defineProps<ArticlesProps>(), {
   }
 }
 
-.articles__main-t {
+.articles__t {
   @include heading-h2;
 }
 
@@ -96,42 +84,6 @@ withDefaults(defineProps<ArticlesProps>(), {
     grid-template-columns: 1fr;
     margin-top: 48px;
     gap: 12px;
-  }
-}
-
-.articles__img {
-  border-radius: vw(16);
-  aspect-ratio: 448/264;
-  object-fit: cover;
-  width: 100%;
-
-  @media (max-width: $br1) {
-    border-radius: 16px;
-  }
-}
-
-.articles__info {
-  display: flex;
-  align-items: center;
-  gap: vw(12);
-  margin-top: vw(16);
-
-  @media (max-width: $br1) {
-    margin-top: 14px;
-    gap: 8px;
-  }
-}
-
-.articles__date {
-  @include text-reg-p2;
-}
-
-.articles__text {
-  @include heading-h4;
-  margin-top: vw(24);
-
-  @media (max-width: $br1) {
-    margin-top: 18px;
   }
 }
 </style>

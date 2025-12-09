@@ -1,4 +1,4 @@
-import type { iDeepLink, iImage } from './story'
+import type { iDeepLink, iImage, iStory } from './story'
 
 export interface iArticleItem {
   asset: iImage
@@ -12,7 +12,7 @@ export interface iArticleItem {
 export interface iArticles {
   title: string
   link: iDeepLink[]
-  article_items: { content: iArticleItem }[]
+  article_items: iStory<iArticleItem>[]
   component: string
   _uid: string
 }

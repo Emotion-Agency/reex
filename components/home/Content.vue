@@ -18,10 +18,6 @@ const meta = computed(() => {
 })
 
 const sections = computed(() => story.value.content)
-
-const articleItems = computed(
-  () => sections.value?.articles?.[0]?.article_items?.map(i => i.content) ?? []
-)
 </script>
 
 <template>
@@ -36,7 +32,7 @@ const articleItems = computed(
     <HomePartners :content="sections?.partners[0]" />
     <Articles
       :title="sections?.articles[0]?.title"
-      :articles="articleItems"
+      :articles="sections?.articles[0]?.article_items"
       is-button
     />
   </div>

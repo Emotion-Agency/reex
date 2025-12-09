@@ -7,7 +7,10 @@ definePageMeta({
 </script>
 
 <template>
-  <div>Blog Components</div>
+  <div>
+    <ArticlesHero />
+    <ArticlesList />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

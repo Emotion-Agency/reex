@@ -24,4 +24,23 @@ export interface IDualButton {
 
 export interface IDualButtonProps extends IDualButton {
   variant?: 'primary' | 'secondary'
+  direction?: 'right' | 'down'
+}
+
+export interface IMultipleButton {
+  tag?: 'button' | 'a' | 'nuxt-link' | string
+  type?: 'button' | 'submit' | 'reset' | null
+  href?: string
+}
+
+export interface IMultipleButtonProps extends IMultipleButton {
+  variant?: 'primary' | 'secondary'
+  direction?:
+    | 'left-up-down'
+    | 'left-down-up'
+    | 'right-up-down'
+    | 'right-down-up'
+    | 'up-down'
+    | 'down-up'
+  isActive?: boolean
 }

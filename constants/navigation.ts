@@ -60,7 +60,7 @@ const navigationList: NavigationItem[] = [
     id: 4,
     label: 'Блог',
     link: {
-      url: '/blog',
+      url: '/articles',
     },
   },
 ]
