@@ -21,7 +21,7 @@ defineProps<iAdvantagesProps>()
         </div>
         <DualButton
           tag="nuxt-link"
-          :to="content?.link[0]?.url"
+          :to="content?.link[0]?.url?.cached_url"
           class="advantages__btn"
         >
           {{ content?.link[0]?.label }}

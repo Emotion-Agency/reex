@@ -33,5 +33,6 @@ const meta = computed(() => {
     <AboutHero :content="sections?.about_hero[0]" />
     <AboutMissions :content="sections?.missions[0]" />
     <AboutHistory :content="sections?.history[0]" />
+    <AboutPartners :content="sections?.about_partners[0]" />
   </div>
 </template>

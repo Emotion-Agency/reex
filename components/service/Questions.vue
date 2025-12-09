@@ -19,7 +19,7 @@ const openedId = ref(props.content?.questions_list[0]?._uid ?? '')
         </h2>
         <DualButton
           tag="nuxt-link"
-          :to="content?.link[0]?.url"
+          :to="content?.link[0]?.url?.cached_url"
           class="questions__btn"
         >
           {{ content?.link[0]?.label }}

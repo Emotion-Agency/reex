@@ -16,14 +16,22 @@ defineProps<iServiceAdvice>()
           <h3 class="advice__t">
             {{ content?.title }}
           </h3>
-          <DualButton class="advice__btn" tag="nuxt-link" to="/">
+          <DualButton
+            class="advice__btn"
+            tag="nuxt-link"
+            :to="content?.link[0]?.url?.cached_url"
+          >
             {{ content?.link[0]?.label }}
           </DualButton>
         </div>
         <p class="advice__d">
           {{ content.description }}
         </p>
-        <DualButton class="advice__btn advice__btn--mob" tag="nuxt-link" to="/">
+        <DualButton
+          class="advice__btn advice__btn--mob"
+          tag="nuxt-link"
+          :to="content?.link[0]?.url?.cached_url"
+        >
           {{ content?.link[0]?.label }}
         </DualButton>
       </div>
