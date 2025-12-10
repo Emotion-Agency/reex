@@ -1,18 +1,13 @@
 <script lang="ts" setup>
 import { useFooterStory } from '~/composables/stories/footerStory'
 import { useFormStory } from '~/composables/stories/formStory'
-import { useMenuStory } from '~/composables/stories/menuStory'
+import { useNavigationStory } from '~/composables/stories/navigationStory'
 import contacts from '~/constants/contacts'
-import navigationList from '~/constants/navigation'
 import socialsList from '~/constants/socials'
 
-const { story: footerStory } = useFooterStory()
-// const { story: menuStory } = useMenuStory()
+const { story: footerStory } = await useFooterStory()
+const { story: navigationStory } = await useNavigationStory()
 // const { story: formStory } = useFormStory()
-
-console.log({
-  footerStory: footerStory.value,
-})
 </script>
 
 <template>
@@ -31,17 +26,20 @@ console.log({
           <p class="footer__t">{{ footerStory?.content?.navigation_label }}</p>
           <ul class="footer__list">
             <li
-              v-for="item in navigationList"
-              :key="item.id"
+              v-for="item in navigationStory?.content?.items"
+              :key="item?._uid"
               class="footer__item"
             >
-              <ServiceDropdown v-if="item.links?.length" :nav-item="item" />
+              <ServiceDropdown
+                v-if="item?.component === 'nav_dropdown'"
+                :services="item"
+              />
               <NuxtLink
                 v-else
-                :to="item.link.url"
+                :to="item?.url?.cached_url"
                 class="underline footer__link"
               >
-                {{ item.label }}
+                {{ item?.label }}
               </NuxtLink>
             </li>
           </ul>

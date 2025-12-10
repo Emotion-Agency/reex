@@ -1,7 +1,16 @@
+<script lang="ts" setup>
+import { useNavigationStory } from '~/composables/stories/navigationStory'
+
+const { story: navigationStory } = await useNavigationStory()
+</script>
+
 <template>
   <header class="header">
-    <HeaderDesktop class="header__desk" />
-    <HeaderMobile class="header__mob" />
+    <HeaderDesktop
+      class="header__desk"
+      :navigation="navigationStory?.content"
+    />
+    <HeaderMobile class="header__mob" :navigation="navigationStory?.content" />
   </header>
 </template>
 

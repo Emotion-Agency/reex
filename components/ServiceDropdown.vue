@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { NavigationItem } from '~/constants/navigation'
+import type { iNavigationService } from '~/types/stories/navigationTypes'
 
 interface ServiceDropdownProps {
-  navItem: NavigationItem
+  services?: iNavigationService
   isHeader?: boolean
 }
 
-defineProps<ServiceDropdownProps>()
+const props = defineProps<ServiceDropdownProps>()
 
 const isAccordionOpened = ref(false)
 const dropdownRef = ref(null)
@@ -34,18 +34,19 @@ onClickOutside(dropdownRef, () => {
       class="service-dropdown__btn"
       @click="toggleAccordion"
     >
-      {{ navItem.label }}
+      {{ services?.label }}
       <Icon name="lucide:chevron-down" />
     </button>
     <div class="service-dropdown__body">
       <div class="service-dropdown__list">
         <NuxtLink
-          v-for="(link, idx) in navItem.links"
-          :key="idx"
-          :to="link.url"
+          v-for="link in services?.items || []"
+          :key="link._uid"
+          :to="link.full_slug"
+          tag="nuxt-link"
           class="service-dropdown__link"
         >
-          {{ link.label }}
+          {{ link.content.title }}
         </NuxtLink>
       </div>
     </div>

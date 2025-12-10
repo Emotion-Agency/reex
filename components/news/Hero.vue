@@ -1,9 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface iNewsHeroProps {
+  title: string
+}
+
+defineProps<iNewsHeroProps>()
+</script>
 
 <template>
   <section class="hero">
     <div class="hero__wrapper container">
-      <h1 class="hero__t">Корисні статті <span>ринку праці</span></h1>
+      <h1 class="hero__t">{{ title }}</h1>
     </div>
   </section>
 </template>

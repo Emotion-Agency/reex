@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import type { iImage } from '~/types/stories/story'
+import type { iArticleCategory } from '~/types/stories/news/articleTypes'
+import type { iImage, iStory } from '~/types/stories/story'
 
 interface ArticlesProps {
   asset: iImage
-  category: string
+  category: iStory<iArticleCategory>[]
   date: string
   title: string
   link: string
@@ -24,7 +25,7 @@ defineProps<ArticlesProps>()
       </div>
       <div class="article-item__info">
         <Tag>
-          {{ category }}
+          {{ category[0]?.content?.name }}
         </Tag>
         <p class="article-item__date">
           {{ date }}

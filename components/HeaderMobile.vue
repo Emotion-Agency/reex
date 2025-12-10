@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-import navigationList from '~/constants/navigation'
+import type { iNavigationContent } from '~/types/stories/navigationTypes'
+
+interface iHeaderDesktopProps {
+  navigation: iNavigationContent
+}
+
+defineProps<iHeaderDesktopProps>()
 
 const { isMenuOpened } = useAppState()
 const isServicesOpened = ref(false)
@@ -31,12 +37,12 @@ const toggleServices = () => {
     <nav class="header-mob__nav">
       <ul class="header-mob__nav-list">
         <li
-          v-for="item in navigationList"
-          :key="item.label"
+          v-for="item in navigation?.items"
+          :key="item?._uid"
           class="header-mob__nav-item"
         >
           <div
-            v-if="item.links?.length"
+            v-if="item?.component === 'nav_dropdown'"
             class="header-mob__submenu"
             :class="{
               'header-mob__submenu--opened': isServicesOpened,
@@ -47,25 +53,30 @@ const toggleServices = () => {
               class="header-mob__submenu-btn"
               @click="toggleServices"
             >
-              {{ item.label }}
+              {{ item?.label }}
 
               <Icon name="lucide:chevron-down" />
             </button>
             <div class="header-mob__submenu-body">
               <div class="header-mob__submenu-list">
-                <div
-                  v-for="(link, idx) in item.links"
+                <NuxtLink
+                  v-for="(link, idx) in item?.items"
                   :key="idx"
+                  :to="link?.full_slug"
                   class="header-mob__submenu-link"
                 >
-                  {{ link.label }}
-                </div>
+                  {{ link?.content?.title }}
+                </NuxtLink>
               </div>
             </div>
             <div class="header-mob__line" />
           </div>
-          <NuxtLink v-else :to="item.link?.url" class="header-mob__nav-link">
-            {{ item.label }}
+          <NuxtLink
+            v-else
+            :to="item?.url?.cached_url"
+            class="header-mob__nav-link"
+          >
+            {{ item?.label }}
           </NuxtLink>
         </li>
       </ul>
@@ -73,10 +84,10 @@ const toggleServices = () => {
       <Button
         class="header-mob__cta"
         tag="nuxt-link"
-        to="/contact"
+        :to="navigation?.button[0]?.url?.cached_url"
         variant="primary"
       >
-        Замовити персонал
+        {{ navigation?.button[0]?.label }}
       </Button>
     </nav>
   </div>

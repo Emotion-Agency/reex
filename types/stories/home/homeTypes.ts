@@ -1,7 +1,24 @@
 import type { iAccordionSteps } from '../accordionTypes'
 import type { iAdvantageItem } from '../advantagesTypes'
-import type { iArticles } from '../articlesTypes'
+import type { iArticleCategory } from '../news/articleTypes'
 import type { iDeepLink, iImage, iMeta, iStory } from '../story'
+
+export interface iHomeArticleItem {
+  asset: iImage
+  category: iStory<iArticleCategory>[]
+  date: string
+  title: string
+  component: string
+  _uid: string
+}
+
+export interface iHomeArticles {
+  title: string
+  link: iDeepLink[]
+  article_items: iStory<iHomeArticleItem>[]
+  component: string
+  _uid: string
+}
 
 export interface iPartnerMember {
   name: string
@@ -83,5 +100,5 @@ export interface iHomeContent {
   cooperation: iAccordionSteps[]
   locations: iLocations[]
   partners: iPartners[]
-  articles: iArticles[]
+  articles: iHomeArticles[]
 }

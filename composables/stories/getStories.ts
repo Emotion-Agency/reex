@@ -30,7 +30,7 @@ export const useGetStories = async (opts: ISbStoriesParams) => {
               ? 'draft'
               : 'published',
           cv: Date.now(),
-          // resolve_relations: [],
+          resolve_relations: ['article.category'],
           ...opts,
         })
 

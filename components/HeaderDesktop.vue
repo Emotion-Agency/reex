@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-import navigationList from '~/constants/navigation'
+import type { iNavigationContent } from '~/types/stories/navigationTypes'
+
+interface iHeaderDesktopProps {
+  navigation: iNavigationContent
+}
+
+defineProps<iHeaderDesktopProps>()
 </script>
 
 <template>
@@ -10,26 +16,30 @@ import navigationList from '~/constants/navigation'
     <nav class="header-desk__nav">
       <ul class="header-desk__nav-list">
         <li
-          v-for="item in navigationList"
-          :key="item.label"
+          v-for="item in navigation?.items"
+          :key="item?._uid"
           class="header-desk__nav-item"
         >
           <ServiceDropdown
-            v-if="item.links?.length"
-            :nav-item="item"
+            v-if="item?.component === 'nav_dropdown'"
+            :services="item"
             is-header
           />
           <NuxtLink
             v-else
-            :to="item.link.url"
+            :to="item?.url?.cached_url"
             class="header-desk__nav-link underline"
           >
-            {{ item.label }}
+            {{ item?.label }}
           </NuxtLink>
         </li>
       </ul>
-      <Button class="header-desk__nav-button" tag="nuxt-link" to="/contact">
-        Замовити персонал
+      <Button
+        class="header-desk__nav-button"
+        tag="nuxt-link"
+        :to="navigation?.button[0]?.url?.cached_url"
+      >
+        {{ navigation?.button[0]?.label }}
       </Button>
       <SwitchLanguage />
     </nav>

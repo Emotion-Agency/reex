@@ -31,6 +31,9 @@ export const useGetStory = async (route: string) => {
           resolve_relations: [
             'business_solutions.service_carousel',
             'articles.article_items',
+            'news.article_items',
+            'nav_dropdown.items',
+            'article.category',
           ],
         })
 

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { iArticleItem } from '~/types/stories/articlesTypes'
+import type { iHomeArticleItem } from '~/types/stories/home/homeTypes'
 import type { iStory } from '~/types/stories/story'
 
 interface ArticlesProps {
   title: string
-  articles: iStory<iArticleItem>[]
+  articles: iStory<iHomeArticleItem>[]
   isButton?: boolean
 }
 
-withDefaults(defineProps<ArticlesProps>(), {
+const props = withDefaults(defineProps<ArticlesProps>(), {
   isButton: false,
 })
 </script>
@@ -23,7 +23,7 @@ withDefaults(defineProps<ArticlesProps>(), {
         <DualButton
           v-if="isButton"
           tag="nuxt-link"
-          to="/articles"
+          to="/news"
           class="articles__btn"
         >
           Усі статті
