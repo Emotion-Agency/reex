@@ -43,4 +43,5 @@ export interface IMultipleButtonProps extends IMultipleButton {
     | 'up-down'
     | 'down-up'
   isActive?: boolean
+  isIcons?: boolean
 }

@@ -51,7 +51,10 @@ const rightClass = computed(() =>
       class="multiple-button__left-part"
       :class="leftClass"
     />
-    <span class="multiple-button__content">
+    <span
+      class="multiple-button__content"
+      :class="[props.isIcons && `multiple-button__content--${props.direction}`]"
+    >
       <slot />
     </span>
     <span
@@ -76,7 +79,54 @@ const rightClass = computed(() =>
     height: 48px;
   }
 
-  &:hover,
+  &--primary {
+    .multiple-button__content {
+      background-color: var(--background-secondary);
+      color: var(--foreground);
+    }
+
+    .multiple-button__left-part,
+    .multiple-button__right-part {
+      background-color: var(--background-secondary);
+    }
+
+    &:hover {
+      .multiple-button__content {
+        background-color: var(--foreground);
+        color: var(--secondary);
+      }
+
+      .multiple-button__left-part,
+      .multiple-button__right-part {
+        background-color: var(--foreground);
+      }
+    }
+  }
+
+  &--secondary {
+    .multiple-button__content {
+      background-color: #142538;
+      color: var(--secondary);
+    }
+
+    .multiple-button__left-part,
+    .multiple-button__right-part {
+      background-color: #142538;
+    }
+
+    &:hover {
+      .multiple-button__content {
+        background-color: var(--secondary);
+        color: var(--foreground);
+      }
+
+      .multiple-button__left-part,
+      .multiple-button__right-part {
+        background-color: var(--secondary);
+      }
+    }
+  }
+
   &--active {
     .multiple-button__content {
       background-color: var(--foreground);
@@ -99,8 +149,6 @@ const rightClass = computed(() =>
   padding: 0 vw(20);
   border-radius: vw(12);
   height: 100%;
-  color: var(--foreground);
-  background-color: var(--background-secondary);
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
@@ -109,6 +157,41 @@ const rightClass = computed(() =>
   @media (max-width: $br1) {
     padding: 0 20px;
     border-radius: 12px;
+  }
+
+  svg {
+    width: vw(28);
+    height: vw(28);
+
+    @media (max-width: $br1) {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  &--up-down,
+  &--down-up {
+    padding: 0 vw(8);
+
+    @media (max-width: $br1) {
+      padding: 0 8px;
+    }
+  }
+
+  &--right-down-up {
+    padding-right: vw(12);
+
+    @media (max-width: $br1) {
+      padding-right: 12px;
+    }
+  }
+
+  &--left-down-up {
+    padding-left: vw(12);
+
+    @media (max-width: $br1) {
+      padding-left: 12px;
+    }
   }
 }
 
@@ -121,7 +204,6 @@ const rightClass = computed(() =>
   top: 0;
   left: vw(-6);
   z-index: -1;
-  background-color: var(--background-secondary);
   transition: background-color 0.3s ease;
 
   @media (max-width: $br1) {
@@ -156,7 +238,6 @@ const rightClass = computed(() =>
   top: 0;
   right: vw(-6);
   z-index: -1;
-  background-color: var(--background-secondary);
   transition: background-color 0.3s ease;
 
   @media (max-width: $br1) {

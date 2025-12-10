@@ -7,8 +7,12 @@ import navigationList from '~/constants/navigation'
 import socialsList from '~/constants/socials'
 
 const { story: footerStory } = useFooterStory()
-const { story: menuStory } = useMenuStory()
-const { story: formStory } = useFormStory()
+// const { story: menuStory } = useMenuStory()
+// const { story: formStory } = useFormStory()
+
+console.log({
+  footerStory: footerStory.value,
+})
 </script>
 
 <template>
@@ -58,15 +62,27 @@ const { story: formStory } = useFormStory()
         </div>
         <div class="footer__socials">
           <p class="footer__t">Соціальні мережі</p>
-          <ul class="footer__list">
+          <ul class="footer__list footer__list--socials">
             <li
               v-for="social in socialsList"
               :key="social.id"
               class="footer__item"
             >
-              <NuxtLink :to="social.link.url" class="underline footer__link">
-                {{ social.label }}
-              </NuxtLink>
+              <MultipleButton
+                tag="a"
+                :href="social.link.url"
+                :direction="
+                  social.label === 'Instagram'
+                    ? 'up-down'
+                    : social.label === 'Telegram'
+                      ? 'left-down-up'
+                      : 'right-down-up'
+                "
+                variant="secondary"
+                is-icons
+              >
+                <component :is="social.icon" />
+              </MultipleButton>
             </li>
           </ul>
         </div>
@@ -189,6 +205,15 @@ const { story: formStory } = useFormStory()
   @media (max-width: $br1) {
     margin-top: 18px;
     gap: 10px;
+  }
+
+  &--socials {
+    flex-direction: row;
+    gap: vw(20);
+
+    @media (max-width: $br1) {
+      gap: 20px;
+    }
   }
 }
 
