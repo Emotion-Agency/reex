@@ -1,13 +1,11 @@
 <script lang="ts" setup>
 import { useFooterStory } from '~/composables/stories/footerStory'
-import { useFormStory } from '~/composables/stories/formStory'
+import { useGlobalStory } from '~/composables/stories/globalStory'
 import { useNavigationStory } from '~/composables/stories/navigationStory'
-import contacts from '~/constants/contacts'
-import socialsList from '~/constants/socials'
 
 const { story: footerStory } = await useFooterStory()
 const { story: navigationStory } = await useNavigationStory()
-// const { story: formStory } = useFormStory()
+const { story: globalStory } = await useGlobalStory()
 </script>
 
 <template>
@@ -45,41 +43,62 @@ const { story: navigationStory } = await useNavigationStory()
           </ul>
         </div>
         <div class="footer__contacts">
-          <p class="footer__t">Контакти</p>
+          <p class="footer__t">{{ footerStory?.content?.contacts_label }}</p>
           <ul class="footer__list">
-            <li
-              v-for="contact in contacts"
-              :key="contact.id"
-              class="footer__item"
-            >
-              <NuxtLink :to="contact.link.url" class="underline footer__link">
-                {{ contact.label }}
+            <li class="footer__item">
+              <NuxtLink
+                tag="a"
+                :href="`tel:${globalStory?.content?.phone}`"
+                class="underline footer__link"
+              >
+                {{ globalStory?.content?.phone }}
+              </NuxtLink>
+            </li>
+            <li class="footer__item">
+              <NuxtLink
+                tag="a"
+                :href="`mailto:${globalStory?.content?.email}`"
+                class="underline footer__link"
+              >
+                {{ globalStory?.content?.email }}
               </NuxtLink>
             </li>
           </ul>
         </div>
         <div class="footer__socials">
-          <p class="footer__t">Соціальні мережі</p>
+          <p class="footer__t">{{ footerStory?.content?.socials_label }}</p>
           <ul class="footer__list footer__list--socials">
-            <li
-              v-for="social in socialsList"
-              :key="social.id"
-              class="footer__item"
-            >
+            <li class="footer__item">
               <MultipleButton
                 tag="a"
-                :href="social.link.url"
-                :direction="
-                  social.label === 'Instagram'
-                    ? 'up-down'
-                    : social.label === 'Telegram'
-                      ? 'left-down-up'
-                      : 'right-down-up'
-                "
+                :href="globalStory?.content?.x"
+                direction="right-down-up"
                 variant="secondary"
                 is-icons
               >
-                <component :is="social.icon" />
+                <IconsSocialsX />
+              </MultipleButton>
+            </li>
+            <li class="footer__item">
+              <MultipleButton
+                tag="a"
+                :href="globalStory?.content?.instagram"
+                direction="up-down"
+                variant="secondary"
+                is-icons
+              >
+                <IconsSocialsInstagram />
+              </MultipleButton>
+            </li>
+            <li class="footer__item">
+              <MultipleButton
+                tag="a"
+                :href="globalStory?.content?.telegram"
+                direction="left-down-up"
+                variant="secondary"
+                is-icons
+              >
+                <IconsSocialsTelegram />
               </MultipleButton>
             </li>
           </ul>
@@ -87,10 +106,10 @@ const { story: navigationStory } = await useNavigationStory()
       </div>
       <div class="footer__rights-wrapper">
         <p class="footer__rights-text">
-          Copyright ©2025. <span>All rights reserved</span>
+          {{ footerStory?.content?.copyright_text }}
         </p>
         <p class="footer__rights-text">
-          <span>Made by </span>
+          <span>{{ footerStory?.content?.made_by_text }} {{ ' ' }}</span>
           <a
             href="https://www.emotion-agency.com/"
             target="_blank"

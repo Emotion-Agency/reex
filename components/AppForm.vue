@@ -1,6 +1,15 @@
 <script lang="ts" setup>
 import useVuelidate from '@vuelidate/core'
 import { required, helpers, minLength, maxLength } from '@vuelidate/validators'
+import { useFormStory } from '~/composables/stories/formStory'
+import { useServiceStories } from '~/composables/stories/serviceStories'
+
+const { story: formStory } = await useFormStory()
+const { services } = await useServiceStories('services')
+
+const serviceOptions = computed(() =>
+  services.value?.map(s => s.content?.title).filter(Boolean)
+)
 
 const form = reactive({
   name: '',
@@ -28,7 +37,7 @@ const inputs = computed(() => [
     id: 'contact-name',
     name: 'name',
     type: 'text',
-    placeholder: "Ім'я",
+    placeholder: formStory?.value?.content?.name_field || 'Name',
     required: true,
     model: form.name,
     errors: v$.value.name.$errors,
@@ -37,7 +46,7 @@ const inputs = computed(() => [
     id: 'contact-number',
     name: 'phone',
     type: 'text',
-    placeholder: 'Телефон',
+    placeholder: formStory?.value?.content?.phone_field || 'Phone',
     required: true,
     model: form.phone,
     errors: v$.value.phone.$errors,
@@ -45,15 +54,9 @@ const inputs = computed(() => [
   {
     id: 'contact-select',
     name: 'service',
-    placeholder: 'Тип послуги',
+    placeholder: formStory?.value?.content?.service_field || 'Service type',
     required: false,
-    options: [
-      'Аутстафінг торгового персоналу',
-      'Аутсорсинг',
-      'Аутстафінг',
-      'Підбір',
-      'Іноземний персонал',
-    ],
+    options: serviceOptions.value,
   },
 ])
 
@@ -73,16 +76,16 @@ const onSubmit = async () => {
 
 <template>
   <form novalidate class="form" @submit.prevent="onSubmit">
-    <legend class="form__t">
-      Залиште заявку — ми знайдемо персонал <span>за 24 години.</span>
-    </legend>
+    <h2 class="form__t">
+      {{ formStory?.content?.text }}
+    </h2>
     <div class="form__input-list">
       <template v-for="input in inputs" :key="input.id">
         <BaseSelect
           v-if="input.options"
           v-model="form[input.name]"
           :options="input.options"
-          placeholder="Оберіть послугу"
+          :placeholder="input.placeholder"
         />
         <InputField
           v-else
@@ -98,7 +101,7 @@ const onSubmit = async () => {
       </template>
     </div>
     <DualButton class="form__btn" type="submit" variant="secondary">
-      Залишити заявку
+      {{ formStory?.content?.button }}
     </DualButton>
   </form>
 </template>
