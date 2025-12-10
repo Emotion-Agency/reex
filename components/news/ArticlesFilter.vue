@@ -1,22 +1,54 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { IMultipleButtonProps } from '~/types/button'
+import type { iNewsCategoriesContent } from '~/types/stories/news/newsCategoriesTypes'
+import type { iStory } from '~/types/stories/story'
+
+interface iArticlesFilterProps {
+  categories: iStory<iNewsCategoriesContent>[]
+  allCategories: string
+  active: string
+}
+
+defineProps<iArticlesFilterProps>()
+
+const emit = defineEmits(['change'])
+
+const getDirection = (index: number): IMultipleButtonProps['direction'] => {
+  if (index === 0) return 'right-up-down'
+  if (index % 2 === 1) return 'down-up'
+  return 'up-down'
+}
+
+const select = (value: string) => {
+  emit('change', value)
+}
+</script>
 
 <template>
   <section class="a-filter">
     <ul class="a-filter__list">
       <li class="a-filter__item">
-        <MultipleButton direction="right-up-down" is-active>Всі</MultipleButton>
+        <MultipleButton
+          :direction="getDirection(0)"
+          :is-active="active === 'all'"
+          @click="select('all')"
+        >
+          {{ allCategories }}
+        </MultipleButton>
       </li>
-      <li class="a-filter__item">
-        <MultipleButton direction="down-up">Аутстафінг</MultipleButton>
-      </li>
-      <li class="a-filter__item">
-        <MultipleButton direction="up-down">HR-поради</MultipleButton>
-      </li>
-      <li class="a-filter__item">
-        <MultipleButton direction="down-up">Мотивація</MultipleButton>
-      </li>
-      <li class="a-filter__item">
-        <MultipleButton direction="up-down">Новини</MultipleButton>
+
+      <li
+        v-for="(category, index) in categories"
+        :key="category.id || index"
+        class="a-filter__item"
+      >
+        <MultipleButton
+          :direction="getDirection(index + 1)"
+          :is-active="active === category.content.name"
+          @click="select(category.content.name)"
+        >
+          {{ category?.content?.name }}
+        </MultipleButton>
       </li>
     </ul>
   </section>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useNewsCategoriesStories } from '~/composables/stories/news/newsCategories'
 import { useNewsStories } from '~/composables/stories/news/newsStories'
 
 interface iArticlesListProps {
@@ -7,9 +8,26 @@ interface iArticlesListProps {
   showMoreBtn: string
 }
 
-defineProps<iArticlesListProps>()
+const props = defineProps<iArticlesListProps>()
 
 const { news } = await useNewsStories('news')
+const { categories } = await useNewsCategoriesStories()
+
+const activeCategory = ref('all')
+
+const filteredNews = computed(() => {
+  if (activeCategory.value === 'all') return news.value
+
+  return news.value.filter(article =>
+    article?.content?.category?.some(
+      cat => cat?.content?.name === activeCategory.value
+    )
+  )
+})
+
+const setCategory = (cat: string) => {
+  activeCategory.value = cat
+}
 </script>
 
 <template>
@@ -17,14 +35,20 @@ const { news } = await useNewsStories('news')
     <div class="a-list__wrapper container">
       <Divider />
       <div class="grid a-list__top">
-        <NewsArticlesFilter class="a-list__filter" />
+        <NewsArticlesFilter
+          class="a-list__filter"
+          :categories="categories"
+          :all-categories="allCategoriesBtn"
+          :active="activeCategory"
+          @change="setCategory"
+        />
         <p class="a-list__text">
           {{ text }}
         </p>
       </div>
       <ul class="a-list__items">
         <ArticleItem
-          v-for="(article, idx) in news"
+          v-for="(article, idx) in filteredNews"
           :key="idx"
           :asset="article?.content?.asset"
           :category="article?.content?.category"
