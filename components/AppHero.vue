@@ -1,13 +1,14 @@
 <script setup lang="ts">
 interface iAppHeroProps {
   title: string
+  isContacts?: boolean
 }
 
 defineProps<iAppHeroProps>()
 </script>
 
 <template>
-  <section class="app-hero">
+  <section class="app-hero" :class="{ 'app-hero--contacts': isContacts }">
     <div class="app-hero__wrapper container">
       <h1 class="app-hero__t">{{ title }}</h1>
       <Divider class="app-hero__divider" />
@@ -21,6 +22,20 @@ defineProps<iAppHeroProps>()
 
   @media (max-width: $br1) {
     padding-top: 100px;
+  }
+
+  &--contacts {
+    .app-hero__t {
+      max-width: vw(520);
+
+      @media (max-width: $br1) {
+        max-width: 280px;
+      }
+
+      @media (max-width: $br4) {
+        max-width: 100%;
+      }
+    }
   }
 }
 
