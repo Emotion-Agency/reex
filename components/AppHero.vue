@@ -1,31 +1,30 @@
 <script setup lang="ts">
-interface iNewsHeroProps {
+interface iAppHeroProps {
   title: string
 }
 
-defineProps<iNewsHeroProps>()
+defineProps<iAppHeroProps>()
 </script>
 
 <template>
-  <section class="hero">
-    <div class="hero__wrapper container">
-      <h1 class="hero__t">{{ title }}</h1>
+  <section class="app-hero">
+    <div class="app-hero__wrapper container">
+      <h1 class="app-hero__t">{{ title }}</h1>
+      <Divider class="app-hero__divider" />
     </div>
   </section>
 </template>
 
 <style scoped lang="scss">
-.hero {
-  padding-bottom: vw(96);
+.app-hero {
   padding-top: vw(164);
 
   @media (max-width: $br1) {
-    padding-bottom: 32px;
     padding-top: 100px;
   }
 }
 
-.hero__t {
+.app-hero__t {
   max-width: vw(864);
   @include heading-h1;
 
@@ -39,6 +38,14 @@ defineProps<iNewsHeroProps>()
 
   span {
     color: var(--foreground-muted-50);
+  }
+}
+
+.app-hero__divider {
+  margin-top: vw(96);
+
+  @media (max-width: $br1) {
+    margin-top: 64px;
   }
 }
 </style>

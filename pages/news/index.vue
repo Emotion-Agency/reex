@@ -11,7 +11,7 @@ const { story } = await useNewsStory()
 
 <template>
   <div>
-    <NewsHero :title="story?.content?.title" />
+    <AppHero :title="story?.content?.title" />
     <NewsArticlesList
       :text="story?.content?.description"
       :all-categories-btn="story?.content?.all_categories_btn"

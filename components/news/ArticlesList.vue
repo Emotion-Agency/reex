@@ -33,7 +33,6 @@ const setCategory = (cat: string) => {
 <template>
   <section class="a-list">
     <div class="a-list__wrapper container">
-      <Divider />
       <div class="grid a-list__top">
         <NewsArticlesFilter
           class="a-list__filter"
@@ -66,21 +65,20 @@ const setCategory = (cat: string) => {
 
 <style scoped lang="scss">
 .a-list {
+  padding-top: vw(32);
   padding-bottom: vw(192);
 
   @media (max-width: $br1) {
+    padding-top: 24px;
     padding-bottom: 80px;
   }
 }
 
 .a-list__top {
-  margin-top: vw(32);
-
   @media (max-width: $br1) {
     display: flex;
     flex-direction: column-reverse;
     gap: 38px;
-    margin-top: 24px;
   }
 }
 

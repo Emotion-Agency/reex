@@ -31,11 +31,11 @@ const meta = computed(() => {
 <template>
   <div v-if="story">
     <PageMeta v-if="meta" v-bind="meta" />
-    <ServiceHero
-      :title="sections?.title"
+    <AppHero :title="sections?.title" />
+    <ServiceFullscreenAsset
+      :asset="sections?.asset"
       :description="sections?.description"
     />
-    <ServiceFullscreenAsset :asset="sections?.asset" />
     <ServiceAdvice :content="sections?.advice[0]" />
     <ServiceCooperationSteps :content="sections?.accordion_steps[0]" />
     <ServiceAdvantages :content="sections?.advantages[0]" />
