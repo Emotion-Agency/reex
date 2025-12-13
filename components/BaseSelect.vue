@@ -53,7 +53,7 @@ onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
       </span>
     </div>
 
-    <div class="base-select__dropdown-wrapper">
+    <div class="base-select__dropdown-wrapper" :data-scroll-ignore="true">
       <ul class="base-select__dropdown">
         <li
           v-for="option in options"
@@ -77,7 +77,7 @@ onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
 
   &--opened {
     .base-select__dropdown-wrapper {
-      max-height: 300px;
+      max-height: 20vh;
       opacity: 1;
       pointer-events: auto;
     }
@@ -147,27 +147,31 @@ onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
 .base-select__dropdown-wrapper {
   position: absolute;
   z-index: 100;
+  width: 100%;
+  min-height: vw(160);
   max-height: 0;
   opacity: 0;
-  width: 100%;
-  overflow: hidden;
+  overflow-y: auto;
   pointer-events: none;
+  border-radius: 0 0 vw(16) vw(16);
   transition:
-    max-height 0.2s ease,
-    opacity 0.3s ease;
+    max-height 0.25s ease,
+    opacity 0.2s ease;
+
+  @media (max-width: $br1) {
+    min-height: 120px;
+    border-radius: 0 0 16px 16px;
+  }
 }
 
 .base-select__dropdown {
-  background-color: #1a2b3e;
   width: 100%;
   margin-top: 1px;
-  border-radius: 0 0 vw(16) vw(16);
   overflow-y: auto;
   padding: vw(6);
 
   @media (max-width: $br1) {
     padding: 6px;
-    border-radius: 0 0 16px 16px;
   }
 }
 

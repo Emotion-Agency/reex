@@ -69,11 +69,15 @@ const onInput = () => {
   border: none;
   outline: none;
   resize: none;
-  padding: rem(8) rem(12);
+  padding: vw(16) vw(20);
   width: 100%;
   height: 100%;
   background-color: transparent;
   color: var(--foreground);
+
+  @media (max-width: $br1) {
+    padding: 12px 16px;
+  }
 
   &::placeholder {
     color: var(--foreground-muted);

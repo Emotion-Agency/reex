@@ -5,6 +5,8 @@ export interface iFooterContent {
   navigation_label: string
   contacts_label: string
   socials_label: string
+  phone_label: string
+  email_label: string
   _uid: string
   component: string
 }

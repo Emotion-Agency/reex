@@ -22,104 +22,73 @@ const { story: globalStory } = await useGlobalStory()
         </div>
         <div class="footer__nav">
           <p class="footer__t">{{ footerStory?.content?.navigation_label }}</p>
-          <ul class="footer__list">
+          <ul
+            v-if="navigationStory?.content?.items?.length"
+            class="footer__list"
+          >
             <li
-              v-for="item in navigationStory?.content?.items"
-              :key="item?._uid"
+              v-for="item in navigationStory.content.items"
+              :key="item._uid"
               class="footer__item"
             >
               <ServiceDropdown
-                v-if="item?.component === 'nav_dropdown'"
+                v-if="item.component === 'nav_dropdown'"
                 :services="item"
               />
               <NuxtLink
                 v-else
-                :to="item?.url?.cached_url"
+                :to="item.url?.cached_url"
                 class="underline footer__link"
               >
-                {{ item?.label }}
+                {{ item.label }}
               </NuxtLink>
             </li>
           </ul>
         </div>
         <div class="footer__contacts">
-          <p class="footer__t">{{ footerStory?.content?.contacts_label }}</p>
-          <ul class="footer__list">
+          <p class="footer__t">
+            {{ footerStory?.content?.contacts_label }}
+          </p>
+
+          <ul
+            v-if="globalStory?.content?.phone && globalStory?.content?.email"
+            class="footer__list"
+          >
             <li class="footer__item">
-              <NuxtLink
-                tag="a"
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
                 :href="`tel:${globalStory?.content?.phone}`"
                 class="underline footer__link"
               >
                 {{ globalStory?.content?.phone }}
-              </NuxtLink>
+              </a>
             </li>
+
             <li class="footer__item">
-              <NuxtLink
-                tag="a"
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
                 :href="`mailto:${globalStory?.content?.email}`"
                 class="underline footer__link"
               >
                 {{ globalStory?.content?.email }}
-              </NuxtLink>
+              </a>
             </li>
           </ul>
         </div>
-        <div class="footer__socials">
-          <p class="footer__t">{{ footerStory?.content?.socials_label }}</p>
-          <ul class="footer__list footer__list--socials">
-            <li class="footer__item">
-              <MultipleButton
-                tag="a"
-                :href="globalStory?.content?.x"
-                direction="right-down-up"
-                variant="secondary"
-                is-icons
-              >
-                <IconsSocialsX />
-              </MultipleButton>
-            </li>
-            <li class="footer__item">
-              <MultipleButton
-                tag="a"
-                :href="globalStory?.content?.instagram"
-                direction="up-down"
-                variant="secondary"
-                is-icons
-              >
-                <IconsSocialsInstagram />
-              </MultipleButton>
-            </li>
-            <li class="footer__item">
-              <MultipleButton
-                tag="a"
-                :href="globalStory?.content?.telegram"
-                direction="left-down-up"
-                variant="secondary"
-                is-icons
-              >
-                <IconsSocialsTelegram />
-              </MultipleButton>
-            </li>
-          </ul>
-        </div>
+        <Socials
+          :label="footerStory?.content?.socials_label"
+          :x="globalStory?.content?.x"
+          :telegram="globalStory?.content?.telegram"
+          :instagram="globalStory?.content?.instagram"
+          class="footer__socials"
+        />
       </div>
-      <div class="footer__rights-wrapper">
-        <p class="footer__rights-text">
-          {{ footerStory?.content?.copyright_text }}
-        </p>
-        <p class="footer__rights-text">
-          <span>{{ footerStory?.content?.made_by_text }} {{ ' ' }}</span>
-          <a
-            href="https://www.emotion-agency.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline footer__by"
-          >
-            Emotion Agency
-          </a>
-        </p>
-      </div>
+      <Rights
+        :copyright-text="footerStory?.content?.copyright_text"
+        :made-by-text="footerStory?.content?.made_by_text"
+      />
     </div>
   </footer>
 </template>
@@ -256,39 +225,6 @@ const { story: globalStory } = await useGlobalStory()
   @media (min-width: $br1) {
     @include col(9, 10);
     @include row(2, 2);
-  }
-}
-
-.footer__rights-wrapper {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: vw(144);
-  @include text-reg-p2;
-
-  @media (max-width: $br1) {
-    margin-top: 80px;
-  }
-
-  @media (max-width: $br3) {
-    flex-direction: column;
-    row-gap: 12px;
-  }
-}
-
-.footer__rights-text {
-  position: relative;
-
-  span {
-    color: var(--bg-muted-50);
-  }
-}
-
-.footer__by {
-  position: relative;
-
-  &::before {
-    background-color: var(--secondary);
   }
 }
 </style>

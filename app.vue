@@ -3,6 +3,10 @@ import { useFonts } from '~/composables/fonts'
 
 useFonts()
 
+const route = useRoute()
+
+const isContacts = computed(() => route.path.includes('contacts'))
+
 onMounted(async () => {
   const { hello } = await import('~/utils/hello')
   const { detectOrientationChanges } = await import(
@@ -35,11 +39,13 @@ useHead({
     <!-- <Landscape /> -->
     <SmoothScroll>
       <NuxtLayout>
-        <AppHeader />
-        <main class="main-content">
-          <NuxtPage />
-        </main>
-        <AppFooter />
+        <div class="layout-content">
+          <AppHeader />
+          <main class="layout-content__main">
+            <NuxtPage />
+          </main>
+          <AppFooter v-if="!isContacts" />
+        </div>
       </NuxtLayout>
     </SmoothScroll>
     <ToastGroup />
@@ -47,13 +53,16 @@ useHead({
 </template>
 
 <style scoped lang="scss">
-.app {
+.layout-content {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
 }
 
-.main-content {
+.layout-content__main {
+  display: flex;
+  flex-direction: column;
   flex: 1;
 }
 </style>

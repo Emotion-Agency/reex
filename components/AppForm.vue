@@ -34,7 +34,7 @@ const v$ = useVuelidate(rules, form)
 
 const inputs = computed(() => [
   {
-    id: 'contact-name',
+    id: 'form-name',
     name: 'name',
     type: 'text',
     placeholder: formStory?.value?.content?.name_field || 'Name',
@@ -43,7 +43,7 @@ const inputs = computed(() => [
     errors: v$.value.name.$errors,
   },
   {
-    id: 'contact-number',
+    id: 'form-number',
     name: 'phone',
     type: 'text',
     placeholder: formStory?.value?.content?.phone_field || 'Phone',
@@ -52,7 +52,7 @@ const inputs = computed(() => [
     errors: v$.value.phone.$errors,
   },
   {
-    id: 'contact-select',
+    id: 'form-select',
     name: 'service',
     placeholder: formStory?.value?.content?.service_field || 'Service type',
     required: false,
@@ -159,43 +159,5 @@ const onSubmit = async () => {
 
 .form__btn {
   width: fit-content;
-}
-
-.form__select-trigger {
-  width: 100%;
-  height: 52px;
-  padding: 0 16px;
-  border: 1px solid var(--secondary);
-  border-radius: 8px;
-  background: transparent;
-  font-size: 16px;
-  color: var(--secondary);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  &[data-placeholder] {
-    color: var(--muted-foreground, #9ca3af); // сірий для плейсхолдера
-  }
-}
-
-.form__select-content {
-  background: white !important;
-  border-radius: 8px;
-  padding: 4px 0;
-  border: 1px solid #e5e7eb;
-}
-
-.form__select-item {
-  padding: 10px 16px;
-  cursor: pointer;
-  font-size: 15px;
-  color: var(--secondary);
-  outline: none;
-
-  &[data-highlighted='true'] {
-    background: var(--bg-muted-50);
-    color: white;
-  }
 }
 </style>
