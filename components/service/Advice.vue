@@ -6,6 +6,8 @@ interface iServiceAdvice {
 }
 
 defineProps<iServiceAdvice>()
+
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -19,7 +21,7 @@ defineProps<iServiceAdvice>()
           <DualButton
             class="advice__btn"
             tag="nuxt-link"
-            :to="content?.link[0]?.url?.cached_url"
+            :to="localePath(normalizePath(content?.link[0]?.url?.cached_url))"
           >
             {{ content?.link[0]?.label }}
           </DualButton>
@@ -30,7 +32,7 @@ defineProps<iServiceAdvice>()
         <DualButton
           class="advice__btn advice__btn--mob"
           tag="nuxt-link"
-          :to="content?.link[0]?.url?.cached_url"
+          :to="localePath(normalizePath(content?.link[0]?.url?.cached_url))"
         >
           {{ content?.link[0]?.label }}
         </DualButton>

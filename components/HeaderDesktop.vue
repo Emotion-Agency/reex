@@ -5,12 +5,14 @@ interface iHeaderDesktopProps {
   navigation: iNavigationContent
 }
 
-defineProps<iHeaderDesktopProps>()
+const props = defineProps<iHeaderDesktopProps>()
+
+const localePath = useLocalePath()
 </script>
 
 <template>
   <div class="header-desk">
-    <NuxtLink to="/" class="header-desk__logo">
+    <NuxtLink :to="localePath('/')" class="header-desk__logo">
       <IconsLogo />
     </NuxtLink>
     <nav class="header-desk__nav">
@@ -27,7 +29,7 @@ defineProps<iHeaderDesktopProps>()
           />
           <NuxtLink
             v-else
-            :to="item?.url?.cached_url"
+            :to="localePath(normalizePath(item?.url?.cached_url))"
             class="header-desk__nav-link underline"
           >
             {{ item?.label }}
@@ -37,7 +39,7 @@ defineProps<iHeaderDesktopProps>()
       <Button
         class="header-desk__nav-button"
         tag="nuxt-link"
-        :to="navigation?.button[0]?.url?.cached_url"
+        :to="localePath(normalizePath(navigation?.button[0]?.url?.cached_url))"
       >
         {{ navigation?.button[0]?.label }}
       </Button>

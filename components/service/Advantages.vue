@@ -6,6 +6,8 @@ interface iAdvantagesProps {
 }
 
 defineProps<iAdvantagesProps>()
+
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -21,7 +23,7 @@ defineProps<iAdvantagesProps>()
         </div>
         <DualButton
           tag="nuxt-link"
-          :to="content?.link[0]?.url?.cached_url"
+          :to="localePath(normalizePath(content?.link[0]?.url?.cached_url))"
           class="advantages__btn"
         >
           {{ content?.link[0]?.label }}

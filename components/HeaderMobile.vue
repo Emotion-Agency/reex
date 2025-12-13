@@ -9,6 +9,7 @@ defineProps<iHeaderDesktopProps>()
 
 const { isMenuOpened } = useAppState()
 const isServicesOpened = ref(false)
+const localePath = useLocalePath()
 
 const toggleMenu = () => {
   isMenuOpened.value = !isMenuOpened.value
@@ -22,7 +23,7 @@ const toggleServices = () => {
 <template>
   <div class="header-mob" :class="{ 'header-mob--opened': isMenuOpened }">
     <div class="header-mob__wrapper">
-      <NuxtLink to="/" class="header-mob__logo">
+      <NuxtLink :to="localePath('/')" class="header-mob__logo">
         <IconsLogo />
       </NuxtLink>
       <div class="header-mob__right">
@@ -62,7 +63,7 @@ const toggleServices = () => {
                 <NuxtLink
                   v-for="(link, idx) in item?.items"
                   :key="idx"
-                  :to="link?.full_slug"
+                  :to="`/${link?.full_slug}`"
                   class="header-mob__submenu-link"
                 >
                   {{ link?.content?.title }}
@@ -73,7 +74,7 @@ const toggleServices = () => {
           </div>
           <NuxtLink
             v-else
-            :to="item?.url?.cached_url"
+            :to="localePath(normalizePath(item?.url?.cached_url))"
             class="header-mob__nav-link"
           >
             {{ item?.label }}

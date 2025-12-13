@@ -42,7 +42,7 @@ onClickOutside(dropdownRef, () => {
         <NuxtLink
           v-for="link in services?.items || []"
           :key="link._uid"
-          :to="link.full_slug"
+          :to="`/${link.full_slug}`"
           tag="nuxt-link"
           class="service-dropdown__link"
         >

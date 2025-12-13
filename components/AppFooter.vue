@@ -7,6 +7,8 @@ const { story: footerStory } = await useFooterStory()
 const { story: navigationStory } = await useNavigationStory()
 const { story: globalCompanyContactStory } =
   await useGlobalCompanyContactStory()
+
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -38,7 +40,7 @@ const { story: globalCompanyContactStory } =
               />
               <NuxtLink
                 v-else
-                :to="item.url?.cached_url"
+                :to="localePath(normalizePath(item.url?.cached_url))"
                 class="underline footer__link"
               >
                 {{ item.label }}

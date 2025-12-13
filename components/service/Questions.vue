@@ -8,6 +8,8 @@ interface iQuestionsProps {
 const props = defineProps<iQuestionsProps>()
 
 const openedId = ref(props.content?.questions_list[0]?._uid ?? '')
+
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const openedId = ref(props.content?.questions_list[0]?._uid ?? '')
         </h2>
         <DualButton
           tag="nuxt-link"
-          :to="content?.link[0]?.url?.cached_url"
+          :to="localePath(normalizePath(content?.link[0]?.url?.cached_url))"
           class="questions__btn"
         >
           {{ content?.link[0]?.label }}

@@ -15,7 +15,7 @@ defineProps<ArticlesProps>()
 
 <template>
   <li class="article-item">
-    <NuxtLink :to="link" class="article-item__link">
+    <NuxtLink :to="`/${link}`" class="article-item__link">
       <div class="article-item__img-wrapper">
         <img
           :src="asset?.filename"
