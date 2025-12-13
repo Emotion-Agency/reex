@@ -56,7 +56,7 @@ const {
         :key="item._uid"
         class="services-carousel__slide"
       >
-        <NuxtLink :to="item.full_slug" class="services-carousel__link">
+        <NuxtLink :to="`/${item.full_slug}`" class="services-carousel__link">
           <CustomImage
             :src="item.content?.asset?.filename"
             :alt="item.content?.asset?.alt"

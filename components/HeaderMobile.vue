@@ -85,7 +85,7 @@ const toggleServices = () => {
       <Button
         class="header-mob__cta"
         tag="nuxt-link"
-        :to="navigation?.button[0]?.url?.cached_url"
+        :to="localePath(normalizePath(navigation?.button[0]?.url?.cached_url))"
         variant="primary"
       >
         {{ navigation?.button[0]?.label }}

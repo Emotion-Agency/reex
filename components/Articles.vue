@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<ArticlesProps>(), {
 })
 
 const { news } = await useNewsStories('news')
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -23,7 +24,7 @@ const { news } = await useNewsStories('news')
         <DualButton
           v-if="isButton"
           tag="nuxt-link"
-          to="/news"
+          :to="localePath('/news')"
           class="articles__btn"
         >
           Усі статті

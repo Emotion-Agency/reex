@@ -6,6 +6,8 @@ interface IProps {
 }
 
 const props = defineProps<IProps>()
+
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const props = defineProps<IProps>()
           </h2>
           <DualButton
             tag="nuxt-link"
-            :to="content?.link[0]?.url?.cached_url"
+            :to="localePath(normalizePath(content?.link[0]?.url?.cached_url))"
             class="business__btn"
           >
             {{ content?.link[0]?.label }}
