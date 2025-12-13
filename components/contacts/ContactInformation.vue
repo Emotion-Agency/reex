@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useFooterStory } from '~/composables/stories/footerStory'
-import { useGlobalStory } from '~/composables/stories/globalStory'
+import { useGlobalCompanyContactStory } from '~/composables/stories/globalCompanyContactStory'
 
 const { story: footerStory } = await useFooterStory()
-const { story: globalStory } = await useGlobalStory()
+const { story: globalCompanyContactStory } =
+  await useGlobalCompanyContactStory()
 </script>
 
 <template>
@@ -19,10 +20,10 @@ const { story: globalStory } = await useGlobalStory()
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                :href="`mailto:${globalStory?.content?.email}`"
+                :href="`mailto:${globalCompanyContactStory?.content?.email}`"
                 class="underline c-info__link"
               >
-                {{ globalStory?.content?.email }}
+                {{ globalCompanyContactStory?.content?.email }}
               </a>
             </li>
             <li class="c-info__item">
@@ -32,18 +33,18 @@ const { story: globalStory } = await useGlobalStory()
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                :href="`tel:${globalStory?.content?.phone}`"
+                :href="`tel:${globalCompanyContactStory?.content?.phone}`"
                 class="underline c-info__link"
               >
-                {{ globalStory?.content?.phone }}
+                {{ globalCompanyContactStory?.content?.phone }}
               </a>
             </li>
           </ul>
           <Socials
             :label="footerStory?.content?.socials_label"
-            :x="globalStory?.content?.x"
-            :telegram="globalStory?.content?.telegram"
-            :instagram="globalStory?.content?.instagram"
+            :x="globalCompanyContactStory?.content?.x"
+            :telegram="globalCompanyContactStory?.content?.telegram"
+            :instagram="globalCompanyContactStory?.content?.instagram"
             is-contacts
             class="c-info__socials"
           />

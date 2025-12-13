@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import type { iHomeArticleItem } from '~/types/stories/home/homeTypes'
-import type { iStory } from '~/types/stories/story'
+import { useNewsStories } from '~/composables/stories/news/newsStories'
 
 interface ArticlesProps {
   title: string
-  articles: iStory<iHomeArticleItem>[]
   isButton?: boolean
 }
 
 const props = withDefaults(defineProps<ArticlesProps>(), {
   isButton: false,
 })
+
+const { news } = await useNewsStories('news')
 </script>
 
 <template>
   <div class="articles">
     <div class="container articles__wrapper">
       <div class="articles__top">
-        <h2 class="articles__t">
+        <h2 v-if="title" class="articles__t">
           {{ title }}
         </h2>
         <DualButton
@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<ArticlesProps>(), {
       </div>
       <ul class="articles__list">
         <ArticleItem
-          v-for="article in articles"
+          v-for="article in news.slice(0, 3)"
           :key="article?._uid"
           :asset="article?.content?.asset"
           :category="article?.content?.category"

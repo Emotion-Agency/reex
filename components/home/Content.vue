@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useGlobalArticlesTitleStory } from '~/composables/stories/globalArticlesTitleStory'
 import { useHomeStory } from '~/composables/stories/homeStory'
 
 const { story } = await useHomeStory()
@@ -18,6 +19,7 @@ const meta = computed(() => {
 })
 
 const sections = computed(() => story.value.content)
+const { story: articlesTitle } = await useGlobalArticlesTitleStory()
 </script>
 
 <template>
@@ -30,10 +32,6 @@ const sections = computed(() => story.value.content)
     <HomeCooperationSteps :content="sections?.cooperation[0]" />
     <HomeLocations :content="sections?.locations[0]" />
     <HomePartners :content="sections?.partners[0]" />
-    <Articles
-      :title="sections?.articles[0]?.title"
-      :articles="sections?.articles[0]?.article_items"
-      is-button
-    />
+    <Articles :title="articlesTitle?.content?.useful_article_title" is-button />
   </div>
 </template>

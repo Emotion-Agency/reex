@@ -12,14 +12,6 @@ export interface iHomeArticleItem {
   _uid: string
 }
 
-export interface iHomeArticles {
-  title: string
-  link: iDeepLink[]
-  article_items: iStory<iHomeArticleItem>[]
-  component: string
-  _uid: string
-}
-
 export interface iPartnerMember {
   name: string
   position: string
@@ -100,5 +92,4 @@ export interface iHomeContent {
   cooperation: iAccordionSteps[]
   locations: iLocations[]
   partners: iPartners[]
-  articles: iHomeArticles[]
 }

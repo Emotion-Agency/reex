@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { useFooterStory } from '~/composables/stories/footerStory'
-import { useGlobalStory } from '~/composables/stories/globalStory'
+import { useGlobalCompanyContactStory } from '~/composables/stories/globalCompanyContactStory'
 import { useNavigationStory } from '~/composables/stories/navigationStory'
 
 const { story: footerStory } = await useFooterStory()
 const { story: navigationStory } = await useNavigationStory()
-const { story: globalStory } = await useGlobalStory()
+const { story: globalCompanyContactStory } =
+  await useGlobalCompanyContactStory()
 </script>
 
 <template>
@@ -51,17 +52,20 @@ const { story: globalStory } = await useGlobalStory()
           </p>
 
           <ul
-            v-if="globalStory?.content?.phone && globalStory?.content?.email"
+            v-if="
+              globalCompanyContactStory?.content?.phone &&
+              globalCompanyContactStory?.content?.email
+            "
             class="footer__list"
           >
             <li class="footer__item">
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                :href="`tel:${globalStory?.content?.phone}`"
+                :href="`tel:${globalCompanyContactStory?.content?.phone}`"
                 class="underline footer__link"
               >
-                {{ globalStory?.content?.phone }}
+                {{ globalCompanyContactStory?.content?.phone }}
               </a>
             </li>
 
@@ -69,19 +73,19 @@ const { story: globalStory } = await useGlobalStory()
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                :href="`mailto:${globalStory?.content?.email}`"
+                :href="`mailto:${globalCompanyContactStory?.content?.email}`"
                 class="underline footer__link"
               >
-                {{ globalStory?.content?.email }}
+                {{ globalCompanyContactStory?.content?.email }}
               </a>
             </li>
           </ul>
         </div>
         <Socials
           :label="footerStory?.content?.socials_label"
-          :x="globalStory?.content?.x"
-          :telegram="globalStory?.content?.telegram"
-          :instagram="globalStory?.content?.instagram"
+          :x="globalCompanyContactStory?.content?.x"
+          :telegram="globalCompanyContactStory?.content?.telegram"
+          :instagram="globalCompanyContactStory?.content?.instagram"
           class="footer__socials"
         />
       </div>
