@@ -105,13 +105,13 @@ const rightClass = computed(() =>
 
   &--secondary {
     .multiple-button__content {
-      background-color: #142538;
+      background-color: #1a2c3d;
       color: var(--secondary);
     }
 
     .multiple-button__left-part,
     .multiple-button__right-part {
-      background-color: #142538;
+      background-color: #1a2c3d;
     }
 
     &:hover {

@@ -19,6 +19,10 @@ const { story: articleStory } = await useArticleStory(
 <template>
   <div>
     <NewsHero :content="articleStory?.content" />
+    <NewsFullAsset
+      v-if="articleStory?.content?.asset"
+      :asset="articleStory?.content?.asset"
+    />
     <Articles
       :title="articlesTitle?.content?.similar_article_title"
       is-button

@@ -148,7 +148,6 @@ onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
   position: absolute;
   z-index: 100;
   width: 100%;
-  min-height: vw(160);
   max-height: 0;
   opacity: 0;
   overflow-y: auto;
@@ -159,7 +158,6 @@ onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
     opacity 0.2s ease;
 
   @media (max-width: $br1) {
-    min-height: 120px;
     border-radius: 0 0 16px 16px;
   }
 }
@@ -169,6 +167,7 @@ onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
   margin-top: 1px;
   overflow-y: auto;
   padding: vw(6);
+  background-color: #1c2b3e;
 
   @media (max-width: $br1) {
     padding: 6px;
