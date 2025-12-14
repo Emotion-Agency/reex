@@ -18,6 +18,7 @@ const { story: articleStory } = await useArticleStory(
 
 <template>
   <div>
+    <NewsHero :content="articleStory?.content" />
     <Articles
       :title="articlesTitle?.content?.similar_article_title"
       is-button

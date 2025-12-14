@@ -11,6 +11,7 @@ export interface iArticleContent {
   asset: iImage
   date: string
   title: string
+  description: string
   category: iStory<iArticleCategory>[]
   content: any
   _uid: string
