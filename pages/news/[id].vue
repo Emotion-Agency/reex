@@ -23,6 +23,7 @@ const { story: articleStory } = await useArticleStory(
       v-if="articleStory?.content?.asset"
       :asset="articleStory?.content?.asset"
     />
+    <NewsContentBlok :blok="articleStory?.content?.content" />
     <Articles
       :title="articlesTitle?.content?.similar_article_title"
       is-button

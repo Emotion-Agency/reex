@@ -45,3 +45,9 @@ export interface IMultipleButtonProps extends IMultipleButton {
   isActive?: boolean
   isIcons?: boolean
 }
+
+export interface ICircleButton {
+  tag?: 'button' | 'a' | 'nuxt-link' | string
+  type?: 'button' | 'submit' | 'reset' | null
+  href?: string
+}

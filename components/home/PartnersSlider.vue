@@ -35,19 +35,7 @@ const { current, handlePrev, handleNext } = useSlider(
           :class="{ 'partners-slider__item--active': idx === current }"
         >
           <h2 class="partners-slider__text">{{ partner.text }}</h2>
-          <div class="partners-slider__member">
-            <img
-              :src="partner.member[0]?.logo?.filename"
-              :alt="partner.member[0]?.logo?.alt"
-              class="partners-slider__img"
-            />
-            <div class="partners-slider__info">
-              <p class="partners-slider__name">{{ partner.member[0]?.name }}</p>
-              <p class="partners-slider__pos">
-                {{ partner.member[0]?.position }}
-              </p>
-            </div>
-          </div>
+          <Member :member="partner.member[0]" />
         </li>
       </ul>
     </div>
@@ -178,46 +166,6 @@ const { current, handlePrev, handleNext } = useSlider(
 
   @media (max-width: $br3) {
     max-width: 100%;
-  }
-}
-
-.partners-slider__member {
-  display: flex;
-  align-items: center;
-  gap: vw(16);
-
-  @media (max-width: $br1) {
-    gap: 12px;
-  }
-}
-
-.partners-slider__img {
-  width: vw(48);
-  height: vw(48);
-  object-fit: cover;
-
-  @media (max-width: $br1) {
-    width: 48px;
-    height: 48px;
-  }
-}
-
-.partners-slider__info {
-  display: flex;
-  flex-direction: column;
-}
-
-.partners-slider__name {
-  @include text-med-p1;
-}
-
-.partners-slider__pos {
-  @include text-reg-p1;
-  margin-top: vw(4);
-  color: var(--foreground-muted-50);
-
-  @media (max-width: $br1) {
-    margin-top: 4px;
   }
 }
 

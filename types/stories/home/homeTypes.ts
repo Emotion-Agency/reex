@@ -12,7 +12,7 @@ export interface iHomeArticleItem {
   _uid: string
 }
 
-export interface iPartnerMember {
+export interface iMember {
   name: string
   position: string
   logo: iImage
@@ -22,7 +22,7 @@ export interface iPartnerMember {
 
 export interface iPartnerItem {
   text: string
-  member: iPartnerMember[]
+  member: iMember[]
   component: string
   _uid: string
 }
