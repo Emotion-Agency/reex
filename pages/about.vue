@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { useAboutStory } from '~/composables/stories/aboutStory'
+import { pageTransition } from '~/transitions/base'
+
+definePageMeta({
+  pageTransition,
+})
 
 const { story } = await useAboutStory()
 
