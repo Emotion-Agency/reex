@@ -10,9 +10,8 @@ defineProps<IProps>()
 
 <template>
   <section class="hero">
-    <div class="hero__bg-wrapper">
+    <div data-preload class="hero__bg-wrapper">
       <AssetRenderer
-        data-preload
         :src="content?.background_asset.filename"
         :alt="content?.background_asset.alt"
         :width="1440"
@@ -24,11 +23,13 @@ defineProps<IProps>()
         class="hero__bg"
       />
     </div>
-    <Button class="hero__btn" variant="light">
-      <Icon name="lucide:arrow-down" />
-    </Button>
+    <div data-scale class="hero__btn-wrapper">
+      <Button class="hero__btn" variant="light">
+        <Icon name="lucide:arrow-down" />
+      </Button>
+    </div>
     <div class="hero__wrapper container">
-      <h1 class="hero__t">{{ content.title }}</h1>
+      <h1 data-split class="hero__t">{{ content.title }}</h1>
     </div>
   </section>
 </template>
@@ -43,13 +44,15 @@ defineProps<IProps>()
 .hero__bg-wrapper {
   position: absolute;
   inset: 0;
+  overflow: hidden;
 
   &::before {
     content: '';
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.3);
-    z-index: 0;
+    z-index: 1;
+    pointer-events: none;
   }
 }
 
@@ -58,28 +61,20 @@ defineProps<IProps>()
   height: 100%;
   object-fit: cover;
   position: relative;
-  z-index: -1;
+  z-index: 0;
 }
 
-.hero__btn {
+.hero__btn-wrapper {
   position: absolute;
   left: $g-offset;
   bottom: vw(16);
+}
+
+.hero__btn {
   width: vw(48);
   height: vw(48);
   background-color: var(--bg-muted-75);
   backdrop-filter: blur(vw(50));
-
-  span {
-    width: vw(18);
-    height: vw(18);
-    animation: bounce 2s ease-in-out infinite alternate;
-
-    @media (max-width: $br1) {
-      width: 18px;
-      height: 18px;
-    }
-  }
 
   @media (max-width: $br1) {
     left: $g-sm;
@@ -91,6 +86,17 @@ defineProps<IProps>()
 
   @media (max-width: $br3) {
     left: $g-s;
+  }
+
+  span {
+    width: vw(18);
+    height: vw(18);
+    animation: bounce 2s ease-in-out infinite alternate;
+
+    @media (max-width: $br1) {
+      width: 18px;
+      height: 18px;
+    }
   }
 }
 

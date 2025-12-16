@@ -23,7 +23,6 @@ defineProps<iServiceFullscreenAssetProps>()
       <AssetRenderer
         :src="asset?.filename"
         :alt="asset?.alt"
-        data-preload
         :width="1440"
         :video-attributes="{
           autoplay: true,

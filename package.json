@@ -40,6 +40,7 @@
     "embla-carousel-vue": "^8.6.0",
     "focus-trap": "^7.6.1",
     "gsap": "latest",
+    "imagesloaded": "^5.0.0",
     "lucide-vue-next": "^0.487.0",
     "nuxt": "^4.2.1",
     "reka-ui": "^2.3.2",

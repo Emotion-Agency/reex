@@ -1,20 +1,42 @@
 <script setup lang="ts">
+import imagesLoaded from 'imagesloaded'
 import { useFonts } from '~/composables/fonts'
+
+const { isInEditor } = useAppState()
 
 useFonts()
 
 const route = useRoute()
 
+const { isFirstLoad, init } = useLoadingAnimation()
 const isContacts = computed(() => route.path.includes('contacts'))
 
+const loadingAnimation = async () => {
+  window.escroll.disabled = true
+  await init()
+}
+
 onMounted(async () => {
-  const { hello } = await import('~/utils/hello')
   const { detectOrientationChanges } = await import(
     '~/utils/detectLandscapeOrientation'
   )
 
   detectOrientationChanges()
-  hello()
+
+  if (isInEditor.value) {
+    isFirstLoad.value = false
+    return
+  }
+
+  const ilInstance = imagesLoaded(document.body, { background: true })
+
+  ilInstance.on('done', () => {
+    loadingAnimation()
+  })
+
+  ilInstance.on('fail', () => {
+    loadingAnimation()
+  })
 })
 
 useHead({

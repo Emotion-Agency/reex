@@ -5,11 +5,12 @@ interface iHeaderDesktopProps {
   navigation: iNavigationContent
 }
 
-defineProps<iHeaderDesktopProps>()
+const props = defineProps<iHeaderDesktopProps>()
 
 const { isMenuOpened } = useAppState()
 const isServicesOpened = ref(false)
 const localePath = useLocalePath()
+const route = useRoute()
 
 const toggleMenu = () => {
   isMenuOpened.value = !isMenuOpened.value
@@ -18,6 +19,14 @@ const toggleMenu = () => {
 const toggleServices = () => {
   isServicesOpened.value = !isServicesOpened.value
 }
+
+watch(
+  () => route.fullPath,
+  () => {
+    isMenuOpened.value = false
+    isServicesOpened.value = false
+  }
+)
 </script>
 
 <template>

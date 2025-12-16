@@ -1,0 +1,160 @@
+import { delayPromise } from '@emotionagency/utils'
+import { gsap, SplitText } from '~/libs/gsap'
+
+export const useLoadingAnimation = () => {
+  const isFirstLoad = useState('isFirstLoad', () => true)
+
+  const getElements = (parent?: HTMLElement) => {
+    const $el = parent || document
+
+    const $image = $el.querySelectorAll('[data-preload]')
+    const $split = $el.querySelectorAll('[data-split]')
+    const $t = $el.querySelectorAll('[data-t]')
+    const $o = $el.querySelectorAll('[data-o]')
+    const $scale = $el.querySelectorAll('[data-scale]')
+    return { $image, $split, $t, $o, $scale }
+  }
+
+  const animate = async (parent?: HTMLElement, wait = 0.2) => {
+    return new Promise<void>(resolve => {
+      ;(async () => {
+        await document.fonts.ready
+        document.documentElement.style.cursor = 'wait'
+        document.body.style.pointerEvents = 'none'
+
+        const { $image, $split, $t, $o, $scale } = getElements(parent)
+        await delayPromise(200)
+
+        const delay = isFirstLoad.value ? 1.7 : wait
+
+        const onComplete = () => {
+          titleSplitter?.revert()
+          tl.revert()
+
+          gsap.set($split, { clearProps: true })
+
+          document.documentElement.style.cursor = 'auto'
+          document.body.style.pointerEvents = 'auto'
+        }
+
+        const tl = gsap.timeline()
+
+        if ($image) {
+          tl.set($image, {
+            opacity: 0,
+            clipPath: 'inset(10%)',
+          })
+        }
+
+        tl.set($t, { opacity: 0, y: 50 })
+        tl.set($o, { opacity: 0 })
+        tl.set($scale, { opacity: 0, scale: 0.6 })
+
+        // Animate image resize
+        if ($image?.length) {
+          tl.to(
+            $image,
+            {
+              duration: 1.6,
+              opacity: 1,
+              clipPath: 'inset(0%)',
+              stagger: 0.1,
+              ease: 'power2.out',
+            },
+            delay
+          )
+        }
+
+        let titleSplitter: SplitText
+
+        if ($split) {
+          titleSplitter = new SplitText($split, {
+            type: 'lines',
+            mask: 'lines',
+            linesClass: 'e-line',
+            onSplit: target => {
+              gsap.set($split, { opacity: 0 })
+              gsap.set(target.masks, {
+                overflow: 'visible',
+                clipPath: 'inset(-0.2em 0 -0.2em 0)',
+              })
+              gsap.set(target.lines, { yPercent: 116 })
+
+              tl.to(
+                target.lines,
+                {
+                  duration: 1.5,
+                  yPercent: 0,
+                  stagger: 0.1,
+                  opacity: 1,
+                  ease: 'power2.out',
+                  // overwrite: true,
+                },
+                delay
+              )
+              tl.to($split, { duration: 0.1, opacity: 1 }, '<')
+            },
+          })
+        }
+
+        if ($t.length) {
+          tl.to(
+            $t,
+            {
+              duration: 1.3,
+              opacity: 1,
+              y: 0,
+              stagger: 0.2,
+              ease: 'power2.out',
+            },
+            '<0.2'
+          )
+        }
+
+        if ($scale.length) {
+          tl.to(
+            $scale,
+            {
+              opacity: 1,
+              scale: 1,
+              duration: 2,
+              ease: 'power2.out',
+            },
+            '<0.5'
+          )
+        }
+
+        if ($o.length) {
+          tl.to(
+            $o,
+            {
+              duration: 1.6,
+              opacity: 1,
+              stagger: 0.2,
+              ease: 'power2.out',
+            },
+            '<1'
+          )
+        }
+
+        isFirstLoad.value = false
+
+        // const treshold = $o.length ? 1200 : 300
+
+        const dur = tl.duration() * 1000
+
+        setTimeout(() => {
+          onComplete()
+          resolve()
+          document.body.style.pointerEvents = 'auto'
+          window.escroll.disabled = false
+        }, dur)
+      })()
+    })
+  }
+
+  return {
+    isFirstLoad,
+    init: animate,
+  }
+}
