@@ -7,10 +7,25 @@ definePageMeta({
 })
 
 const { story: contactsStory } = await useContactsStory()
+
+const meta = computed(() => {
+  const data = contactsStory?.value?.content?.meta[0]
+
+  if (!data) {
+    return null
+  }
+
+  return {
+    title: data.title,
+    description: data.description,
+    ogImage: data?.image?.filename,
+  }
+})
 </script>
 
 <template>
   <div class="contacts">
+    <PageMeta v-if="meta" v-bind="meta" />
     <AppHero :title="contactsStory?.content?.title" is-contacts />
     <ContactsContactInformation class="contacts__info" />
   </div>

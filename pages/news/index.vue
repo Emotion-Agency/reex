@@ -7,10 +7,25 @@ definePageMeta({
 })
 
 const { story } = await useNewsStory()
+
+const meta = computed(() => {
+  const data = story?.value?.content?.meta[0]
+
+  if (!data) {
+    return null
+  }
+
+  return {
+    title: data.title,
+    description: data.description,
+    ogImage: data?.image?.filename,
+  }
+})
 </script>
 
 <template>
   <div>
+    <PageMeta v-if="meta" v-bind="meta" />
     <AppHero :title="story?.content?.title" />
     <NewsArticlesList
       :text="story?.content?.description"
