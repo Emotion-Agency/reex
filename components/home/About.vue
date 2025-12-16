@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { iHomeAbout } from '~/types/stories/home/homeTypes'
+import { gsap, ScrollTrigger } from '~/libs/gsap'
+import { delayPromise } from '@emotionagency/utils'
 
 interface IProps {
   content: iHomeAbout
@@ -8,10 +10,49 @@ interface IProps {
 defineProps<IProps>()
 
 const localePath = useLocalePath()
+
+const imgRefs = ref<HTMLElement[]>([])
+const triggers: ScrollTrigger[] = []
+
+const animate = () => {
+  if (!imgRefs.value.length) return
+
+  imgRefs.value.forEach(el => {
+    const tl = gsap.timeline()
+
+    tl.fromTo(
+      el,
+      { y: '-25%' },
+      {
+        y: '25%',
+        ease: 'none',
+      }
+    )
+
+    const st = ScrollTrigger.create({
+      trigger: el,
+      animation: tl,
+      start: () => 'top bottom',
+      end: () => `bottom+=${window.innerHeight} bottom`,
+      scrub: true,
+    })
+
+    triggers.push(st)
+  })
+}
+
+onMounted(() => {
+  animate()
+})
+
+onBeforeUnmount(async () => {
+  await delayPromise(1500)
+  triggers.forEach(t => t.kill())
+})
 </script>
 
 <template>
-  <section class="about">
+  <section ref="sectionRef" class="about">
     <div class="container about__wrapper">
       <Pill variant="light"> {{ content?.tag }}</Pill>
       <h2 class="about__t">
@@ -27,14 +68,14 @@ const localePath = useLocalePath()
       </DualButton>
     </div>
     <div class="about__imgs">
-      <CustomImage
+      <div
+        ref="imgRefs"
         v-for="img in content?.assets"
         :key="img._uid"
-        :width="360"
-        :src="img?.filename"
-        :alt="img?.alt"
         class="about__img"
-      />
+      >
+        <CustomImage :width="360" :src="img?.filename" :alt="img?.alt" />
+      </div>
     </div>
   </section>
 </template>
@@ -45,6 +86,7 @@ const localePath = useLocalePath()
   background-color: var(--foreground);
   color: var(--secondary);
   margin-top: vw(144);
+  overflow: hidden;
 
   @media (min-width: $br1) {
     height: 100dvh;
@@ -103,8 +145,8 @@ const localePath = useLocalePath()
 
 .about__img {
   position: absolute;
-  object-fit: cover;
   border-radius: vw(12);
+  overflow: hidden;
 
   &:nth-child(1) {
     top: 0;
@@ -114,15 +156,22 @@ const localePath = useLocalePath()
   }
   &:nth-child(2) {
     bottom: vw(177);
-    left: 0;
+    left: vw(-12);
     width: vw(264);
     height: vw(264);
   }
   &:nth-child(3) {
     bottom: 0;
-    right: 0;
+    right: vw(-12);
     width: vw(360);
     height: vw(260);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 </style>
