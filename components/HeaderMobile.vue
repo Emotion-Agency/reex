@@ -175,6 +175,12 @@ const toggleServices = () => {
 .header-mob__nav {
   padding: 16px;
   padding-top: 32px;
+
+  .router-link-active {
+    &.header-mob__nav-link {
+      color: var(--bg-muted-50);
+    }
+  }
 }
 
 .header-mob__nav-list {
@@ -206,6 +212,7 @@ const toggleServices = () => {
   color: var(--secondary);
   line-height: 1.17em;
   letter-spacing: -0.01em;
+  transition: color 0.3s ease;
   @include heading-h4;
 }
 
@@ -219,6 +226,12 @@ const toggleServices = () => {
       span {
         transform: rotate(180deg);
       }
+    }
+  }
+
+  .router-link-active {
+    &.header-mob__submenu-link {
+      color: var(--bg-muted-50);
     }
   }
 }
@@ -237,6 +250,7 @@ const toggleServices = () => {
 }
 
 .header-mob__submenu-link {
+  transition: color 0.3s ease;
   @include text-reg-p2;
 }
 

@@ -70,6 +70,14 @@ const localePath = useLocalePath()
   background-color: var(--bg-muted-75);
   backdrop-filter: blur(vw(50));
   border-radius: vw(12);
+
+  .router-link-active {
+    &.underline {
+      &::before {
+        width: 100% !important;
+      }
+    }
+  }
 }
 
 .header-desk__nav-list {

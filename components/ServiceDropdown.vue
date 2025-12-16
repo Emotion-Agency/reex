@@ -129,6 +129,10 @@ onClickOutside(dropdownRef, () => {
 
 .service-dropdown__list {
   padding: 4px;
+
+  .router-link-active {
+    background-color: var(--foreground-muted-10);
+  }
 }
 
 .service-dropdown__link {
