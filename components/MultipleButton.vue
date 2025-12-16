@@ -149,6 +149,7 @@ const rightClass = computed(() =>
   padding: 0 vw(20);
   border-radius: vw(12);
   height: 100%;
+  transform: scale(1.005);
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
@@ -204,6 +205,8 @@ const rightClass = computed(() =>
   top: 0;
   left: vw(-6);
   z-index: -1;
+  backface-visibility: hidden;
+  will-change: transform;
   transition: background-color 0.3s ease;
 
   @media (max-width: $br1) {
@@ -213,19 +216,19 @@ const rightClass = computed(() =>
   }
 
   &--up-down {
-    transform: skew(12deg);
+    transform: translateZ(0) skew(12deg);
   }
 
   &--down-up {
-    transform: skew(-12deg);
+    transform: translateZ(0) skew(-12deg);
   }
 
   &--left-down-up {
-    transform: skew(-12deg);
+    transform: translateZ(0) skew(-12deg);
   }
 
   &--left-up-down {
-    transform: skew(12deg);
+    transform: translateZ(0) skew(12deg);
   }
 }
 
@@ -237,6 +240,8 @@ const rightClass = computed(() =>
   border-bottom-right-radius: vw(12);
   top: 0;
   right: vw(-6);
+  backface-visibility: hidden;
+  will-change: transform;
   z-index: -1;
   transition: background-color 0.3s ease;
 
@@ -247,19 +252,19 @@ const rightClass = computed(() =>
   }
 
   &--up-down {
-    transform: skew(-12deg);
+    transform: translateZ(0) skew(-12deg);
   }
 
   &--down-up {
-    transform: skew(12deg);
+    transform: translateZ(0) skew(12deg);
   }
 
   &--right-down-up {
-    transform: skew(12deg);
+    transform: translateZ(0) skew(12deg);
   }
 
   &--right-up-down {
-    transform: skew(-12deg);
+    transform: translateZ(0) skew(-12deg);
   }
 }
 </style>
