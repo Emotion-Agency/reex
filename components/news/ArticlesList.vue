@@ -18,13 +18,9 @@ const VISIBLE_LIMIT = 2
 const activeCategory = ref('all')
 const isExpanded = ref(false)
 
-const categorySourceNews = computed(() =>
-  isExpanded.value ? news.value : news.value.slice(0, VISIBLE_LIMIT)
-)
-
 const filteredCategories = computed(() => {
   const names = new Set(
-    categorySourceNews.value.flatMap(
+    news.value.flatMap(
       a => a?.content?.category?.map(c => c?.content?.name) ?? []
     )
   )
@@ -54,6 +50,7 @@ const showMoreVisible = computed(
 
 const setCategory = (value: string) => {
   activeCategory.value = value
+  isExpanded.value = false
 }
 
 const showAll = () => {
