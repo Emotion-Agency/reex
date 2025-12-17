@@ -5,6 +5,7 @@ export interface iFormContent {
   service_field: string
   message_field
   button: string
+  thankyou_text: string
   _uid: string
   component: string
 }

@@ -6,6 +6,7 @@ import { useServiceStories } from '~/composables/stories/serviceStories'
 
 const { story: formStory } = await useFormStory()
 const { services } = await useServiceStories('services')
+const { showThankYou } = useThankyouScreen()
 
 const serviceOptions = computed(() =>
   services.value?.map(s => s.content?.title).filter(Boolean)
@@ -65,6 +66,7 @@ const onSubmit = async () => {
 
   if (!valid) return
 
+  showThankYou()
   console.log('Form data:', { ...form })
 
   form.name = ''

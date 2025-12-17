@@ -65,6 +65,9 @@ useHead({
           <AppHeader />
           <main class="layout-content__main">
             <NuxtPage />
+            <ClientOnly>
+              <ApproveModal />
+            </ClientOnly>
           </main>
           <AppFooter v-if="!isContacts" />
         </div>
