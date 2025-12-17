@@ -6,9 +6,15 @@ const props = defineProps<{
 const { width } = useWindowSize()
 
 const count = computed(() => (width.value < 960 ? 50 : 100))
+
+// How many lines are affected around the current progress position
+// Increase this value to spread the color/height effect wider
 const influenceRange = computed(() => (width.value < 960 ? 7 : 14))
+
 const center = computed(() => (props.progress / 100) * (count.value - 1))
 
+// Weight (0–1) based on distance from the center line
+// Controls both height and color intensity
 const getWeight = (idx: number) => {
   const distance = Math.abs(idx - center.value)
 
@@ -19,6 +25,7 @@ const getStyle = (idx: number) => {
   const weight = getWeight(idx)
 
   return {
+    // Height amplification factor (increase multiplier for taller peaks)
     transform: `scaleY(${1 + weight * 1})`,
     '--w': weight,
   }
@@ -53,7 +60,6 @@ const getStyle = (idx: number) => {
       var(--foreground-muted-50) calc(100% - var(--w) * 100%),
       var(--foreground) calc(var(--w) * 100%)
     );
-
     opacity: calc(0.3 + var(--w) * 0.7);
   }
 
