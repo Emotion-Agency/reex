@@ -17,9 +17,10 @@ defineProps<ArticlesProps>()
   <li class="article-item">
     <NuxtLink :to="`/${link}`" class="article-item__link">
       <div class="article-item__img-wrapper">
-        <img
+        <CustomImage
           :src="asset?.filename"
           :alt="asset?.alt"
+          :width="448"
           class="article-item__img"
         />
       </div>

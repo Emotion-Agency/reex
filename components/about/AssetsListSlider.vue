@@ -29,6 +29,7 @@ const { emblaRef } = useEmbla({
         <CustomImage
           :src="img?.filename"
           :alt="img?.alt"
+          :width="564"
           class="assets-list__img"
         />
       </li>

@@ -17,11 +17,12 @@ defineProps<IProps>()
 
       <div class="partners__marquee">
         <Vue3Marquee clone :duration="8" gradient gradientLength="100px">
-          <img
+          <CustomImage
             v-for="logo in content?.logos"
             :key="logo._uid"
             :src="logo.filename"
             :alt="logo.alt"
+            :width="180"
           />
         </Vue3Marquee>
       </div>

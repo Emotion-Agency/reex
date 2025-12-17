@@ -10,9 +10,10 @@ defineProps<iMemberProps>()
 
 <template>
   <div class="member">
-    <img
+    <CustomImage
       :src="member?.logo?.filename"
       :alt="member?.logo?.alt"
+      :width="96"
       class="member__img"
     />
     <div class="member__info">

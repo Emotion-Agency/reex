@@ -13,11 +13,12 @@ const openedId = ref(props.content?.items[0]?._uid ?? '')
 <template>
   <div class="grid coop-steps__content">
     <div class="coop-steps__img-wrapper">
-      <img
+      <CustomImage
         v-for="step in content?.items"
         :key="step._uid"
         :src="step.asset.filename"
         :alt="step.asset.alt"
+        :width="564"
         class="coop-steps__img"
         :class="{ 'coop-steps__img--opened': openedId === step._uid }"
       />
