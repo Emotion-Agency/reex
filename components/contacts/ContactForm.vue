@@ -179,6 +179,6 @@ const { form, v$, submit } = useFormHandle(
 }
 
 .c-form__btn {
-  width: fit-content;
+  width: fit-content !important;
 }
 </style>
