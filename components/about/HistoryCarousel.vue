@@ -77,8 +77,8 @@ const {
           </div>
         </li>
       </ul>
+      <ProgressBar :progress="progress" class="history-carousel__progress" />
     </div>
-    <ProgressBar class="history-carousel__progress" :progress="progress" />
   </section>
 </template>
 
