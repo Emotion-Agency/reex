@@ -50,36 +50,38 @@ const {
       </button>
     </div>
 
-    <ul class="services-carousel__container">
-      <li
-        v-for="item in carouselItems"
-        :key="item._uid"
-        class="services-carousel__slide"
-      >
-        <NuxtLink :to="`/${item.full_slug}`" class="services-carousel__link">
-          <CustomImage
-            :src="item.content?.asset?.filename"
-            :alt="item.content?.asset?.alt"
-            :width="664"
-            class="services-carousel__img"
-          />
+    <div class="services-carousel__mask">
+      <ul class="services-carousel__container">
+        <li
+          v-for="item in carouselItems"
+          :key="item._uid"
+          class="services-carousel__slide"
+        >
+          <NuxtLink :to="`/${item.full_slug}`" class="services-carousel__link">
+            <CustomImage
+              :src="item.content?.asset?.filename"
+              :alt="item.content?.asset?.alt"
+              :width="664"
+              class="services-carousel__img"
+            />
 
-          <div class="services-carousel__link-arrow">
-            <Icon name="lucide:arrow-up-right" />
-          </div>
-          <div class="services-carousel__info">
-            <h3 class="services-carousel__title">
-              {{ item.content?.title }}
-            </h3>
-            <p class="services-carousel__description">
-              {{ item.content?.description }}
-            </p>
-          </div>
-        </NuxtLink>
-      </li>
-    </ul>
+            <div class="services-carousel__link-arrow">
+              <Icon name="lucide:arrow-up-right" />
+            </div>
+            <div class="services-carousel__info">
+              <h3 class="services-carousel__title">
+                {{ item.content?.title }}
+              </h3>
+              <p class="services-carousel__description">
+                {{ item.content?.description }}
+              </p>
+            </div>
+          </NuxtLink>
+        </li>
+      </ul>
+    </div>
     <ClientOnly>
-      <ProgressBar />
+      <ProgressBar :progress="progress" class="services-carousel__progress" />
     </ClientOnly>
     <!-- <div class="services-carousel__progress">
       <div class="services-carousel__progress-bar" :style="{ width: progress + '%' }"></div>
@@ -139,13 +141,19 @@ const {
   }
 }
 
-.services-carousel__container {
-  display: flex;
+.services-carousel__mask {
+  overflow: hidden;
+  border-radius: vw(16);
   margin-top: vw(28);
 
   @media (max-width: $br1) {
+    border-radius: 16px;
     margin-top: 20px;
   }
+}
+
+.services-carousel__container {
+  display: flex;
 }
 
 .services-carousel__slide {
@@ -256,23 +264,10 @@ const {
 }
 
 .services-carousel__progress {
-  width: 100%;
-  height: vw(4);
-  background-color: #edeff0;
-  border-radius: 100px;
-  overflow: hidden;
-  margin-top: vw(28);
+  margin-top: vw(78);
 
   @media (max-width: $br1) {
-    height: 3px;
-    margin-top: 18px;
-  }
-
-  .services-carousel__progress-bar {
-    height: 100%;
-    background-color: #dee0e9;
-    width: 0%;
-    transition: width 0.2s ease;
+    margin-top: 42px;
   }
 }
 </style>

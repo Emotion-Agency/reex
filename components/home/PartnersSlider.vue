@@ -7,7 +7,7 @@ interface IProps {
 
 const props = defineProps<IProps>()
 
-const { current, handlePrev, handleNext } = useSlider(
+const { current, progress, handlePrev, handleNext } = useSlider(
   () => props.partners?.items?.length
 )
 </script>
@@ -40,7 +40,7 @@ const { current, handlePrev, handleNext } = useSlider(
       </ul>
     </div>
     <ClientOnly>
-      <ProgressBar class="partners-slider__progress" />
+      <ProgressBar :progress="progress" class="partners-slider__progress" />
     </ClientOnly>
   </section>
 </template>

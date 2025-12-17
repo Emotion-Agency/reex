@@ -8,6 +8,11 @@ export const useSlider = (
 
   const count = computed(() => toValue(_count))
 
+  const progress = computed(() => {
+    if (count.value <= 1) return 0
+    return (current.value / (count.value - 1)) * 100
+  })
+
   const handlePrev = () => {
     prev.value = current.value
     current.value = (current.value - 1 + count.value) % count.value
@@ -30,6 +35,7 @@ export const useSlider = (
     current,
     prev,
     direction,
+    progress,
     handlePrev,
     handleNext,
     navigate,
