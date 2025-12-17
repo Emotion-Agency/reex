@@ -48,34 +48,36 @@ const {
       </div>
     </div>
 
-    <ul class="history-carousel__container">
-      <li
-        v-for="item in carouselItems"
-        :key="item?._uid"
-        class="history-carousel__slide"
-      >
-        <CustomImage
-          :src="item?.asset?.filename"
-          :alt="item?.asset?.alt"
-          :width="664"
-          class="history-carousel__img"
-        />
+    <div class="history-carousel__mask">
+      <ul class="history-carousel__container">
+        <li
+          v-for="item in carouselItems"
+          :key="item?._uid"
+          class="history-carousel__slide"
+        >
+          <CustomImage
+            :src="item?.asset?.filename"
+            :alt="item?.asset?.alt"
+            :width="664"
+            class="history-carousel__img"
+          />
 
-        <div class="history-carousel__info">
-          <div class="history-carousel__top-info">
-            <h3 class="history-carousel__title">
-              {{ item?.title }}
-            </h3>
-            <p class="history-carousel__date">
-              {{ item?.date }}
+          <div class="history-carousel__info">
+            <div class="history-carousel__top-info">
+              <h3 class="history-carousel__title">
+                {{ item?.title }}
+              </h3>
+              <p class="history-carousel__date">
+                {{ item?.date }}
+              </p>
+            </div>
+            <p class="history-carousel__description">
+              {{ item?.text }}
             </p>
           </div>
-          <p class="history-carousel__description">
-            {{ item?.text }}
-          </p>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
     <ProgressBar class="history-carousel__progress" :progress="progress" />
   </section>
 </template>
@@ -158,13 +160,19 @@ const {
   }
 }
 
-.history-carousel__container {
-  display: flex;
+.history-carousel__mask {
+  overflow: hidden;
+  border-radius: vw(16);
   margin-top: vw(52);
 
   @media (max-width: $br1) {
+    border-radius: 16px;
     margin-top: 36px;
   }
+}
+
+.history-carousel__container {
+  display: flex;
 }
 
 .history-carousel__slide {
