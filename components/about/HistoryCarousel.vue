@@ -77,8 +77,8 @@ const {
           </div>
         </li>
       </ul>
-      <ProgressBar :progress="progress" class="history-carousel__progress" />
     </div>
+    <ProgressBar :progress="progress" class="history-carousel__progress" />
   </section>
 </template>
 
@@ -250,10 +250,10 @@ const {
 }
 
 .history-carousel__progress {
-  margin-top: vw(96);
+  margin-top: vw(96) !important;
 
   @media (max-width: $br1) {
-    margin-top: 68px;
+    margin-top: 68px !important;
   }
 }
 </style>
