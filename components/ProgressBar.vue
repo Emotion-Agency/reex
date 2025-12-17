@@ -1,19 +1,41 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+const props = defineProps<{
+  progress: number
+}>()
+
 const { width } = useWindowSize()
 
 const count = computed(() => (width.value < 960 ? 50 : 100))
+const influenceRange = computed(() => (width.value < 960 ? 7 : 14))
+const center = computed(() => (props.progress / 100) * (count.value - 1))
+
+const getWeight = (idx: number) => {
+  const distance = Math.abs(idx - center.value)
+
+  return Math.max(0, 1 - distance / influenceRange.value)
+}
+
+const getStyle = (idx: number) => {
+  const weight = getWeight(idx)
+
+  return {
+    transform: `scaleY(${1 + weight * 1})`,
+    '--w': weight,
+  }
+}
 </script>
 
 <template>
   <div class="progress-bar">
-    <span v-for="(_, idx) in count" :key="idx" />
+    <span v-for="(_, idx) in count" :key="idx" :style="getStyle(idx)" />
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .progress-bar {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
   height: vw(20);
   margin-top: vw(32);
@@ -21,12 +43,23 @@ const count = computed(() => (width.value < 960 ? 50 : 100))
   span {
     width: 1px;
     height: 100%;
-    background-color: var(--foreground);
+    transform-origin: bottom;
+    transition:
+      transform 0.25s ease,
+      background-color 0.25s ease,
+      opacity 0.25s ease;
+    background-color: color-mix(
+      in srgb,
+      var(--foreground-muted-50) calc(100% - var(--w) * 100%),
+      var(--foreground) calc(var(--w) * 100%)
+    );
+
+    opacity: calc(0.3 + var(--w) * 0.7);
   }
 
   @media (max-width: $br1) {
-    margin-top: 18px;
     height: 14px;
+    margin-top: 18px;
   }
 }
 </style>
