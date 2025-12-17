@@ -28,7 +28,7 @@ const handleError = () => clearError({ redirect: '/' })
         {{ error.statusCode }}
       </h1>
       <p class="error__d">{{ error.message }}</p>
-      <Button class="error__btn" variant="dark" @click="handleError">
+      <Button class="error__btn" variant="primary" @click="handleError">
         <Icon name="lucide:arrow-left" />
         Back
       </Button>
@@ -52,7 +52,7 @@ const handleError = () => clearError({ redirect: '/' })
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1;
     pointer-events: none;
   }
