@@ -6,6 +6,40 @@ interface iProps {
 }
 
 defineProps<iProps>()
+
+const { addToast } = useToasts()
+const { locale } = useI18n()
+
+const messages = {
+  copied: {
+    uk: 'Посилання скопійовано',
+    en: 'Link copied',
+  },
+  error: {
+    uk: 'Не вдалося скопіювати посилання',
+    en: 'Failed to copy link',
+  },
+} as const
+
+const getText = (key: keyof typeof messages) =>
+  locale.value === 'uk' ? messages[key].uk : messages[key].en
+
+const copyLink = async () => {
+  if (!process.client) return
+
+  try {
+    await navigator.clipboard.writeText(window.location.href)
+    addToast({
+      color: ToastColor.success,
+      text: getText('copied'),
+    })
+  } catch {
+    addToast({
+      color: ToastColor.danger,
+      text: getText('error'),
+    })
+  }
+}
 </script>
 
 <template>
@@ -30,7 +64,7 @@ defineProps<iProps>()
           >
             <IconsSocialsLinkedin />
           </CircleButton>
-          <CircleButton class="curr-news-content__btn">
+          <CircleButton class="curr-news-content__btn" @click="copyLink">
             <IconsChains />
           </CircleButton>
         </div>
