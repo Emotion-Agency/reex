@@ -11,8 +11,7 @@ export const basicObject: IBasicObject = {
   css: false,
   appear: true,
   onEnter() {
-    document.documentElement.style.cursor = 'auto'
-    document.body.style.pointerEvents = 'auto'
+    resetScroll()
   },
   onLeave() {
     window.escroll && (window.escroll.disabled = true)

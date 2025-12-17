@@ -9,6 +9,8 @@ onMounted(() => {
     stepSize: 0.9,
     raf,
   })
+
+  resetScroll()
 })
 
 onBeforeUnmount(() => {

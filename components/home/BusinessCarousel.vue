@@ -9,14 +9,6 @@ interface ServicesCarouselProps {
 
 defineProps<ServicesCarouselProps>()
 
-const { width } = useWindowSize()
-
-const slidesToScroll = computed(() => {
-  if (width.value < 660) return 1
-  if (width.value < 960) return 2
-  return 4
-})
-
 const {
   scrollPrev,
   scrollNext,
@@ -25,7 +17,7 @@ const {
   nextBtnDisabled,
   progress,
 } = useEmbla({
-  slidesToScroll,
+  slidesToScroll: 1,
   container: '.services-carousel__container',
   loop: true,
 })

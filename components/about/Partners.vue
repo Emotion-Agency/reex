@@ -114,10 +114,6 @@ const localePath = useLocalePath()
   @media (max-width: $br2) {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  @media (max-width: $br4) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .a-partners__item {
@@ -144,7 +140,7 @@ const localePath = useLocalePath()
     }
   }
 
-  @media (max-width: $br2) and (min-width: $br4) {
+  @media (max-width: $br2) {
     border-right: 1px solid var(--foreground-muted-10);
     border-bottom: 1px solid var(--foreground-muted-10);
 
@@ -156,14 +152,6 @@ const localePath = useLocalePath()
       border-bottom: none;
     }
   }
-
-  @media (max-width: $br4) {
-    border-right: none;
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
 }
 
 .a-partners__logo {
@@ -172,6 +160,10 @@ const localePath = useLocalePath()
 
   @media (max-width: $br1) {
     width: 110px;
+  }
+
+  @media (max-width: $br4) {
+    width: 80px;
   }
 }
 </style>

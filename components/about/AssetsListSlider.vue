@@ -59,7 +59,7 @@ const { emblaRef } = useEmbla({
   border-radius: vw(12);
 
   @media (max-width: $br1) {
-    flex: 0 0 70%;
+    flex: 0 0 90%;
     border-radius: 12px;
     margin-right: 16px;
   }
