@@ -1,30 +1,20 @@
 <script setup lang="ts">
-import useVuelidate from '@vuelidate/core'
 import { required, helpers, minLength, maxLength } from '@vuelidate/validators'
 import { useFormStory } from '~/composables/stories/formStory'
 import { useServiceStories } from '~/composables/stories/serviceStories'
 
 const { story: formStory } = await useFormStory()
 const { services } = await useServiceStories('services')
-const { showThankYou } = useThankyouScreen()
 
 const serviceOptions = computed(() =>
   services.value?.map(s => s.content?.title).filter(Boolean)
 )
-
-const form = reactive({
-  name: '',
-  phone: '',
-  service: '',
-  message: '',
-})
 
 const rules = {
   name: {
     required: helpers.withMessage('Введіть імʼя', required),
     minLength: helpers.withMessage('Мінімум 2 символи', minLength(2)),
   },
-
   phone: {
     required: helpers.withMessage('Введіть номер телефону', required),
     minLength: helpers.withMessage('Мінімум 9 цифр', minLength(9)),
@@ -32,61 +22,19 @@ const rules = {
   },
 }
 
-const v$ = useVuelidate(rules, form)
-
-const inputs = computed(() => [
+const { form, v$, submit } = useFormHandle(
   {
-    id: 'contact-form-name',
-    name: 'name',
-    type: 'text',
-    placeholder: formStory?.value?.content?.name_field || 'Name',
-    required: true,
-    model: form.name,
-    errors: v$.value.name.$errors,
+    name: '',
+    phone: '',
+    service: '',
+    message: '',
   },
-  {
-    id: 'contact-form-number',
-    name: 'phone',
-    type: 'text',
-    placeholder: formStory?.value?.content?.phone_field || 'Phone',
-    required: true,
-    model: form.phone,
-    errors: v$.value.phone.$errors,
-  },
-  {
-    id: 'contact-form-message',
-    name: 'message',
-    type: 'textarea',
-    placeholder: formStory?.value?.content?.message_field || 'Message',
-    required: false,
-  },
-  {
-    id: 'contact-form-select',
-    name: 'service',
-    placeholder: formStory?.value?.content?.service_field || 'Service type',
-    required: false,
-    options: serviceOptions.value,
-  },
-])
-
-const onSubmit = async () => {
-  const valid = await v$.value.$validate()
-
-  if (!valid) return
-
-  showThankYou()
-  console.log('Form data:', { ...form })
-
-  form.name = ''
-  form.phone = ''
-  form.service = ''
-  form.message = ''
-  v$.value.$reset()
-}
+  rules
+)
 </script>
 
 <template>
-  <form novalidate class="c-form" @submit.prevent="onSubmit">
+  <form novalidate class="c-form" @submit.prevent="submit">
     <div class="c-form__input-list">
       <!-- Name -->
       <InputField
@@ -95,7 +43,6 @@ const onSubmit = async () => {
         type="text"
         name="name"
         :placeholder="formStory?.content?.name_field || 'Name'"
-        required
         :errors="v$.name.$errors"
         class="c-form__input"
       />
@@ -107,7 +54,6 @@ const onSubmit = async () => {
         type="text"
         name="phone"
         :placeholder="formStory?.content?.phone_field || 'Phone'"
-        required
         :errors="v$.phone.$errors"
         class="c-form__input"
       />
@@ -122,7 +68,6 @@ const onSubmit = async () => {
 
       <!-- Message -->
       <InputTextarea
-        v-if="true"
         v-model="form.message"
         id="contact-form-message"
         name="message"

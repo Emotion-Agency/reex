@@ -1,29 +1,20 @@
 <script lang="ts" setup>
-import useVuelidate from '@vuelidate/core'
 import { required, helpers, minLength, maxLength } from '@vuelidate/validators'
 import { useFormStory } from '~/composables/stories/formStory'
 import { useServiceStories } from '~/composables/stories/serviceStories'
 
 const { story: formStory } = await useFormStory()
 const { services } = await useServiceStories('services')
-const { showThankYou } = useThankyouScreen()
 
 const serviceOptions = computed(() =>
   services.value?.map(s => s.content?.title).filter(Boolean)
 )
-
-const form = reactive({
-  name: '',
-  phone: '',
-  service: '',
-})
 
 const rules = {
   name: {
     required: helpers.withMessage('Введіть імʼя', required),
     minLength: helpers.withMessage('Мінімум 2 символи', minLength(2)),
   },
-
   phone: {
     required: helpers.withMessage('Введіть номер телефону', required),
     minLength: helpers.withMessage('Мінімум 9 цифр', minLength(9)),
@@ -31,53 +22,41 @@ const rules = {
   },
 }
 
-const v$ = useVuelidate(rules, form)
+const { form, v$, submit } = useFormHandle(
+  {
+    name: '',
+    phone: '',
+    service: '',
+  },
+  rules
+)
 
 const inputs = computed(() => [
   {
-    id: 'form-name',
+    id: 'app-form-name',
     name: 'name',
     type: 'text',
     placeholder: formStory?.value?.content?.name_field || 'Name',
-    required: true,
-    model: form.name,
     errors: v$.value.name.$errors,
   },
   {
-    id: 'form-number',
+    id: 'app-form-phone',
     name: 'phone',
     type: 'text',
     placeholder: formStory?.value?.content?.phone_field || 'Phone',
-    required: true,
-    model: form.phone,
     errors: v$.value.phone.$errors,
   },
   {
-    id: 'form-select',
+    id: 'app-form-service',
     name: 'service',
     placeholder: formStory?.value?.content?.service_field || 'Service type',
-    required: false,
     options: serviceOptions.value,
   },
 ])
-
-const onSubmit = async () => {
-  const valid = await v$.value.$validate()
-
-  if (!valid) return
-
-  showThankYou()
-  console.log('Form data:', { ...form })
-
-  form.name = ''
-  form.phone = ''
-  form.service = ''
-  v$.value.$reset()
-}
 </script>
 
 <template>
-  <form novalidate class="form" @submit.prevent="onSubmit">
+  <form novalidate class="form" @submit.prevent="submit">
     <h2 class="form__t">
       {{ formStory?.content?.text }}
     </h2>
@@ -96,7 +75,6 @@ const onSubmit = async () => {
           :type="input.type"
           :name="input.name"
           :placeholder="input.placeholder"
-          :required="input.required"
           :errors="input.errors"
           class="form__input"
         />
