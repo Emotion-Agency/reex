@@ -184,6 +184,11 @@ const {
     height: auto;
     margin-right: 16px;
     flex-direction: column;
+    flex: 0 0 400px;
+  }
+
+  @media (max-width: $br4) {
+    flex: 0 0 100%;
   }
 }
 
