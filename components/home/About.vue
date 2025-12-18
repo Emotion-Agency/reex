@@ -13,6 +13,7 @@ const localePath = useLocalePath()
 
 const imgRefs = ref<HTMLElement[]>([])
 const triggers: ScrollTrigger[] = []
+const $el = ref<HTMLElement | null>(null)
 
 const animate = () => {
   if (!imgRefs.value.length) return
@@ -41,6 +42,8 @@ const animate = () => {
   })
 }
 
+useDetectHeaderColor($el as Ref<HTMLElement>)
+
 onMounted(() => {
   animate()
 })
@@ -52,7 +55,7 @@ onBeforeUnmount(async () => {
 </script>
 
 <template>
-  <section ref="sectionRef" class="about">
+  <section ref="$el" class="about">
     <div class="container about__wrapper">
       <Pill variant="light"> {{ content?.tag }}</Pill>
       <h2 class="about__t">

@@ -8,11 +8,21 @@ interface iHeaderDesktopProps {
 const props = defineProps<iHeaderDesktopProps>()
 
 const localePath = useLocalePath()
+
+const { headerColor, $headerRef } = useHeaderColor()
 </script>
 
 <template>
-  <div class="header-desk">
-    <NuxtLink :to="localePath('/')" class="header-desk__logo">
+  <div
+    ref="$headerRef"
+    class="header-desk"
+    :class="`header-desk--${headerColor}`"
+  >
+    <NuxtLink
+      :to="localePath('/')"
+      aria-label="Site logo"
+      class="header-desk__logo"
+    >
       <IconsLogo />
     </NuxtLink>
     <nav class="header-desk__nav">
@@ -54,12 +64,23 @@ const localePath = useLocalePath()
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &--white {
+    .header-desk__logo {
+      color: var(--secondary);
+    }
+  }
 }
 
 .header-desk__logo {
   display: block;
   width: vw(90);
   height: auto;
+  color: var(--foreground);
+
+  svg {
+    transition: color 0.3s ease;
+  }
 }
 
 .header-desk__nav {

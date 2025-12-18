@@ -7,10 +7,14 @@ interface iServiceFullscreenAssetProps {
 }
 
 defineProps<iServiceFullscreenAssetProps>()
+
+const $el = ref<HTMLElement | null>(null)
+
+useDetectHeaderColor($el as Ref<HTMLElement>)
 </script>
 
 <template>
-  <section class="fs-asset">
+  <section ref="$el" class="fs-asset">
     <div class="container fs-asset__d-wrapper">
       <Button class="fs-asset__btn" variant="dark">
         <Icon name="lucide:arrow-down" />

@@ -6,10 +6,14 @@ interface IProps {
 }
 
 defineProps<IProps>()
+
+const $el = ref<HTMLElement | null>(null)
+
+useDetectHeaderColor($el as Ref<HTMLElement>)
 </script>
 
 <template>
-  <section class="hero">
+  <section ref="$el" class="hero">
     <div data-preload class="hero__bg-wrapper">
       <AssetRenderer
         :src="content?.background_asset.filename"

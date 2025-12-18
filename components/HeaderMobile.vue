@@ -30,7 +30,7 @@ watch(
 </script>
 
 <template>
-  <div class="header-mob" :class="{ 'header-mob--opened': isMenuOpened }">
+  <div class="header-mob" :class="[{ 'header-mob--opened': isMenuOpened }]">
     <div class="header-mob__wrapper">
       <NuxtLink :to="localePath('/')" class="header-mob__logo">
         <IconsLogo />
@@ -137,6 +137,10 @@ watch(
         }
       }
     }
+
+    .header-mob__logo {
+      color: var(--secondary);
+    }
   }
 }
 
@@ -150,7 +154,13 @@ watch(
 }
 
 .header-mob__logo {
+  color: var(--foreground);
+  height: auto;
   width: 70px;
+
+  svg {
+    transition: color 0.3s ease;
+  }
 }
 
 .header-mob__right {

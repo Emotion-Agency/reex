@@ -9,10 +9,14 @@ const { story: globalCompanyContactStory } =
   await useGlobalCompanyContactStory()
 
 const localePath = useLocalePath()
+
+const $el = ref<HTMLElement | null>(null)
+
+useDetectHeaderColor($el as Ref<HTMLElement>)
 </script>
 
 <template>
-  <footer class="footer">
+  <footer ref="$el" class="footer">
     <div class="container footer__wrapper">
       <AppForm />
       <div class="footer__line" />

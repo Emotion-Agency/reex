@@ -6,10 +6,14 @@ interface iArticlesListProps {
 }
 
 const props = defineProps<iArticlesListProps>()
+
+const $el = ref<HTMLElement | null>(null)
+
+useDetectHeaderColor($el as Ref<HTMLElement>)
 </script>
 
 <template>
-  <section class="news-asset">
+  <section ref="$el" class="news-asset">
     <AssetRenderer
       data-preload
       :src="asset?.filename"
