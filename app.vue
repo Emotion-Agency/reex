@@ -60,6 +60,9 @@ useHead({
     <AppGrid />
     <!-- <Landscape /> -->
     <SmoothScroll>
+      <Transition name="loader">
+        <Preloader v-if="isFirstLoad" />
+      </Transition>
       <NuxtLayout>
         <div class="layout-content">
           <AppHeader />
