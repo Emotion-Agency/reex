@@ -21,12 +21,10 @@ useHeaderInteraction()
   position: fixed;
   top: 0;
   width: 100%;
-  padding: vw(16) $g-offset;
   z-index: 100;
-  transition:
-    transform 1s ease,
-    opacity 1s ease;
-  will-change: transform, opacity;
+  display: flex;
+  padding: vw(16) $g-offset;
+  transition: transform 1s ease;
 
   @media (max-width: $br1) {
     padding: 12px $g-sm;
@@ -35,16 +33,6 @@ useHeaderInteraction()
 
   @media (max-width: $br3) {
     padding: 12px $g-s;
-  }
-}
-
-.header__logo {
-  display: block;
-  width: vw(90);
-  height: auto;
-
-  @media (max-width: $br1) {
-    width: 70px;
   }
 }
 

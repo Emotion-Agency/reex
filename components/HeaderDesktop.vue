@@ -63,13 +63,22 @@ const localePath = useLocalePath()
 }
 
 .header-desk__nav {
+  position: relative;
   display: flex;
   align-items: center;
   padding: vw(4);
   padding-left: vw(24);
-  background-color: var(--bg-muted-75);
-  backdrop-filter: blur(vw(50));
   border-radius: vw(12);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--bg-muted-75);
+    backdrop-filter: blur(vw(50));
+    pointer-events: none;
+    border-radius: inherit;
+  }
 
   .router-link-active {
     &.underline {
