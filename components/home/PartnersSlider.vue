@@ -170,10 +170,10 @@ const { current, progress, handlePrev, handleNext } = useSlider(
 }
 
 .partners-slider__progress {
-  margin-top: vw(96);
+  margin-top: vw(96) !important;
 
   @media (max-width: $br1) {
-    margin-top: 58px;
+    margin-top: 58px !important;
   }
 }
 </style>

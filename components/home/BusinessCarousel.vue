@@ -75,9 +75,6 @@ const {
     <ClientOnly>
       <ProgressBar :progress="progress" class="services-carousel__progress" />
     </ClientOnly>
-    <!-- <div class="services-carousel__progress">
-      <div class="services-carousel__progress-bar" :style="{ width: progress + '%' }"></div>
-    </div> -->
   </section>
 </template>
 
@@ -256,10 +253,10 @@ const {
 }
 
 .services-carousel__progress {
-  margin-top: vw(78);
+  margin-top: vw(78) !important;
 
   @media (max-width: $br1) {
-    margin-top: 42px;
+    margin-top: 42px !important;
   }
 }
 </style>
