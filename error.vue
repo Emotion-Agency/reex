@@ -5,23 +5,17 @@ defineProps({
   error: Object as () => NuxtError,
 })
 
+const { locale } = useI18n()
+
 const handleError = () => clearError({ redirect: '/' })
+
+const backText = computed(() => (locale.value === 'uk' ? 'Назад' : 'Back'))
 </script>
 
 <template>
   <section class="error">
     <div class="error__bg-wrapper">
-      <img
-        src="/images/home-1.png"
-        alt=""
-        :width="1440"
-        :video-attributes="{
-          autoplay: true,
-          playsinline: true,
-          muted: true,
-        }"
-        class="error__bg"
-      />
+      <img src="/images/error.png" alt="Error background" class="error__bg" />
     </div>
     <div class="error__wrapper container">
       <h1 data-split class="error__t">
@@ -30,7 +24,7 @@ const handleError = () => clearError({ redirect: '/' })
       <p class="error__d">{{ error.message }}</p>
       <Button class="error__btn" variant="primary" @click="handleError">
         <Icon name="lucide:arrow-left" />
-        Back
+        {{ backText }}
       </Button>
     </div>
   </section>
