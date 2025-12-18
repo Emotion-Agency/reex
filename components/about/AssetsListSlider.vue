@@ -26,7 +26,7 @@ const { emblaRef } = useEmbla({
         :key="img?._uid"
         class="assets-list__slide"
       >
-        <CustomImage
+        <ParallaxImg
           :src="img?.filename"
           :alt="img?.alt"
           :width="564"
