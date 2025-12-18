@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { ImgHTMLAttributes, ReservedProps, VideoHTMLAttributes } from 'vue'
 import CustomImage from '~/components/CustomImage.vue'
+import ParallaxImg from '~/components/ParallaxImg.vue'
 import CustomVideo from '~/components/CustomVideo.vue'
 
 interface BaseProps {
   src: string | undefined
+  isParallax?: boolean
 }
 
 interface ImageProps {
@@ -27,6 +29,10 @@ type TProps = BaseProps & Partial<ImageProps & VideoProps>
 
 const props = defineProps<TProps>()
 
+const imageComponent = computed(() =>
+  props.isParallax ? ParallaxImg : CustomImage
+)
+
 const fileType = computed(() => {
   if (isVideo(props.src)) return 'video'
   if (isPicture(props.src)) return 'image'
@@ -36,7 +42,7 @@ const fileType = computed(() => {
 
 <template>
   <component
-    :is="CustomImage"
+    :is="imageComponent"
     v-if="fileType === 'image'"
     :src="src"
     :alt="alt"

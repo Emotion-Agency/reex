@@ -24,6 +24,7 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
         playsinline: true,
         muted: true,
       }"
+      is-parallax
       class="news-asset__img"
     />
   </section>

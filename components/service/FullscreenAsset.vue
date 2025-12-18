@@ -33,6 +33,7 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
           playsinline: true,
           muted: true,
         }"
+        is-parallax
         class="fs-asset__asset"
       />
     </div>

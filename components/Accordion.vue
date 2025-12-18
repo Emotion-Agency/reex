@@ -13,7 +13,7 @@ const openedId = ref(props.content?.items[0]?._uid ?? '')
 <template>
   <div class="grid coop-steps__content">
     <div class="coop-steps__img-wrapper">
-      <CustomImage
+      <ParallaxImg
         v-for="step in content?.items"
         :key="step._uid"
         :src="step.asset.filename"

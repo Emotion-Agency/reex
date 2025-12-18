@@ -55,7 +55,7 @@ const {
           :key="item?._uid"
           class="history-carousel__slide"
         >
-          <CustomImage
+          <ParallaxImg
             :src="item?.asset?.filename"
             :alt="item?.asset?.alt"
             :width="664"
