@@ -16,15 +16,16 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
 <template>
   <section ref="$el" class="fs-asset">
     <div class="container fs-asset__d-wrapper">
-      <Button class="fs-asset__btn" variant="dark">
+      <Button data-scale class="fs-asset__btn" variant="dark">
         <Icon name="lucide:arrow-down" />
       </Button>
-      <p class="fs-asset__d">
+      <p data-t class="fs-asset__d">
         {{ description }}
       </p>
     </div>
     <div class="fs-asset__wrapper">
       <AssetRenderer
+        data-preload
         :src="asset?.filename"
         :alt="asset?.alt"
         :width="1440"

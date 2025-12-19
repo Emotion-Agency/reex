@@ -10,8 +10,8 @@ defineProps<iAppHeroProps>()
 <template>
   <section class="app-hero" :class="{ 'app-hero--contacts': isContacts }">
     <div class="app-hero__wrapper container">
-      <h1 class="app-hero__t">{{ title }}</h1>
-      <Divider class="app-hero__divider" />
+      <h1 data-split class="app-hero__t">{{ title }}</h1>
+      <Divider data-o class="app-hero__divider" />
     </div>
   </section>
 </template>

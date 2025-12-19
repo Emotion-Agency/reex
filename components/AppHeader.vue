@@ -24,6 +24,7 @@ useHeaderInteraction()
   z-index: 100;
   display: flex;
   padding: vw(16) $g-offset;
+  transform: translateY(-100%);
   transition: transform 1s ease;
 
   @media (max-width: $br1) {

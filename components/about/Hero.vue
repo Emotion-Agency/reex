@@ -28,7 +28,7 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
     />
 
     <div class="hero__wrapper container">
-      <h1 class="hero__t">{{ content.title }}</h1>
+      <h1 data-split class="hero__t">{{ content.title }}</h1>
     </div>
   </section>
 </template>

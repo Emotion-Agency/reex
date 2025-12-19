@@ -23,7 +23,7 @@ export const useHeaderInteraction = () => {
   }
 
   watch(isVisible, value => {
-    document.body.classList.toggle('nav-hidden', !value)
+    document.body.classList.toggle('nav-visible', value)
   })
 
   const onScroll = (e: IEventArgs) => {

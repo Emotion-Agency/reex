@@ -19,6 +19,7 @@ export const useLoadingAnimation = () => {
     return new Promise<void>(resolve => {
       ;(async () => {
         await document.fonts.ready
+
         document.documentElement.style.cursor = 'wait'
         document.body.style.pointerEvents = 'none'
 
@@ -64,7 +65,6 @@ export const useLoadingAnimation = () => {
             delay
           )
         }
-
         let titleSplitter: SplitText
 
         if ($split) {
@@ -88,7 +88,6 @@ export const useLoadingAnimation = () => {
                   stagger: 0.1,
                   opacity: 1,
                   ease: 'power2.out',
-                  // overwrite: true,
                 },
                 delay
               )
@@ -137,9 +136,15 @@ export const useLoadingAnimation = () => {
           )
         }
 
-        isFirstLoad.value = false
+        tl.call(
+          () => {
+            document.body.classList.add('nav-visible')
+          },
+          [],
+          '>-1.5'
+        )
 
-        // const treshold = $o.length ? 1200 : 300
+        isFirstLoad.value = false
 
         const dur = tl.duration() * 1000
 

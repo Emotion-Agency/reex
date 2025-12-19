@@ -94,9 +94,9 @@ body {
   flex-shrink: 0;
 }
 
-.nav-hidden {
+.nav-visible {
   .header {
-    transform: translateY(-100%);
+    transform: translateY(0) !important;
   }
 }
 
