@@ -173,9 +173,15 @@ const {
 
 .history-carousel__container {
   display: flex;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 .history-carousel__slide {
+  user-select: none;
   display: flex;
   overflow: hidden;
   min-width: 0;

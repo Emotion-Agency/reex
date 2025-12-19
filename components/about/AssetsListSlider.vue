@@ -48,6 +48,11 @@ const { emblaRef } = useEmbla({
 
 .assets-list__container {
   display: flex;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 .assets-list__slide {
