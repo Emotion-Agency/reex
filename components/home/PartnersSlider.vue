@@ -56,10 +56,8 @@ const { current, progress, handlePrev, handleNext } = useSlider(
 
 .partners-slider__content {
   position: relative;
-
-  @media (min-width: $br1) {
-    height: vw(320);
-  }
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
 
   @media (max-width: $br1) {
     display: flex;
@@ -71,13 +69,13 @@ const { current, progress, handlePrev, handleNext } = useSlider(
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 
   @media (min-width: $br1) {
     @include col(1, 5);
   }
 
   @media (max-width: $br1) {
-    justify-content: flex-start;
     gap: 20px;
     width: fit-content;
   }
@@ -125,35 +123,37 @@ const { current, progress, handlePrev, handleNext } = useSlider(
 }
 
 .partners-slider__list {
-  transform: none !important;
+  display: grid;
+  grid-template-rows: auto;
+  align-items: start;
 
   @media (min-width: $br1) {
     @include col(7, 11);
   }
 
   @media (max-width: $br1) {
-    position: relative;
-    margin-top: 20px;
-    height: 180px;
+    margin-top: 30px;
   }
 }
 
 .partners-slider__item {
-  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  grid-area: 1 / 1;
+  gap: vw(20);
   height: 100%;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.5s ease;
-  gap: vw(10);
+
+  @media (max-width: $br1) {
+    gap: 30px;
+  }
 
   &--active {
     opacity: 1;
-  }
-
-  @media (max-width: $br1) {
-    gap: 10px;
+    pointer-events: auto;
   }
 }
 
