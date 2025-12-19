@@ -60,11 +60,15 @@ watch(fullScreen, newVal => {
 
 <style scoped lang="scss">
 .video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
   video {
-    display: block;
-    max-width: 100%;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    display: block;
   }
 }
 </style>
