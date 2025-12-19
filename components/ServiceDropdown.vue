@@ -8,6 +8,7 @@ interface ServiceDropdownProps {
 
 const props = defineProps<ServiceDropdownProps>()
 
+const { isVisible } = useHeaderInteraction()
 const isAccordionOpened = ref(false)
 const dropdownRef = ref(null)
 
@@ -17,6 +18,12 @@ const toggleAccordion = () => {
 
 onClickOutside(dropdownRef, () => {
   isAccordionOpened.value = false
+})
+
+watch(isVisible, newVal => {
+  if (!newVal) {
+    isAccordionOpened.value = false
+  }
 })
 </script>
 
