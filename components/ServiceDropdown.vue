@@ -52,6 +52,7 @@ watch(isVisible, newVal => {
           :to="`/${link.full_slug}`"
           tag="nuxt-link"
           class="service-dropdown__link"
+          @click="isAccordionOpened = false"
         >
           {{ link.content.title }}
         </NuxtLink>
