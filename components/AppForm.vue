@@ -6,8 +6,11 @@ import { useServiceStories } from '~/composables/stories/serviceStories'
 const { story: formStory } = await useFormStory()
 const { services } = await useServiceStories('services')
 
-const serviceOptions = computed(() =>
-  services.value?.map(s => s.content?.title).filter(Boolean)
+const serviceOptions = computed<string[]>(
+  () =>
+    services.value
+      ?.map(s => richTextToString(s.content?.colored_title))
+      .filter(Boolean) ?? []
 )
 
 const rules = {
@@ -57,9 +60,12 @@ const inputs = computed(() => [
 
 <template>
   <form novalidate class="form" @submit.prevent="submit">
-    <h2 class="form__t">
-      {{ formStory?.content?.text }}
-    </h2>
+    <ColoredText
+      as="h2"
+      variant="light"
+      :content="formStory?.content?.colored_text"
+      class="form__t"
+    />
     <div class="form__input-list">
       <template v-for="input in inputs" :key="input.id">
         <BaseSelect
@@ -108,14 +114,6 @@ const inputs = computed(() => [
 
   @media (max-width: $br3) {
     max-width: 100%;
-  }
-}
-
-.form__t {
-  @include heading-h2;
-
-  span {
-    color: var(--bg-muted-50);
   }
 }
 

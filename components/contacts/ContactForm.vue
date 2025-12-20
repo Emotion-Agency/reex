@@ -6,8 +6,11 @@ import { useServiceStories } from '~/composables/stories/serviceStories'
 const { story: formStory } = await useFormStory()
 const { services } = await useServiceStories('services')
 
-const serviceOptions = computed(() =>
-  services.value?.map(s => s.content?.title).filter(Boolean)
+const serviceOptions = computed<string[]>(
+  () =>
+    services.value
+      ?.map(s => richTextToString(s.content?.colored_title))
+      .filter(Boolean) ?? []
 )
 
 const rules = {

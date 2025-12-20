@@ -1,5 +1,7 @@
+import type { iRichTextDoc } from './richTextTypes'
+
 export interface iFormContent {
-  text: string
+  colored_text: iRichTextDoc
   name_field: string
   phone_field: string
   service_field: string
