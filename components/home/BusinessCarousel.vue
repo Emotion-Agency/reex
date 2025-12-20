@@ -7,7 +7,7 @@ interface ServicesCarouselProps {
   carouselItems: iStory<iBusinessCarouselItem>[]
 }
 
-defineProps<ServicesCarouselProps>()
+const props = defineProps<ServicesCarouselProps>()
 
 const {
   scrollPrev,
@@ -21,6 +21,8 @@ const {
   container: '.services-carousel__container',
   loop: true,
 })
+
+console.log(props.carouselItems)
 </script>
 
 <template>
@@ -62,7 +64,7 @@ const {
             </div>
             <div class="services-carousel__info">
               <h3 class="services-carousel__title">
-                {{ item.content?.title }}
+                {{ richTextToString(item.content?.colored_title) }}
               </h3>
               <p class="services-carousel__description">
                 {{ item.content?.description }}
