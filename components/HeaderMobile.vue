@@ -8,6 +8,7 @@ interface iHeaderDesktopProps {
 const props = defineProps<iHeaderDesktopProps>()
 
 const { isMenuOpened } = useAppState()
+const { isVisible } = useHeaderInteraction()
 const isServicesOpened = ref(false)
 const localePath = useLocalePath()
 const route = useRoute()
@@ -27,6 +28,13 @@ watch(
     isServicesOpened.value = false
   }
 )
+
+watch(isVisible, newVal => {
+  if (!newVal) {
+    isServicesOpened.value = false
+    isMenuOpened.value = false
+  }
+})
 </script>
 
 <template>
@@ -75,7 +83,7 @@ watch(
                   :to="`/${link?.full_slug}`"
                   class="header-mob__submenu-link"
                 >
-                  {{ link?.content?.title }}
+                  {{ richTextToString(link?.content?.colored_title) }}
                 </NuxtLink>
               </div>
             </div>
