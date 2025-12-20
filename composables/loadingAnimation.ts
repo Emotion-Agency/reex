@@ -12,7 +12,8 @@ export const useLoadingAnimation = () => {
     const $t = $el.querySelectorAll('[data-t]')
     const $o = $el.querySelectorAll('[data-o]')
     const $scale = $el.querySelectorAll('[data-scale]')
-    return { $image, $split, $t, $o, $scale }
+    const $contacts = $el.querySelectorAll('[data-contacts]')
+    return { $image, $split, $t, $o, $scale, $contacts }
   }
 
   const animate = async (parent?: HTMLElement, wait = 0.2) => {
@@ -23,7 +24,8 @@ export const useLoadingAnimation = () => {
         document.documentElement.style.cursor = 'wait'
         document.body.style.pointerEvents = 'none'
 
-        const { $image, $split, $t, $o, $scale } = getElements(parent)
+        const { $image, $split, $t, $o, $scale, $contacts } =
+          getElements(parent)
         await delayPromise(200)
 
         const delay = isFirstLoad.value ? 1.7 : wait
@@ -50,6 +52,7 @@ export const useLoadingAnimation = () => {
         tl.set($t, { opacity: 0, y: 50 })
         tl.set($o, { opacity: 0 })
         tl.set($scale, { opacity: 0, scale: 0.6 })
+        tl.set($contacts, { opacity: 0, y: 50 })
 
         // Animate image resize
         if ($image?.length) {
@@ -133,6 +136,19 @@ export const useLoadingAnimation = () => {
               ease: 'power2.out',
             },
             '<1'
+          )
+        }
+
+        if ($contacts.length) {
+          tl.to(
+            $contacts,
+            {
+              duration: 1.6,
+              opacity: 1,
+              y: 0,
+              ease: 'power2.out',
+            },
+            '<'
           )
         }
 

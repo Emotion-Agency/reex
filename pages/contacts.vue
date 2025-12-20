@@ -30,7 +30,7 @@ const meta = computed(() => {
       :colored-title="contactsStory?.content?.colored_title"
       is-contacts
     />
-    <ContactsContactInformation class="contacts__info" />
+    <ContactsContactInformation data-contacts class="contacts__info" />
   </div>
 </template>
 
