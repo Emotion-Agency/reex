@@ -20,6 +20,11 @@ onClickOutside(dropdownRef, () => {
   isAccordionOpened.value = false
 })
 
+const getColoredTitle = (link: any) =>
+  link?.content?.colored_title?.content?.[0]?.content
+    ?.map((n: any) => n.text)
+    .join('') ?? ''
+
 watch(isVisible, newVal => {
   if (!newVal) {
     isAccordionOpened.value = false
@@ -54,7 +59,7 @@ watch(isVisible, newVal => {
           class="service-dropdown__link"
           @click="isAccordionOpened = false"
         >
-          {{ link.content.title }}
+          {{ getColoredTitle(link) }}
         </NuxtLink>
       </div>
     </div>

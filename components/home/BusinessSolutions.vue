@@ -5,7 +5,7 @@ interface IProps {
   content: iBusinessSolutions
 }
 
-const props = defineProps<IProps>()
+defineProps<IProps>()
 
 const localePath = useLocalePath()
 </script>
@@ -16,9 +16,11 @@ const localePath = useLocalePath()
       <div class="grid business__top">
         <Pill class="business__pill"> {{ content?.tag }} </Pill>
         <div class="business__top-content">
-          <h2 class="business__t">
-            {{ content?.title }}
-          </h2>
+          <ColoredText
+            :content="content?.colored_title"
+            as="h2"
+            class="business__t"
+          />
           <DualButton
             tag="nuxt-link"
             :to="localePath(normalizePath(content?.link[0]?.url?.cached_url))"
@@ -61,14 +63,6 @@ const localePath = useLocalePath()
 .business__top-content {
   @media (min-width: $br1) {
     @include col(7, 12);
-  }
-}
-
-.business__t {
-  @include heading-h2;
-
-  span {
-    color: var(--foreground-muted-50);
   }
 }
 

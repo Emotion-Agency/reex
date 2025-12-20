@@ -1,3 +1,4 @@
+import type { iRichTextDoc } from './richTextTypes'
 import type { iImage } from './story'
 
 export interface iAccordionItem {
@@ -10,7 +11,7 @@ export interface iAccordionItem {
 
 export interface iAccordionSteps {
   tag: string
-  text: string
+  colored_title: iRichTextDoc
   items: iAccordionItem[]
   component: string
   _uid: string

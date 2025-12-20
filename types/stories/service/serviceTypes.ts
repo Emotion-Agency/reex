@@ -1,5 +1,6 @@
 import type { iAccordionSteps } from '../accordionTypes'
 import type { iAdvantageItem } from '../advantagesTypes'
+import type { iRichTextDoc } from '../richTextTypes'
 import type { iDeepLink, iImage, iMeta } from '../story'
 
 export interface iQuestionItem {
@@ -36,7 +37,7 @@ export interface iAdvice {
 }
 
 export interface iServiceContent {
-  title: string
+  colored_title: iRichTextDoc
   description: string
   asset: iImage
   advice: iAdvice[]

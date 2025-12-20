@@ -96,7 +96,7 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
         />
       </div>
       <Rights
-        :copyright-text="footerStory?.content?.copyright_text"
+        :copyright-text="footerStory?.content?.colored_copyright_text"
         :made-by-text="footerStory?.content?.made_by_text"
       />
     </div>

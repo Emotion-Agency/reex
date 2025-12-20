@@ -14,9 +14,11 @@ defineProps<IProps>()
       <div class="grid service-coop-steps__top">
         <Pill class="service-coop-steps__pill"> {{ content?.tag }} </Pill>
         <div class="service-coop-steps__top-content">
-          <h2 class="service-coop-steps__top-t">
-            {{ content?.text }}
-          </h2>
+          <ColoredText
+            as="h2"
+            :content="content?.colored_title"
+            class="service-coop-steps__top-t"
+          />
         </div>
       </div>
       <Accordion :content="content" />
@@ -52,14 +54,6 @@ defineProps<IProps>()
 .service-coop-steps__top-content {
   @media (min-width: $br1) {
     @include col(7, 12);
-  }
-}
-
-.service-coop-steps__top-t {
-  @include heading-h2;
-
-  span {
-    color: var(--foreground-muted-50);
   }
 }
 </style>

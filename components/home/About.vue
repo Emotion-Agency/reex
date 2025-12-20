@@ -58,9 +58,12 @@ onBeforeUnmount(async () => {
   <section ref="$el" class="about">
     <div class="container about__wrapper">
       <Pill variant="light"> {{ content?.tag }}</Pill>
-      <h2 class="about__t">
-        {{ content?.text }}
-      </h2>
+      <ColoredText
+        :content="content?.colored_title"
+        as="h2"
+        variant="light"
+        class="about__t"
+      />
       <DualButton
         class="about__btn"
         tag="nuxt-link"
@@ -124,10 +127,6 @@ onBeforeUnmount(async () => {
 
   @media (max-width: $br3) {
     max-width: 100%;
-  }
-
-  span {
-    color: var(--bg-muted-50);
   }
 }
 

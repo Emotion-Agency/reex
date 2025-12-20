@@ -26,7 +26,10 @@ const meta = computed(() => {
 <template>
   <div class="contacts">
     <PageMeta v-if="meta" v-bind="meta" />
-    <AppHero :title="contactsStory?.content?.title" is-contacts />
+    <AppHero
+      :colored-title="contactsStory?.content?.colored_title"
+      is-contacts
+    />
     <ContactsContactInformation class="contacts__info" />
   </div>
 </template>

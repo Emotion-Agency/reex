@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import type { iRichTextDoc } from '~/types/stories/richTextTypes'
+
 interface iRightsProps {
-  copyrightText: string
+  copyrightText: iRichTextDoc
   madeByText: string
   isContacts?: boolean
 }
@@ -10,10 +12,13 @@ defineProps<iRightsProps>()
 
 <template>
   <div class="rights" :class="{ 'rights--contacts': isContacts }">
-    <p v-if="copyrightText" class="rights__text">
-      {{ copyrightText }}
-    </p>
-    <div v-if="madeByText" class="rights__text">
+    <ColoredText
+      v-if="copyrightText?.content?.length"
+      :content="copyrightText"
+      :variant="isContacts ? 'dark' : 'light'"
+      class="rights__text"
+    />
+    <div v-if="madeByText" class="rights__created-by">
       <span>{{ madeByText }} {{ ' ' }}</span>
       <a
         href="https://www.emotion-agency.com/"
@@ -45,12 +50,6 @@ defineProps<iRightsProps>()
   }
 
   &--contacts {
-    .rights__text {
-      span {
-        color: var(--foreground-muted-50);
-      }
-    }
-
     .rights__by {
       &::before {
         background-color: var(--foreground);
@@ -61,14 +60,15 @@ defineProps<iRightsProps>()
 
 .rights__text {
   position: relative;
+}
 
-  span {
-    color: var(--bg-muted-50);
-  }
+.rights__created-by {
+  color: var(--bg-muted-50);
 }
 
 .rights__by {
   position: relative;
+  color: var(--secondary);
 
   &::before {
     background-color: var(--secondary);

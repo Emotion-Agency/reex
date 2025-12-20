@@ -1,6 +1,7 @@
 import type { iAccordionSteps } from '../accordionTypes'
 import type { iAdvantageItem } from '../advantagesTypes'
 import type { iArticleCategory } from '../news/articleTypes'
+import type { iRichTextDoc } from '../richTextTypes'
 import type { iDeepLink, iImage, iMeta, iStory } from '../story'
 
 export interface iHomeArticleItem {
@@ -44,7 +45,7 @@ export interface iLocations {
 
 export interface iHomeAbout {
   tag: string
-  text: string
+  colored_title: iRichTextDoc
   link: iDeepLink[]
   assets: iImage[]
   component: string
@@ -69,7 +70,7 @@ export interface iBusinessCarouselItem {
 
 export interface iBusinessSolutions {
   tag: string
-  title: string
+  colored_title: iRichTextDoc
   link: iDeepLink[]
   service_carousel: iStory<iBusinessCarouselItem>[]
   component: string

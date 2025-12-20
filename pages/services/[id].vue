@@ -31,7 +31,7 @@ const meta = computed(() => {
 <template>
   <div v-if="story">
     <PageMeta v-if="meta" v-bind="meta" />
-    <AppHero :title="sections?.title" />
+    <AppHero :colored-title="sections?.colored_title" />
     <ServiceFullscreenAsset
       :asset="sections?.asset"
       :description="sections?.description"

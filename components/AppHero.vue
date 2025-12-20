@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { iRichTextDoc } from '~/types/stories/richTextTypes'
+
 interface iAppHeroProps {
-  title: string
+  coloredTitle: iRichTextDoc
   isContacts?: boolean
 }
 
@@ -10,7 +12,12 @@ defineProps<iAppHeroProps>()
 <template>
   <section class="app-hero" :class="{ 'app-hero--contacts': isContacts }">
     <div class="app-hero__wrapper container">
-      <h1 data-split class="app-hero__t">{{ title }}</h1>
+      <ColoredText
+        data-split
+        as="h1"
+        :content="coloredTitle"
+        class="app-hero__t"
+      />
       <Divider data-o class="app-hero__divider" />
     </div>
   </section>
