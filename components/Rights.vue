@@ -50,7 +50,12 @@ defineProps<iRightsProps>()
   }
 
   &--contacts {
+    .rights__created-by {
+      color: var(--foreground-muted-50);
+    }
+
     .rights__by {
+      color: var(--foreground);
       &::before {
         background-color: var(--foreground);
       }
