@@ -136,10 +136,14 @@ watch(isVisible, newVal => {
 }
 
 .service-dropdown__list {
-  padding: 4px;
+  padding: vw(4);
 
   .router-link-active {
     background-color: var(--foreground-muted-10);
+  }
+
+  @media (max-width: $br1) {
+    padding: 4px;
   }
 }
 
