@@ -5,11 +5,15 @@ interface IProps {
   content: iHomeHero
 }
 
-defineProps<IProps>()
+const props = defineProps<IProps>()
 
 const $el = ref<HTMLElement | null>(null)
 
 useDetectHeaderColor($el as Ref<HTMLElement>)
+
+const titleText = computed(() =>
+  props.content?.title ? props.content.title.replace(/\s+/g, ' ') : ''
+)
 </script>
 
 <template>
@@ -33,7 +37,7 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
       </Button>
     </div>
     <div class="hero__wrapper container">
-      <h1 data-split class="hero__t">{{ content.title }}</h1>
+      <h1 data-split class="hero__t">{{ titleText }}</h1>
     </div>
   </section>
 </template>
