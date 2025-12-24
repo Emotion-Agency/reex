@@ -21,7 +21,7 @@ defineProps<IProps>()
           </p>
         </div>
         <div class="locations__map">
-          <IconsMap />
+          <img src="/map.svg" alt="Ukraine map" />
         </div>
       </div>
     </div>

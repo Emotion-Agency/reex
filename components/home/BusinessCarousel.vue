@@ -21,8 +21,6 @@ const {
   container: '.services-carousel__container',
   loop: true,
 })
-
-console.log(props.carouselItems)
 </script>
 
 <template>
