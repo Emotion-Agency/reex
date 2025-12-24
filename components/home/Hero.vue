@@ -120,8 +120,9 @@ const titleText = computed(() =>
 
 .hero__t {
   @include heading-h1;
-  max-width: vw(820);
+  max-width: vw(920);
   color: var(--secondary);
+  text-transform: uppercase;
 
   @media (max-width: $br1) {
     max-width: 500px;
