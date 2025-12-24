@@ -70,7 +70,7 @@ onBeforeUnmount(async () => {
         :to="localePath(normalizePath(content?.link[0]?.url?.cached_url))"
         variant="secondary"
       >
-        {{ content?.link[0].label }}
+        {{ content?.link[0]?.label }}
       </DualButton>
     </div>
     <div class="about__imgs">
@@ -96,7 +96,7 @@ onBeforeUnmount(async () => {
 
   @media (min-width: $br1) {
     height: 100dvh;
-    min-height: 500px;
+    min-height: vw(810);
   }
 
   @media (max-width: $br1) {
