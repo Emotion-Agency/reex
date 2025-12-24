@@ -6,6 +6,7 @@ const props = withDefaults(defineProps<IDualButtonProps>(), {
   type: 'button',
   variant: 'primary',
   direction: 'right',
+  disabled: false,
 })
 
 const tag = computed(() => {
@@ -14,8 +15,13 @@ const tag = computed(() => {
   } else return props.tag ?? 'button'
 })
 
-const to = props.tag === 'nuxt-link' ? props.href : undefined
-const href = props.tag === 'a' ? props.href : undefined
+const to = computed(() =>
+  props.tag === 'nuxt-link' && !props.disabled ? props.href : undefined
+)
+
+const href = computed(() =>
+  props.tag === 'a' && !props.disabled ? props.href : undefined
+)
 </script>
 
 <template>
@@ -26,8 +32,14 @@ const href = props.tag === 'a' ? props.href : undefined
     :href="href"
     :target="props.tag === 'a' ? '_blank' : undefined"
     :rel="props.tag === 'a' ? 'noreferrer noopener' : undefined"
+    :disabled="tag === 'button' ? props.disabled : undefined"
+    :aria-disabled="props.disabled"
+    :tabindex="props.disabled ? -1 : 0"
     class="dual-button"
-    :class="[`dual-button--${props.variant}`]"
+    :class="[
+      `dual-button--${props.variant}`,
+      { 'dual-button--disabled': props.disabled },
+    ]"
   >
     <span class="dual-button__left">
       <slot />
@@ -136,6 +148,17 @@ const href = props.tag === 'a' ? props.href : undefined
           transform: skew(12deg);
         }
       }
+    }
+  }
+
+  &--disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .dual-button__left,
+    .dual-button__right {
+      transition: none;
     }
   }
 }

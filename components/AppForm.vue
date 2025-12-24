@@ -25,7 +25,7 @@ const rules = {
   },
 }
 
-const { form, v$, submit } = useFormHandle(
+const { form, v$, isSubmitting, submit } = useFormHandle(
   {
     name: '',
     phone: '',
@@ -86,7 +86,12 @@ const inputs = computed(() => [
         />
       </template>
     </div>
-    <DualButton class="form__btn" type="submit" variant="secondary">
+    <DualButton
+      class="form__btn"
+      type="submit"
+      variant="secondary"
+      :disabled="isSubmitting"
+    >
       {{ formStory?.content?.button }}
     </DualButton>
   </form>

@@ -20,6 +20,7 @@ export interface IDualButton {
   tag?: 'button' | 'a' | 'nuxt-link' | string
   type?: 'button' | 'submit' | 'reset' | null
   href?: string
+  disabled?: boolean
 }
 
 export interface IDualButtonProps extends IDualButton {

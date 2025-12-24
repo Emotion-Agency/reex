@@ -8,6 +8,8 @@ export function useFormHandle<T extends FormState>(
   rules: ValidationArgs
 ) {
   const { showThankYou } = useThankyouScreen()
+  const { addToast } = useToasts()
+  const isSubmitting = ref(false)
 
   const form = reactive({ ...initialState })
 
@@ -20,17 +22,39 @@ export function useFormHandle<T extends FormState>(
 
   const submit = async () => {
     const valid = await v$.value.$validate()
-    if (!valid) return
+    if (!valid || isSubmitting.value) return
 
-    showThankYou()
-    console.log('Form data:', { ...form })
+    isSubmitting.value = true
+    document.documentElement.style.cursor = 'wait'
 
-    reset()
+    try {
+      await fetch('https://formspree.io/f/mkowabvp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({ ...form }),
+      })
+
+      showThankYou()
+      reset()
+    } catch (err) {
+      addToast({
+        color: ToastColor.danger,
+        text: 'An error occurred while submitting the form. Please try again later.',
+      })
+      console.error('Form submit error:', err)
+    } finally {
+      isSubmitting.value = false
+      document.documentElement.style.cursor = ''
+    }
   }
 
   return {
     form,
     v$,
+    isSubmitting,
     submit,
     reset,
   }
