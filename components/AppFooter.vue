@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { useFooterStory } from '~/composables/stories/footerStory'
-import { useGlobalCompanyContactStory } from '~/composables/stories/globalCompanyContactStory'
+import { useGlobalCompanyContactStory } from '~/composables/stories/global/globalCompanyContactStory'
+import { useGlobalFooterStory } from '~/composables/stories/global/globalFooterStory'
 import { useNavigationStory } from '~/composables/stories/navigationStory'
 
-const { story: footerStory } = await useFooterStory()
+const { story: footerStory } = await useGlobalFooterStory()
 const { story: navigationStory } = await useNavigationStory()
 const { story: globalCompanyContactStory } =
   await useGlobalCompanyContactStory()
@@ -83,6 +83,32 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
                 class="underline footer__link"
               >
                 {{ globalCompanyContactStory?.content?.email }}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          v-if="globalCompanyContactStory?.content?.address_list?.length"
+          class="footer__address"
+        >
+          <p class="footer__t">
+            {{ footerStory?.content?.address_label }}
+          </p>
+
+          <ul class="footer__list">
+            <li
+              v-for="address in globalCompanyContactStory?.content
+                ?.address_list"
+              :key="address?._uid"
+              class="footer__item"
+            >
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                :href="address?.url?.cached_url"
+                class="underline footer__link"
+              >
+                {{ address?.label }}
               </a>
             </li>
           </ul>
@@ -234,6 +260,13 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
 .footer__socials {
   @media (min-width: $br1) {
     @include col(9, 10);
+    @include row(2, 2);
+  }
+}
+
+.footer__address {
+  @media (min-width: $br1) {
+    @include col(11, 12);
     @include row(2, 2);
   }
 }

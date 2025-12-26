@@ -1,6 +1,6 @@
 import type { iStory } from '~/types/stories/story'
-import { useGetStory } from './getStory'
 import type { iGlobalCompanyContactContent } from '~/types/stories/globalTypes'
+import { useGetStory } from '../getStory'
 
 type tGlobalStory = () => Promise<{
   story: Ref<iStory<iGlobalCompanyContactContent>>

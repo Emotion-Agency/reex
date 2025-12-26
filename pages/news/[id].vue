@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useGlobalArticlesTitleStory } from '~/composables/stories/globalArticlesTitleStory'
+import { useGlobalArticlesTitleStory } from '~/composables/stories/global/globalArticlesTitleStory'
 import { useArticleStory } from '~/composables/stories/news/articleStory'
 import { pageTransition } from '~/transitions/base'
 

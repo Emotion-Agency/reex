@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useFormStory } from '~/composables/stories/formStory'
+import { useGlobalFormStory } from '~/composables/stories/global/globalFormStory'
 
-const { story } = await useFormStory()
+const { story } = await useGlobalFormStory()
 const { isShowThankYou } = useThankyouScreen()
 </script>
 

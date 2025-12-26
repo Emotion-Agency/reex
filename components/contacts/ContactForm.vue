@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { required, helpers, minLength, maxLength } from '@vuelidate/validators'
-import { useFormStory } from '~/composables/stories/formStory'
+import { useGlobalFormStory } from '~/composables/stories/global/globalFormStory'
 import { useServiceStories } from '~/composables/stories/serviceStories'
 
-const { story: formStory } = await useFormStory()
+const { story: formStory } = await useGlobalFormStory()
 const { services } = await useServiceStories('services')
 
 const serviceOptions = computed<string[]>(

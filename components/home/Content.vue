@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useGlobalArticlesTitleStory } from '~/composables/stories/globalArticlesTitleStory'
+import { useGlobalArticlesTitleStory } from '~/composables/stories/global/globalArticlesTitleStory'
 import { useHomeStory } from '~/composables/stories/homeStory'
 
 const { story } = await useHomeStory()

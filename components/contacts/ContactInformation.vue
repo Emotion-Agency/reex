@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { useFooterStory } from '~/composables/stories/footerStory'
-import { useGlobalCompanyContactStory } from '~/composables/stories/globalCompanyContactStory'
+import { useGlobalCompanyContactStory } from '~/composables/stories/global/globalCompanyContactStory'
+import { useGlobalFooterStory } from '~/composables/stories/global/globalFooterStory'
 
-const { story: footerStory } = await useFooterStory()
-const { story: globalCompanyContactStory } =
-  await useGlobalCompanyContactStory()
+const { story: footerStory } = await useGlobalFooterStory()
+const { story: contactsStory } = await useGlobalCompanyContactStory()
 </script>
 
 <template>
@@ -20,10 +19,10 @@ const { story: globalCompanyContactStory } =
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                :href="`mailto:${globalCompanyContactStory?.content?.email}`"
+                :href="`mailto:${contactsStory?.content?.email}`"
                 class="underline c-info__link"
               >
-                {{ globalCompanyContactStory?.content?.email }}
+                {{ contactsStory?.content?.email }}
               </a>
             </li>
             <li class="c-info__item">
@@ -33,18 +32,18 @@ const { story: globalCompanyContactStory } =
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                :href="`tel:${globalCompanyContactStory?.content?.phone}`"
+                :href="`tel:${contactsStory?.content?.phone}`"
                 class="underline c-info__link"
               >
-                {{ globalCompanyContactStory?.content?.phone }}
+                {{ contactsStory?.content?.phone }}
               </a>
             </li>
           </ul>
           <Socials
             :label="footerStory?.content?.socials_label"
-            :x="globalCompanyContactStory?.content?.x"
-            :telegram="globalCompanyContactStory?.content?.telegram"
-            :instagram="globalCompanyContactStory?.content?.instagram"
+            :x="contactsStory?.content?.x"
+            :telegram="contactsStory?.content?.telegram"
+            :instagram="contactsStory?.content?.instagram"
             is-contacts
             class="c-info__socials"
           />
