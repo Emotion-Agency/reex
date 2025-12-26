@@ -9,7 +9,7 @@ const { services } = await useServiceStories('services')
 const serviceOptions = computed<string[]>(
   () =>
     services.value
-      ?.map(s => richTextToString(s.content?.colored_title))
+      ?.map(s => richTextToString(s?.content?.colored_title))
       .filter(Boolean) ?? []
 )
 
@@ -40,14 +40,14 @@ const inputs = computed(() => [
     name: 'name',
     type: 'text',
     placeholder: formStory?.value?.content?.name_field || 'Name',
-    errors: v$.value.name.$errors,
+    errors: v$.value?.name?.$errors,
   },
   {
     id: 'app-form-phone',
     name: 'phone',
     type: 'text',
     placeholder: formStory?.value?.content?.phone_field || 'Phone',
-    errors: v$.value.phone.$errors,
+    errors: v$.value?.phone?.$errors,
   },
   {
     id: 'app-form-service',

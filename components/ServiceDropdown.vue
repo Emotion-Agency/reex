@@ -48,13 +48,13 @@ watch(isVisible, newVal => {
       <div class="service-dropdown__list">
         <NuxtLink
           v-for="link in services?.items || []"
-          :key="link._uid"
-          :to="`/${link.full_slug}`"
+          :key="link?._uid"
+          :to="`/${link?.full_slug}`"
           tag="nuxt-link"
           class="service-dropdown__link"
           @click="isAccordionOpened = false"
         >
-          {{ richTextToString(link.content.colored_title) }}
+          {{ richTextToString(link?.content?.colored_title) }}
         </NuxtLink>
       </div>
     </div>

@@ -9,7 +9,7 @@ const { services } = await useServiceStories('services')
 const serviceOptions = computed<string[]>(
   () =>
     services.value
-      ?.map(s => richTextToString(s.content?.colored_title))
+      ?.map(s => richTextToString(s?.content?.colored_title))
       .filter(Boolean) ?? []
 )
 

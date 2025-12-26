@@ -46,13 +46,13 @@ const {
       <ul class="services-carousel__container">
         <li
           v-for="item in carouselItems"
-          :key="item._uid"
+          :key="item?._uid"
           class="services-carousel__slide"
         >
-          <NuxtLink :to="`/${item.full_slug}`" class="services-carousel__link">
+          <NuxtLink :to="`/${item?.full_slug}`" class="services-carousel__link">
             <CustomImage
-              :src="item.content?.asset?.filename"
-              :alt="item.content?.asset?.alt"
+              :src="item?.content?.asset?.filename"
+              :alt="item?.content?.asset?.alt"
               :width="664"
               class="services-carousel__img"
             />
@@ -62,7 +62,7 @@ const {
             </div>
             <div class="services-carousel__info">
               <h3 class="services-carousel__title">
-                {{ richTextToString(item.content?.colored_title) }}
+                {{ richTextToString(item?.content?.colored_title) }}
               </h3>
               <p class="services-carousel__description">
                 {{ item.content?.description }}
