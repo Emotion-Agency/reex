@@ -50,12 +50,12 @@ const {
           class="services-carousel__slide"
         >
           <NuxtLink :to="`/${item?.full_slug}`" class="services-carousel__link">
-            <CustomImage
+            <!-- <CustomImage
               :src="item?.content?.asset?.filename"
               :alt="item?.content?.asset?.alt"
               :width="664"
               class="services-carousel__img"
-            />
+            /> -->
 
             <div class="services-carousel__link-arrow">
               <Icon name="lucide:arrow-up-right" />
@@ -166,18 +166,22 @@ const {
   }
 
   &:hover {
-    .services-carousel__img {
-      opacity: 1;
-      transform: scale(1);
-    }
-    .services-carousel__title,
-    .services-carousel__description {
-      color: var(--secondary);
+    // .services-carousel__img {
+    //   opacity: 1;
+    //   transform: scale(1);
+    // }
+    // .services-carousel__title,
+    // .services-carousel__description {
+    //   color: var(--secondary);
+    // }
+    .services-carousel__link::before {
+      transform: scaleY(1);
     }
   }
 }
 
 .services-carousel__link {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -189,6 +193,17 @@ const {
 
   @media (max-width: $br1) {
     padding: 18px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--primary);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.5s ease-in-out;
+    z-index: -1;
   }
 }
 
