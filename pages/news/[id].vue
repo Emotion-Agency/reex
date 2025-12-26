@@ -28,12 +28,16 @@ const meta = computed(() => {
     ogImage: data?.image?.filename,
   }
 })
+
+const readingTime = computed(() =>
+  calculateReadingTime(articleStory?.value?.content?.content)
+)
 </script>
 
 <template>
   <div>
     <PageMeta v-if="meta" v-bind="meta" />
-    <NewsHero :content="articleStory?.content" />
+    <NewsHero :content="articleStory?.content" :reading-time="readingTime" />
     <NewsFullAsset
       v-if="articleStory?.content?.asset"
       :asset="articleStory?.content?.asset"

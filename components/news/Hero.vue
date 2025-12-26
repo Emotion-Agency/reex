@@ -3,6 +3,7 @@ import type { iArticleContent } from '~/types/stories/news/articleTypes'
 
 interface iArticlesListProps {
   content: iArticleContent
+  readingTime?: number
 }
 
 const props = defineProps<iArticlesListProps>()
@@ -18,7 +19,7 @@ const props = defineProps<iArticlesListProps>()
         <div class="news-hero__details">
           <p class="news-hero__date">{{ content?.date }}</p>
           <div class="news-hero__dot" />
-          <p class="news-hero__remaining">3 хв на читання</p>
+          <p class="news-hero__remaining">{{ readingTime }} хв на читання</p>
         </div>
       </div>
       <h1 class="news-hero__t">{{ content?.title }}</h1>
