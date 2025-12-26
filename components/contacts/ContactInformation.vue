@@ -38,6 +38,21 @@ const { story: contactsStory } = await useGlobalCompanyContactStory()
                 {{ contactsStory?.content?.phone }}
               </a>
             </li>
+            <li class="c-info__item">
+              <p class="c-info__t">
+                {{ footerStory?.content?.address_label }}
+              </p>
+              <a
+                v-for="address in contactsStory?.content?.address_list"
+                :key="address?._uid"
+                target="_blank"
+                rel="noopener noreferrer"
+                :href="address?.url?.cached_url"
+                class="underline c-info__link"
+              >
+                {{ address?.label }}
+              </a>
+            </li>
           </ul>
           <Socials
             :label="footerStory?.content?.socials_label"

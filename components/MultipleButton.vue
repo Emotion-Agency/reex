@@ -65,7 +65,7 @@ const rightClass = computed(() =>
   </component>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .multiple-button {
   position: relative;
   display: flex;
@@ -172,10 +172,10 @@ const rightClass = computed(() =>
 
   &--up-down,
   &--down-up {
-    padding: 0 vw(8);
+    padding: 0 vw(12);
 
     @media (max-width: $br1) {
-      padding: 0 8px;
+      padding: 0 12px;
     }
   }
 
