@@ -13,12 +13,15 @@ const influenceRange = computed(() => (width.value < 960 ? 7 : 14))
 
 const center = computed(() => (props.progress / 100) * (count.value - 1))
 
+const round = (n: number, p = 2) => Math.round(n * 10 ** p) / 10 ** p
+
 // Weight (0–1) based on distance from the center line
 // Controls both height and color intensity
 const getWeight = (idx: number) => {
   const distance = Math.abs(idx - center.value)
+  const raw = Math.max(0, 1 - distance / influenceRange.value)
 
-  return Math.max(0, 1 - distance / influenceRange.value)
+  return round(raw, 2)
 }
 
 const getStyle = (idx: number) => {
@@ -46,6 +49,7 @@ const getStyle = (idx: number) => {
   width: 100%;
   height: vw(20);
   margin-top: vw(32);
+  color: var(--foreground);
 
   span {
     width: 1px;
@@ -53,14 +57,10 @@ const getStyle = (idx: number) => {
     transform-origin: bottom;
     transition:
       transform 0.25s ease,
-      background-color 0.25s ease,
       opacity 0.25s ease;
-    background-color: color-mix(
-      in srgb,
-      var(--foreground-muted-50) calc(100% - var(--w) * 100%),
-      var(--foreground) calc(var(--w) * 100%)
-    );
-    opacity: calc(0.3 + var(--w) * 0.7);
+    will-change: transform, opacity;
+    background-color: currentColor;
+    opacity: calc(0.25 + var(--w) * 0.75);
   }
 
   @media (max-width: $br1) {

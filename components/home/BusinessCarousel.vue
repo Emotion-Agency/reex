@@ -49,26 +49,31 @@ const {
           :key="item?._uid"
           class="services-carousel__slide"
         >
-          <NuxtLink :to="`/${item?.full_slug}`" class="services-carousel__link">
-            <!-- <CustomImage
+          <div class="services-carousel__card">
+            <NuxtLink
+              :to="`/${item?.full_slug}`"
+              class="services-carousel__link"
+            >
+              <!-- <CustomImage
               :src="item?.content?.asset?.filename"
               :alt="item?.content?.asset?.alt"
               :width="664"
               class="services-carousel__img"
             /> -->
 
-            <div class="services-carousel__link-arrow">
-              <Icon name="lucide:arrow-up-right" />
-            </div>
-            <div class="services-carousel__info">
-              <h3 class="services-carousel__title">
-                {{ richTextToString(item?.content?.colored_title) }}
-              </h3>
-              <p class="services-carousel__description">
-                {{ item.content?.description }}
-              </p>
-            </div>
-          </NuxtLink>
+              <div class="services-carousel__link-arrow">
+                <Icon name="lucide:arrow-up-right" />
+              </div>
+              <div class="services-carousel__info">
+                <h3 class="services-carousel__title">
+                  {{ richTextToString(item?.content?.colored_title) }}
+                </h3>
+                <p class="services-carousel__description">
+                  {{ item.content?.description }}
+                </p>
+              </div>
+            </NuxtLink>
+          </div>
         </li>
       </ul>
     </div>
@@ -143,22 +148,26 @@ const {
 
 .services-carousel__container {
   display: flex;
+  margin-right: vw(-16);
+
+  @media (max-width: $br1) {
+    margin-right: -8px;
+  }
 }
 
 .services-carousel__slide {
-  flex: 0 0 calc((100% - 3 * vw(16)) / 4);
+  flex: 0 0 25%;
   min-width: 0;
   height: vw(332);
-  border-radius: vw(16);
-  margin-right: vw(16);
+  padding-right: vw(16);
+  box-sizing: border-box;
   overflow: hidden;
   position: relative;
 
   @media (max-width: $br1) {
     height: 280px;
-    border-radius: 12px;
-    margin-right: 8px;
-    flex: 0 0 calc((100% - 1 * 12px) / 2);
+    padding-right: 8px;
+    flex: 0 0 50%;
   }
 
   @media (max-width: $br3) {
@@ -174,24 +183,22 @@ const {
     // .services-carousel__description {
     //   color: var(--secondary);
     // }
-    .services-carousel__link::before {
+    .services-carousel__card::before {
       transform: scaleY(1);
     }
   }
 }
 
-.services-carousel__link {
+.services-carousel__card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: vw(24);
-  width: 100%;
   height: 100%;
-  background-color: var(--foreground-muted-7);
+  overflow: hidden;
+  background: var(--foreground-muted-7);
+  border-radius: vw(16);
+  padding: vw(24);
 
   @media (max-width: $br1) {
+    border-radius: 12px;
     padding: 18px;
   }
 
@@ -205,6 +212,16 @@ const {
     transition: transform 0.5s ease-in-out;
     z-index: -1;
   }
+}
+
+.services-carousel__link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
 }
 
 .services-carousel__img {
