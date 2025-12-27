@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { useGlobalCompanyContactStory } from '~/composables/stories/global/globalCompanyContactStory'
 import { useGlobalFooterStory } from '~/composables/stories/global/globalFooterStory'
-import { useNavigationStory } from '~/composables/stories/navigationStory'
+import { useGlobalNavigationStory } from '~/composables/stories/global/globalNavigationStory'
 
 const { story: footerStory } = await useGlobalFooterStory()
-const { story: navigationStory } = await useNavigationStory()
+const { story: navigationStory } = await useGlobalNavigationStory()
 const { story: globalCompanyContactStory } =
   await useGlobalCompanyContactStory()
 

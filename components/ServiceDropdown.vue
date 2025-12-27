@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { iNavigationService } from '~/types/stories/navigationTypes'
+import type { iGlobalNavigationService } from '~/types/stories/globalTypes'
 
 interface ServiceDropdownProps {
-  services?: iNavigationService
+  services?: iGlobalNavigationService
   isHeader?: boolean
 }
 

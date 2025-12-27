@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useNavigationStory } from '~/composables/stories/navigationStory'
+import { useGlobalNavigationStory } from '~/composables/stories/global/globalNavigationStory'
 
-const { story: navigationStory } = await useNavigationStory()
+const { story: navigationStory } = await useGlobalNavigationStory()
 
 useHeaderInteraction()
 </script>

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { iNavigationContent } from '~/types/stories/navigationTypes'
+import type { iGlobalNavigationContent } from '~/types/stories/globalTypes'
 
 interface iHeaderDesktopProps {
-  navigation: iNavigationContent
+  navigation: iGlobalNavigationContent
 }
 
 const props = defineProps<iHeaderDesktopProps>()

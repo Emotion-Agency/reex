@@ -1,5 +1,6 @@
 import type { iRichTextDoc } from './richTextTypes'
-import type { iDeepLink } from './story'
+import type { iServiceContent } from './service/serviceTypes'
+import type { iDeepLink, iLink, iStory } from './story'
 
 export interface iGlobalCompanyContactContent {
   phone: string
@@ -41,6 +42,31 @@ export interface iGlobalFormContent {
   message_field
   button: string
   thankyou_text: string
+  _uid: string
+  component: string
+}
+
+export interface iGlobalNavigationLinks {
+  url: iLink
+  label: string
+  component: 'link'
+  _uid: string
+}
+
+export interface iGlobalNavigationService {
+  items: iStory<iServiceContent>[]
+  label: string
+  component: 'nav_dropdown'
+  _uid: string
+}
+
+export type iGlobalNavigationItem =
+  | iGlobalNavigationLinks
+  | iGlobalNavigationService
+
+export interface iGlobalNavigationContent {
+  button: iDeepLink[]
+  items: iGlobalNavigationItem[]
   _uid: string
   component: string
 }
