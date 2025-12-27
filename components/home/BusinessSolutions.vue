@@ -5,9 +5,13 @@ interface IProps {
   content: iBusinessSolutions
 }
 
-defineProps<IProps>()
+const props = defineProps<IProps>()
 
 const localePath = useLocalePath()
+
+const carouselItems = computed(
+  () => props.content?.service_carousel?.filter(item => !!item?.name) ?? []
+)
 </script>
 
 <template>
@@ -30,7 +34,7 @@ const localePath = useLocalePath()
           </DualButton>
         </div>
       </div>
-      <HomeBusinessCarousel :carousel-items="content?.service_carousel" />
+      <HomeBusinessCarousel :carousel-items="carouselItems" />
     </div>
   </section>
 </template>

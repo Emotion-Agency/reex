@@ -2,17 +2,6 @@ import type { iRichTextDoc } from './richTextTypes'
 import type { iServiceContent } from './service/serviceTypes'
 import type { iDeepLink, iLink, iStory } from './story'
 
-export interface iGlobalCompanyContactContent {
-  phone: string
-  email: string
-  x: string
-  instagram: string
-  telegram: string
-  _uid: string
-  address_list: iDeepLink[]
-  component: string
-}
-
 export interface iGlobalArticlesTitleContent {
   useful_article_title: string
   similar_article_title: string

@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { useGlobalCompanyContactStory } from '~/composables/stories/global/globalCompanyContactStory'
+import { useContactsStory } from '~/composables/stories/contactsStory'
 import { useGlobalFooterStory } from '~/composables/stories/global/globalFooterStory'
 import { useGlobalNavigationStory } from '~/composables/stories/global/globalNavigationStory'
 
 const { story: footerStory } = await useGlobalFooterStory()
 const { story: navigationStory } = await useGlobalNavigationStory()
-const { story: globalCompanyContactStory } =
-  await useGlobalCompanyContactStory()
+const { story: contactsStory } = await useContactsStory()
 
 const localePath = useLocalePath()
 
@@ -59,8 +58,7 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
 
           <ul
             v-if="
-              globalCompanyContactStory?.content?.phone &&
-              globalCompanyContactStory?.content?.email
+              contactsStory?.content?.phone && contactsStory?.content?.email
             "
             class="footer__list"
           >
@@ -68,10 +66,10 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                :href="`tel:${globalCompanyContactStory?.content?.phone}`"
+                :href="`tel:${contactsStory?.content?.phone}`"
                 class="underline footer__link"
               >
-                {{ globalCompanyContactStory?.content?.phone }}
+                {{ contactsStory?.content?.phone }}
               </a>
             </li>
 
@@ -79,16 +77,16 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                :href="`mailto:${globalCompanyContactStory?.content?.email}`"
+                :href="`mailto:${contactsStory?.content?.email}`"
                 class="underline footer__link"
               >
-                {{ globalCompanyContactStory?.content?.email }}
+                {{ contactsStory?.content?.email }}
               </a>
             </li>
           </ul>
         </div>
         <div
-          v-if="globalCompanyContactStory?.content?.address_list?.length"
+          v-if="contactsStory?.content?.address_list?.length"
           class="footer__address"
         >
           <p class="footer__t">
@@ -97,8 +95,7 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
 
           <ul class="footer__list">
             <li
-              v-for="address in globalCompanyContactStory?.content
-                ?.address_list"
+              v-for="address in contactsStory?.content?.address_list"
               :key="address?._uid"
               class="footer__item"
             >
@@ -115,9 +112,9 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
         </div>
         <Socials
           :label="footerStory?.content?.socials_label"
-          :x="globalCompanyContactStory?.content?.x"
-          :telegram="globalCompanyContactStory?.content?.telegram"
-          :instagram="globalCompanyContactStory?.content?.instagram"
+          :x="contactsStory?.content?.x"
+          :telegram="contactsStory?.content?.telegram"
+          :instagram="contactsStory?.content?.instagram"
           class="footer__socials"
         />
       </div>

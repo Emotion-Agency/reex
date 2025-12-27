@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useGlobalCompanyContactStory } from '~/composables/stories/global/globalCompanyContactStory'
+import { useContactsStory } from '~/composables/stories/contactsStory'
 import { useGlobalFooterStory } from '~/composables/stories/global/globalFooterStory'
 
 const { story: footerStory } = await useGlobalFooterStory()
-const { story: contactsStory } = await useGlobalCompanyContactStory()
+const { story: contactsStory } = await useContactsStory()
 </script>
 
 <template>
