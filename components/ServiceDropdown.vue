@@ -25,6 +25,10 @@ watch(isVisible, newVal => {
     isAccordionOpened.value = false
   }
 })
+
+const items = computed(
+  () => props.services?.items?.filter(item => !!item?.name) ?? []
+)
 </script>
 
 <template>
@@ -47,7 +51,7 @@ watch(isVisible, newVal => {
     <div class="service-dropdown__body">
       <div class="service-dropdown__list">
         <NuxtLink
-          v-for="link in services?.items || []"
+          v-for="link in items"
           :key="link?._uid"
           :to="`/${link?.full_slug}`"
           tag="nuxt-link"
