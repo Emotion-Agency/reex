@@ -13,7 +13,7 @@ const props = defineProps<iArticlesListProps>()
 const { news } = await useNewsStories('news')
 const { categories } = await useNewsCategoriesStories()
 
-const VISIBLE_LIMIT = 4
+const VISIBLE_LIMIT = 3
 
 const activeCategory = ref('all')
 const isExpanded = ref(false)
