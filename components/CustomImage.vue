@@ -2,7 +2,7 @@
 import type { ImgHTMLAttributes, ReservedProps } from 'vue'
 
 interface iProps {
-  src: string
+  src: string | null
   alt?: string
   quality?: number
   width?: number

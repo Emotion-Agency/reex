@@ -157,6 +157,7 @@ const localePath = useLocalePath()
 .a-partners__logo {
   width: vw(126);
   height: auto;
+  filter: grayscale(1) saturate(0.5);
 
   @media (max-width: $br1) {
     width: 110px;

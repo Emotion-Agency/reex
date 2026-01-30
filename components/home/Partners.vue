@@ -51,6 +51,7 @@ defineProps<IProps>()
       height: auto;
       max-width: vw(112);
       margin-right: vw(60);
+      filter: grayscale(1) saturate(0.5);
 
       @media (max-width: $br1) {
         max-width: 112px;
