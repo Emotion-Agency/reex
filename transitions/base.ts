@@ -1,14 +1,57 @@
 import type { TransitionProps } from 'vue'
+import { gsap } from '../libs/gsap'
+import { basicObject } from './basicObject'
+
+const duration = 1
+const ease = 'power3.inOut'
 
 export const pageTransition: TransitionProps = {
-  duration: 250,
   mode: 'out-in',
-  css: false,
-  appear: true,
-  onEnter(_, done) {
-    done()
+  onEnter(el, done) {
+    const { init } = useLoadingAnimation()
+
+    const tl = gsap.timeline({
+      defaults: {
+        duration,
+        ease,
+      },
+      onComplete: () => {
+        done()
+
+        tl.revert()
+        tl.kill()
+      },
+    })
+
+    tl.fromTo(
+      el,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      }
+    )
+
+    basicObject.onEnter()
+
+    init()
   },
-  onLeave(_, done) {
-    done()
+  async onLeave(el, done) {
+    const tl = gsap.timeline({
+      onComplete: () => {
+        done()
+        resetScroll()
+      },
+      defaults: {
+        duration,
+        ease,
+      },
+    })
+    tl.to(el, {
+      opacity: 0,
+    })
+
+    basicObject.onLeave()
   },
 }

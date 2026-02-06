@@ -110,14 +110,14 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: flex-start;
   column-gap: 12px;
-  color: var(--primary-button-text);
+  color: var(--foreground);
   padding: 16px;
   width: fit-content;
 
   border-radius: 10px;
 
   &--success {
-    background-color: var(--status-success);
+    background-color: var(--primary);
   }
 
   &--danger {
@@ -125,7 +125,7 @@ onBeforeUnmount(() => {
   }
 
   &--info {
-    background-color: var(--primary);
+    background-color: #fdffa0;
   }
 
   + .toast {
@@ -169,7 +169,7 @@ onBeforeUnmount(() => {
   display: block;
   width: 100%;
   height: 1px;
-  background-color: var(--primary-button-text);
+  background-color: var(--foreground);
 
   &:first-child {
     transform: rotate(45deg);

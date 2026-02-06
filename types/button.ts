@@ -1,26 +1,54 @@
 import type { TooltipProps } from './tooltip'
 
 export interface IButton {
-  tag?: string
+  tag?: 'button' | 'a' | 'nuxt-link' | string
   type?: 'button' | 'submit' | 'reset' | null
   href?: string
 }
 
 export interface IButtonProps extends IButton {
-  size?: 'sm' | 'md' | 'lg'
-  variant?:
-    | 'primary'
-    | 'secondary'
-    | 'ghost'
-    | 'ghost-primary'
-    | 'ghost-danger'
-    | 'outline'
-    | 'danger'
+  variant?: 'primary' | 'dark' | 'light'
 }
 
-export interface IIconButtonProps extends Omit<IButtonProps, 'size'> {
+export interface IIconButtonProps extends IButtonProps {
   label: string
   tooltipProps?: TooltipProps
-  size?: 'xs' | 'sm' | 'md' | 'lg'
   disableTooltip?: boolean
+}
+
+export interface IDualButton {
+  tag?: 'button' | 'a' | 'nuxt-link' | string
+  type?: 'button' | 'submit' | 'reset' | null
+  href?: string
+  disabled?: boolean
+}
+
+export interface IDualButtonProps extends IDualButton {
+  variant?: 'primary' | 'secondary'
+  direction?: 'right' | 'down'
+}
+
+export interface IMultipleButton {
+  tag?: 'button' | 'a' | 'nuxt-link' | string
+  type?: 'button' | 'submit' | 'reset' | null
+  href?: string
+}
+
+export interface IMultipleButtonProps extends IMultipleButton {
+  variant?: 'primary' | 'secondary'
+  direction?:
+    | 'left-up-down'
+    | 'left-down-up'
+    | 'right-up-down'
+    | 'right-down-up'
+    | 'up-down'
+    | 'down-up'
+  isActive?: boolean
+  isIcons?: boolean
+}
+
+export interface ICircleButton {
+  tag?: 'button' | 'a' | 'nuxt-link' | string
+  type?: 'button' | 'submit' | 'reset' | null
+  href?: string
 }

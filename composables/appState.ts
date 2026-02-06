@@ -1,7 +1,8 @@
 export const useAppState = () => {
-  const isInEditor = useState('inEditor', () => false)
+  const isInEditor = computed(() => Boolean(useRoute().query._storyblok))
   const isLoaded = useState('inLoaded', () => false)
   const isWaiting = useState('isWaiting', () => false)
+  const isMenuOpened = useState('isMenuOpened', () => false)
 
-  return { isInEditor, isLoaded, isWaiting }
+  return { isInEditor, isLoaded, isWaiting, isMenuOpened }
 }

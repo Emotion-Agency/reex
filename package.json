@@ -29,15 +29,23 @@
     "@emotionagency/emotion-scroll": "^2.0.1",
     "@emotionagency/utils": "^2.0.1",
     "@nuxt/icon": "^1.15.0",
+    "@nuxtjs/i18n": "^10.2.1",
+    "@storyblok/nuxt": "^9.0.1",
+    "@storyblok/richtext": "^3.8.2",
     "@vuelidate/core": "^2.0.3",
+    "@vuelidate/validators": "^2.0.4",
     "@vueuse/core": "^11.2.0",
     "@vueuse/nuxt": "^11.2.0",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-vue": "^8.6.0",
     "focus-trap": "^7.6.1",
     "gsap": "latest",
+    "imagesloaded": "^5.0.0",
     "lucide-vue-next": "^0.487.0",
     "nuxt": "^4.2.1",
     "reka-ui": "^2.3.2",
     "ua-parser-js": "^2.0.4",
-    "vue": "latest"
+    "vue": "latest",
+    "vue3-marquee": "^4.2.2"
   }
 }

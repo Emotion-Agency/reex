@@ -1,0 +1,81 @@
+<script setup lang="ts">
+import type { iBusinessSolutions } from '~/types/stories/home/homeTypes'
+
+interface IProps {
+  content: iBusinessSolutions
+}
+
+const props = defineProps<IProps>()
+
+const localePath = useLocalePath()
+
+const carouselItems = computed(
+  () => props.content?.service_carousel?.filter(item => !!item?.name) ?? []
+)
+</script>
+
+<template>
+  <section class="business">
+    <div class="container business__wrapper">
+      <div class="grid business__top">
+        <Pill class="business__pill"> {{ content?.tag }} </Pill>
+        <div class="business__top-content">
+          <ColoredText
+            :content="content?.colored_title"
+            as="h2"
+            class="business__t"
+          />
+          <DualButton
+            tag="nuxt-link"
+            :to="localePath(normalizePath(content?.link[0]?.url?.cached_url))"
+            class="business__btn"
+          >
+            {{ content?.link[0]?.label }}
+          </DualButton>
+        </div>
+      </div>
+      <HomeBusinessCarousel :carousel-items="carouselItems" />
+    </div>
+  </section>
+</template>
+
+<style scoped lang="scss">
+.business {
+  padding-top: vw(144);
+
+  @media (max-width: $br1) {
+    padding-top: 100px;
+  }
+}
+
+.business__top {
+  align-items: start;
+
+  @media (max-width: $br1) {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+  }
+}
+
+.business__pill {
+  @media (min-width: $br1) {
+    @include col(1, 6);
+  }
+}
+
+.business__top-content {
+  @media (min-width: $br1) {
+    @include col(7, 12);
+  }
+}
+
+.business__btn {
+  width: fit-content;
+  margin-top: vw(40);
+
+  @media (max-width: $br1) {
+    margin-top: 32px;
+  }
+}
+</style>
