@@ -2168,20 +2168,20 @@
   resolved "https://registry.yarnpkg.com/@speed-highlight/core/-/core-1.2.12.tgz#5578ad2b92b0f7edc9ad46d9a7f921ff799d8a42"
   integrity sha512-uilwrK0Ygyri5dToHYdZSjcvpS2ZwX0w5aSt3GCEN9hrjxWCoeV4Z2DTXuxjwbntaLQIEEAlCeNQss5SoHvAEA==
 
-"@storyblok/js@4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-4.4.3.tgz#67131bcb40eab304c860c2fe712e65fce450046b"
-  integrity sha512-EBJicZkDjAQ2iep5UOE3pOnCIYCr7Qm7mue2gKVk1u5QGgupHTBvTgnfZFYJit+ochDxN/bYfIlXlBrF975nNA==
+"@storyblok/js@4.4.5":
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-4.4.5.tgz#7a7fe270833529090bffbb50778d37476e202a3a"
+  integrity sha512-iOq3dPyABjcU97Ify09tO7kKoGlmaayO/Pn/AM9gRmApn2rLAw0CSKFzBIrFnowiaJwSV8+JTIQrgt88N7c3mg==
   dependencies:
     "@storyblok/richtext" "3.8.2"
-    storyblok-js-client "7.2.1"
+    storyblok-js-client "7.2.3"
 
-"@storyblok/nuxt@^8.2.3":
-  version "8.2.3"
-  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-8.2.3.tgz#f3334f13437a92bc995b7edfa8c2f17f9883db0f"
-  integrity sha512-e67mJ5QvGLRRIFHXVZw9SlfZ9CRRYPi43ZuXQGrMznwE9/qdU7kY+olr/tWmWaDwv6xs/lmDe67dwsuNH+Sv7w==
+"@storyblok/nuxt@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-9.0.1.tgz#528a6a8f466648b01b8f4ab0083a26f4812bd3d1"
+  integrity sha512-U7ZQ8wAL2WVb1pSQWblA2eIj5KLw8iZrYzwoXOjhY/LZx3Gzxi4MPhSJr5m43n8s8bHsinr1Gy4IV05JNTduqw==
   dependencies:
-    "@storyblok/vue" "9.4.3"
+    "@storyblok/vue" "9.4.5"
 
 "@storyblok/richtext@3.8.2", "@storyblok/richtext@^3.8.2":
   version "3.8.2"
@@ -2192,12 +2192,12 @@
     markdown-it-github "^0.5.0"
     node-html-parser "^7.0.1"
 
-"@storyblok/vue@9.4.3":
-  version "9.4.3"
-  resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-9.4.3.tgz#b4b1b1f67958017f93552d6ece44f7e6929a1a46"
-  integrity sha512-6odfVr2IxgYTFIcT4xx8+k4ff/OJMZMuACYgne9vbF4mSpKroqHebSpSBR+3GyyUr7liCReNpMXQEBNa/Gv47g==
+"@storyblok/vue@9.4.5":
+  version "9.4.5"
+  resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-9.4.5.tgz#21c7258de8f1860df7500f12f7cafb73a984f9cd"
+  integrity sha512-gIRXqcZT7hBJUl4oaGOZEe6dqZB4yQrFAz0/b/qf6yUtUWt50RAPKt/5y0uJH2ATcALsUa6IdvXk2gd4mEHtFA==
   dependencies:
-    "@storyblok/js" "4.4.3"
+    "@storyblok/js" "4.4.5"
 
 "@stylistic/eslint-plugin@^3.0.1":
   version "3.1.0"
@@ -6656,10 +6656,10 @@ std-env@^3.10.0, std-env@^3.7.0, std-env@^3.8.1, std-env@^3.9.0:
   resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.10.0.tgz#d810b27e3a073047b2b5e40034881f5ea6f9c83b"
   integrity sha512-5GS12FdOZNliM5mAOxFRg7Ir0pWz8MdpYm6AY6VPkGpbA7ZzmbzNcBJQ0GPvvyWgcY7QAhCgf9Uy89I03faLkg==
 
-storyblok-js-client@7.2.1:
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-7.2.1.tgz#b96a940fc3ffec65a9c960a1648878c26f67179a"
-  integrity sha512-dx6BOkzFcClubN2pXHAFLAMXBsTzcHVlDbKVJtUSNw17ftfyiq12mj92HiYtXlIPw+3I0U6VTPBxoYAEIPEK0Q==
+storyblok-js-client@7.2.3:
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-7.2.3.tgz#f09f704cb8909aeb54f2b6261adf20d394c49900"
+  integrity sha512-o/AjgNULoflv/7ei68d2Bh4Nb5ZCnpcqma19sCijvYrPtJinAuWW//JHT4q06y9op05HkWQpU2jrfata9iYONQ==
 
 streamx@^2.15.0:
   version "2.23.0"
@@ -6670,16 +6670,7 @@ streamx@^2.15.0:
     fast-fifo "^1.3.2"
     text-decoder "^1.1.0"
 
-"string-width-cjs@npm:string-width@^4.2.0":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
-  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
-  dependencies:
-    emoji-regex "^8.0.0"
-    is-fullwidth-code-point "^3.0.0"
-    strip-ansi "^6.0.1"
-
-string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
+"string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -6711,14 +6702,7 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
-  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
-  dependencies:
-    ansi-regex "^5.0.1"
-
-strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -7428,16 +7412,7 @@ word-wrap@^1.2.5:
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.5.tgz#d2c45c6dd4fbce621a66f136cbe328afd0410b34"
   integrity sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==
 
-"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
-  integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
-  dependencies:
-    ansi-styles "^4.0.0"
-    string-width "^4.1.0"
-    strip-ansi "^6.0.0"
-
-wrap-ansi@^7.0.0:
+"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
