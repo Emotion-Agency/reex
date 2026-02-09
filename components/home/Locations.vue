@@ -88,15 +88,17 @@ defineProps<IProps>()
   padding: vw(64);
   height: 100%;
   flex: 1;
+  will-change: transform;
 
   @media (max-width: $br1) {
     justify-content: center;
     padding: 0;
   }
 
-  svg {
+  img {
     height: 100%;
     width: 100%;
+    isolation: isolate;
   }
 }
 </style>
