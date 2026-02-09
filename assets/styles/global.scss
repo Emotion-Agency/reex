@@ -23,7 +23,6 @@ body {
   position: relative;
   font-family: sans-serif;
   overscroll-behavior-y: none;
-  overflow: hidden;
   @include smooth-font;
   @media (min-width: $br1) {
     overflow: hidden;
