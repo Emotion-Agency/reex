@@ -40,11 +40,9 @@ defineProps<iMemberProps>()
 .member__img {
   width: vw(48);
   height: vw(48);
-  object-fit: cover;
-  border-radius: vw(16);
+  object-fit: contain;
 
   @media (max-width: $br1) {
-    border-radius: 16px;
     width: 48px;
     height: 48px;
   }
