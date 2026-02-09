@@ -25,6 +25,9 @@ body {
   overscroll-behavior-y: none;
   overflow: hidden;
   @include smooth-font;
+  @media (min-width: $br1) {
+    overflow: hidden;
+  }
 
   @media (max-width: $br1) {
     font-size: 16px;
