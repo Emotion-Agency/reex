@@ -20,7 +20,7 @@ defineProps<ArticlesProps>()
         <CustomImage
           :src="asset?.filename"
           :alt="asset?.alt"
-          :width="448"
+          :width="900"
           class="article-item__img"
         />
       </div>

@@ -18,7 +18,7 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
       data-preload
       :src="asset?.filename"
       :alt="asset?.alt"
-      :width="1440"
+      :width="2560"
       :video-attributes="{
         autoplay: true,
         playsinline: true,

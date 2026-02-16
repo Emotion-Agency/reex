@@ -18,7 +18,7 @@ const openedId = ref(props.content?.items[0]?._uid ?? '')
         :key="step._uid"
         :src="step.asset.filename"
         :alt="step.asset.alt"
-        :width="564"
+        :width="1024"
         class="coop-steps__img"
         :class="{ 'coop-steps__img--opened': openedId === step._uid }"
       />

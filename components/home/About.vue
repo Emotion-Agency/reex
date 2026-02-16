@@ -80,7 +80,7 @@ onBeforeUnmount(async () => {
         :key="img._uid"
         class="about__img"
       >
-        <CustomImage :width="360" :src="img?.filename" :alt="img?.alt" />
+        <CustomImage :width="720" :src="img?.filename" :alt="img?.alt" />
       </div>
     </div>
   </section>

@@ -29,7 +29,7 @@ const { emblaRef } = useEmbla({
         <ParallaxImg
           :src="img?.filename"
           :alt="img?.alt"
-          :width="564"
+          :width="1024"
           class="assets-list__img"
         />
       </li>

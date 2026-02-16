@@ -41,9 +41,10 @@ const fileType = computed(() => {
 </script>
 
 <template>
+  <div v-if="!src" style="background-color: var(--foreground)"></div>
   <component
     :is="imageComponent"
-    v-if="fileType === 'image'"
+    v-else-if="fileType === 'image'"
     :src="src"
     :alt="alt"
     :quality="quality"
