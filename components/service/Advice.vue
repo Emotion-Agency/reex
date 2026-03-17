@@ -15,9 +15,9 @@ const localePath = useLocalePath()
     <div class="advice__wrapper">
       <div class="advice__content">
         <div class="advice__top">
-          <h3 class="advice__t">
-            {{ content?.title }}
-          </h3>
+          <div class="advice__t">
+            <RichText :text="content.title" />
+          </div>
           <DualButton
             class="advice__btn"
             tag="nuxt-link"
@@ -26,9 +26,9 @@ const localePath = useLocalePath()
             {{ content?.link[0]?.label }}
           </DualButton>
         </div>
-        <p class="advice__d">
-          {{ content.description }}
-        </p>
+        <div class="advice__d">
+          <RichText :text="content.description" />
+        </div>
         <DualButton
           class="advice__btn advice__btn--mob"
           tag="nuxt-link"
@@ -61,8 +61,12 @@ const localePath = useLocalePath()
   justify-content: space-between;
   align-items: stretch;
   border-radius: vw(16);
-  padding: vw(48) vw(160) vw(32) vw(32);
+  padding: vw(48) vw(48) vw(32) vw(32);
   background-color: var(--foreground-muted-7);
+
+  @media (min-width: $br1) {
+    gap: vw(30);
+  }
 
   @media (max-width: $br1) {
     justify-content: flex-start;
@@ -77,6 +81,7 @@ const localePath = useLocalePath()
 
   @media (min-width: $br1) {
     justify-content: space-between;
+    gap: vw(20);
     flex: 1;
   }
 
@@ -89,14 +94,47 @@ const localePath = useLocalePath()
   }
 }
 
-.advice__top {
-  @media (min-width: $br1) {
-    max-width: vw(660);
-  }
-}
-
 .advice__t {
   @include heading-h3;
+
+  :deep(p) {
+    @include heading-h3;
+  }
+
+  :deep(ul) {
+    margin-top: vw(10);
+
+    @media (max-width: $br1) {
+      margin-top: 10px;
+    }
+
+    li {
+      @include heading-h3;
+      position: relative;
+      margin-left: vw(4);
+      padding-left: vw(18);
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      @media (max-width: $br1) {
+        margin-left: 4px;
+        padding-left: 14px;
+      }
+    }
+
+    li + li {
+      margin-top: vw(8);
+
+      @media (max-width: $br1) {
+        margin-top: 8px;
+      }
+    }
+  }
 }
 
 .advice__btn {
@@ -129,6 +167,40 @@ const localePath = useLocalePath()
 
   @media (max-width: $br1) {
     margin-top: 12px;
+  }
+
+  :deep(ul) {
+    margin-top: vw(10);
+
+    @media (max-width: $br1) {
+      margin-top: 10px;
+    }
+
+    li {
+      @include text-reg-p1;
+      position: relative;
+      margin-left: vw(4);
+      padding-left: vw(10);
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+      }
+
+      @media (max-width: $br1) {
+        margin-left: 4px;
+        padding-left: 10px;
+      }
+    }
+
+    li + li {
+      margin-top: vw(8);
+
+      @media (max-width: $br1) {
+        margin-top: 8px;
+      }
+    }
   }
 }
 

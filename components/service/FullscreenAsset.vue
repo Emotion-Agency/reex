@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { StoryblokRichTextDocumentNode } from '@storyblok/richtext'
 import type { iImage } from '~/types/stories/story'
 
 interface iServiceFullscreenAssetProps {
   asset: iImage
-  description: string
+  description: StoryblokRichTextDocumentNode
 }
 
 defineProps<iServiceFullscreenAssetProps>()
@@ -19,9 +20,9 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
       <Button data-scale class="fs-asset__btn" variant="dark">
         <Icon name="lucide:arrow-down" />
       </Button>
-      <p data-t class="fs-asset__d">
-        {{ description }}
-      </p>
+      <div data-t class="fs-asset__d">
+        <RichText :text="description" />
+      </div>
     </div>
     <div class="fs-asset__wrapper">
       <AssetRenderer
@@ -62,8 +63,8 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
 }
 
 .fs-asset__d {
-  max-width: vw(448);
   @include heading-h4;
+  max-width: vw(448);
 
   @media (max-width: $br1) {
     max-width: 320px;
@@ -71,6 +72,45 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
 
   @media (max-width: $br4) {
     max-width: 100%;
+  }
+
+  :deep(p) {
+    @include heading-h4;
+  }
+
+  :deep(ul) {
+    margin-top: vw(10);
+
+    @media (max-width: $br1) {
+      margin-top: 10px;
+    }
+
+    li {
+      @include heading-h4;
+      position: relative;
+      margin-left: vw(4);
+      padding-left: vw(14);
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      @media (max-width: $br1) {
+        margin-left: 4px;
+        padding-left: 14px;
+      }
+    }
+
+    li + li {
+      margin-top: vw(8);
+
+      @media (max-width: $br1) {
+        margin-top: 8px;
+      }
+    }
   }
 }
 

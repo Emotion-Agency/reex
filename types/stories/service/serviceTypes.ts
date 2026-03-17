@@ -1,3 +1,4 @@
+import type { StoryblokRichTextDocumentNode } from '@storyblok/richtext'
 import type { iAccordionSteps } from '../accordionTypes'
 import type { iAdvantageItem } from '../advantagesTypes'
 import type { iRichTextDoc } from '../richTextTypes'
@@ -28,8 +29,8 @@ export interface iAdvantages {
 }
 
 export interface iAdvice {
-  title: string
-  description: string
+  title: StoryblokRichTextDocumentNode
+  description: StoryblokRichTextDocumentNode
   asset: iImage
   link: iDeepLink[]
   component: string
@@ -38,7 +39,7 @@ export interface iAdvice {
 
 export interface iServiceContent {
   colored_title: iRichTextDoc
-  description: string
+  description: StoryblokRichTextDocumentNode
   asset: iImage
   advice: iAdvice[]
   accordion_steps: iAccordionSteps[]
