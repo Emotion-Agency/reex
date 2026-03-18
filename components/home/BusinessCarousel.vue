@@ -68,9 +68,9 @@ const {
                 <h3 class="services-carousel__title">
                   {{ richTextToString(item?.content?.colored_title) }}
                 </h3>
-                <p class="services-carousel__description">
-                  {{ item.content?.description }}
-                </p>
+                <div class="services-carousel__description">
+                  <RichText :text="item.content?.description" />
+                </div>
               </div>
             </NuxtLink>
           </div>
@@ -271,16 +271,62 @@ const {
 
 .services-carousel__description {
   margin-top: vw(12);
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
   transition: color 0.5s ease;
   @include text-reg-p1;
 
   @media (max-width: $br1) {
     margin-top: 8px;
+  }
+
+  :deep(p) {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  :deep(p + p) {
+    margin-top: vw(8);
+
+    @media (max-width: $br1) {
+      margin-top: 8px;
+    }
+  }
+
+  :deep(ul) {
+    margin-top: vw(10);
+
+    @media (max-width: $br1) {
+      margin-top: 10px;
+    }
+
+    li {
+      @include text-reg-p1;
+      position: relative;
+      margin-left: vw(4);
+      padding-left: vw(10);
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+      }
+
+      @media (max-width: $br1) {
+        margin-left: 4px;
+        padding-left: 10px;
+      }
+    }
+
+    li + li {
+      margin-top: vw(8);
+
+      @media (max-width: $br1) {
+        margin-top: 8px;
+      }
+    }
   }
 }
 

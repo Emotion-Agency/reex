@@ -63,7 +63,7 @@ export interface iWhyChoose {
 export interface iBusinessCarouselItem {
   asset: iImage
   colored_title: iRichTextDoc
-  description: string
+  description: iRichTextDoc
   component: string
   _uid: string
 }
