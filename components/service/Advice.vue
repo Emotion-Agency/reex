@@ -135,6 +135,22 @@ const localePath = useLocalePath()
       }
     }
   }
+
+  :deep(ul + p) {
+    margin-top: vw(10);
+
+    @media (max-width: $br1) {
+      margin-top: 10px;
+    }
+  }
+
+  :deep(p + p) {
+    margin-top: vw(8);
+
+    @media (max-width: $br1) {
+      margin-top: 8px;
+    }
+  }
 }
 
 .advice__btn {
@@ -200,6 +216,22 @@ const localePath = useLocalePath()
       @media (max-width: $br1) {
         margin-top: 8px;
       }
+    }
+  }
+
+  :deep(ul + p) {
+    margin-top: vw(10);
+
+    @media (max-width: $br1) {
+      margin-top: 10px;
+    }
+  }
+
+  :deep(p + p) {
+    margin-top: vw(8);
+
+    @media (max-width: $br1) {
+      margin-top: 8px;
     }
   }
 }

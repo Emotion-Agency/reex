@@ -112,6 +112,22 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
       }
     }
   }
+
+  :deep(ul + p) {
+    margin-top: vw(10);
+
+    @media (max-width: $br1) {
+      margin-top: 10px;
+    }
+  }
+
+  :deep(p + p) {
+    margin-top: vw(8);
+
+    @media (max-width: $br1) {
+      margin-top: 8px;
+    }
+  }
 }
 
 .fs-asset__btn {
