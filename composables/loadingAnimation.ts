@@ -26,9 +26,10 @@ export const useLoadingAnimation = () => {
 
         const { $image, $split, $t, $o, $scale, $contacts } =
           getElements(parent)
-        await delayPromise(200)
 
-        const delay = isFirstLoad.value ? 1.7 : wait
+        await delayPromise(0)
+
+        const delay = isFirstLoad.value ? 0 : wait
 
         const onComplete = () => {
           titleSplitter?.revert()
@@ -59,7 +60,7 @@ export const useLoadingAnimation = () => {
           tl.to(
             $image,
             {
-              duration: 1.6,
+              duration: 1,
               opacity: 1,
               clipPath: 'inset(0%)',
               stagger: 0.1,
@@ -86,7 +87,7 @@ export const useLoadingAnimation = () => {
               tl.to(
                 target.lines,
                 {
-                  duration: 1.5,
+                  duration: 1,
                   yPercent: 0,
                   stagger: 0.1,
                   opacity: 1,
@@ -103,13 +104,13 @@ export const useLoadingAnimation = () => {
           tl.to(
             $t,
             {
-              duration: 1.3,
+              duration: 0.9,
               opacity: 1,
               y: 0,
               stagger: 0.2,
               ease: 'power2.out',
             },
-            '<0.2'
+            '<10%'
           )
         }
 
@@ -119,10 +120,10 @@ export const useLoadingAnimation = () => {
             {
               opacity: 1,
               scale: 1,
-              duration: 2,
+              duration: 1.2,
               ease: 'power2.out',
             },
-            '<0.5'
+            '<50%'
           )
         }
 
@@ -130,12 +131,12 @@ export const useLoadingAnimation = () => {
           tl.to(
             $o,
             {
-              duration: 1.6,
+              duration: 1,
               opacity: 1,
               stagger: 0.2,
               ease: 'power2.out',
             },
-            '<1'
+            '<'
           )
         }
 
@@ -143,7 +144,7 @@ export const useLoadingAnimation = () => {
           tl.to(
             $contacts,
             {
-              duration: 1.6,
+              duration: 1,
               opacity: 1,
               y: 0,
               ease: 'power2.out',
@@ -157,7 +158,7 @@ export const useLoadingAnimation = () => {
             document.body.classList.add('nav-visible')
           },
           [],
-          '>-1.5'
+          '>-50%'
         )
 
         isFirstLoad.value = false

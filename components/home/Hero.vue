@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { gsap } from '~/libs/gsap'
 import type { iHomeHero } from '~/types/stories/home/homeTypes'
 
 interface IProps {
@@ -14,6 +15,25 @@ useDetectHeaderColor($el as Ref<HTMLElement>)
 const titleText = computed(() =>
   props.content?.title ? props.content.title.replace(/\s+/g, ' ') : ''
 )
+
+const scrollOneScreen = () => {
+  gsap.to(getScrollEl(), {
+    scrollTop: window.innerHeight,
+    duration: 0.7,
+    onStart: () => {
+      window.escroll.disabled = true
+    },
+    onComplete: () => {
+      // window.escroll
+      window.escroll.state.position = window.innerHeight
+      window.escroll.state.vsPosition = window.innerHeight
+      window.escroll.state.velocity = 0
+      window.escroll.state.isScrolling = false
+      window.escroll.disabled = false
+    },
+    ease: 'power2.inOut',
+  })
+}
 </script>
 
 <template>
@@ -32,7 +52,7 @@ const titleText = computed(() =>
       />
     </div>
     <div data-scale class="hero__btn-wrapper">
-      <Button class="hero__btn" variant="light">
+      <Button class="hero__btn" variant="light" @click="scrollOneScreen">
         <Icon name="lucide:arrow-down" />
       </Button>
     </div>
@@ -76,6 +96,7 @@ const titleText = computed(() =>
   position: absolute;
   left: $g-offset;
   bottom: vw(16);
+  z-index: 2;
 }
 
 .hero__btn {
