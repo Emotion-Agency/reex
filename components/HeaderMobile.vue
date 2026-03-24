@@ -40,11 +40,20 @@ watch(isVisible, newVal => {
 <template>
   <div class="header-mob" :class="[{ 'header-mob--opened': isMenuOpened }]">
     <div class="header-mob__wrapper">
-      <NuxtLink :to="localePath('/')" class="header-mob__logo">
+      <NuxtLink
+        :to="localePath('/')"
+        class="header-mob__logo"
+        aria-label="Site logo"
+      >
         <IconsLogo />
       </NuxtLink>
       <div class="header-mob__right">
-        <Button tag="button" class="header-mob__menu-btn" @click="toggleMenu">
+        <Button
+          aria-label="Toggle menu"
+          tag="button"
+          class="header-mob__menu-btn"
+          @click="toggleMenu"
+        >
           <span />
           <span />
         </Button>

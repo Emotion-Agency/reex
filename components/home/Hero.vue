@@ -52,7 +52,12 @@ const scrollOneScreen = () => {
       />
     </div>
     <div data-scale class="hero__btn-wrapper">
-      <Button class="hero__btn" variant="light" @click="scrollOneScreen">
+      <Button
+        aria-label="Scroll down"
+        class="hero__btn"
+        variant="light"
+        @click="scrollOneScreen"
+      >
         <Icon name="lucide:arrow-down" />
       </Button>
     </div>
