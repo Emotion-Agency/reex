@@ -41,8 +41,8 @@ const { form, v$, isSubmitting, submit } = useFormHandle(
     <div class="c-form__input-list">
       <!-- Name -->
       <InputField
-        v-model="form.name"
         id="contact-form-name"
+        v-model="form.name"
         type="text"
         name="name"
         :placeholder="formStory?.content?.name_field || 'Name'"
@@ -52,8 +52,8 @@ const { form, v$, isSubmitting, submit } = useFormHandle(
 
       <!-- Phone -->
       <InputField
-        v-model="form.phone"
         id="contact-form-number"
+        v-model="form.phone"
         type="text"
         name="phone"
         :placeholder="formStory?.content?.phone_field || 'Phone'"
@@ -71,8 +71,8 @@ const { form, v$, isSubmitting, submit } = useFormHandle(
 
       <!-- Message -->
       <InputTextarea
-        v-model="form.message"
         id="contact-form-message"
+        v-model="form.message"
         name="message"
         :placeholder="formStory?.content?.message_field || 'Message'"
         class="c-form__input c-form__input--textarea"

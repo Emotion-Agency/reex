@@ -28,13 +28,9 @@ export function useFormHandle<T extends FormState>(
     document.documentElement.style.cursor = 'wait'
 
     try {
-      await fetch('https://formspree.io/f/mkowabvp', {
+      await $fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({ ...form }),
+        body: { ...form },
       })
 
       showThankYou()
